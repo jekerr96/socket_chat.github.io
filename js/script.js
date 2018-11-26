@@ -596,11 +596,9 @@ var roomName = "";
 	var drop_zone = $(".write-message");
 	drop_zone[0].ondragover = function(e){
 	  e.preventDefault();
-		console.log("ondragover");
 	}
 
 	drop_zone[0].ondrop = function(e){
-		console.log("ondrop");
 	  e.preventDefault();
 	  var files = e.dataTransfer.files;
 	  encodeImageFileAsURL(files, function(images){
