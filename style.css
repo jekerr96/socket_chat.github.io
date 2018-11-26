@@ -180,6 +180,7 @@ body{
 }
 .right-class-img-male, .right-class-img-female, .left-class-img-male, .left-class-img-female{
 	height: 350px;
+	width: 120px;
 }
 
 
