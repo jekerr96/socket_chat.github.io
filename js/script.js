@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 		if(rightmale){
 			src_sex = "images/male.png";
-			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-female").addClass("button-search-script-male".html("Найти собеседника");
+			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-female").addClass("button-search-script-male").html("Найти собеседника");
 			$(".right-class").removeClass("sex-female").removeClass("right-class-anonim");
 			$(".right-class").addClass("sex-male");
 		}
