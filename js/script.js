@@ -1,50 +1,8 @@
 $(document).ready(function(){
-
-	new_token();
 	var male = true;
 
 	$(".left-left-skip").click(function(){
-		var lcim = $(".left-class-img-male");
-		lcim.removeClass("show-left-class-img");
-		lcim.removeClass("new-pos-left-class-img");
-		lcim.removeClass("show-left-class-img");
-		lcim.removeClass("new-pos-right-class-img");
-		lcim.addClass("hide-left-class-img");
-
-		setTimeout(function(){
-			if(male == true)
-			{
-				var lc = $(".left-class");
-				lc.removeClass("left-class-script-male");
-				lc.addClass("left-class-script-female");
-				$(".left-class-img-male").attr("src", "images/female.png");
-				$(".left-left-skip").removeClass("left-skip-male");
-				$(".left-right-skip").removeClass("right-skip-male");
-				$(".input-name").css("border", "3px solid rgba(159, 100, 160, 0.47)");
-				$(".left-left-skip").addClass("left-skip-female");
-				$(".left-right-skip").addClass("right-skip-female");
-				male = false;
-			}
-
-			else{
-				var lc = $(".left-class");
-				lc.removeClass("left-class-script-female");
-				lc.addClass("left-class-script-male");
-				$(".left-class-img-male").attr("src", "images/male.png");
-				$(".left-left-skip").removeClass("left-skip-female");
-				$(".left-right-skip").removeClass("right-skip-female");
-				$(".input-name").css("border", "3px solid rgba(0, 78, 255, 0.19)");
-				$(".left-left-skip").addClass("left-skip-male");
-				$(".left-right-skip").addClass("right-skip-male");
-				$(".left-class-img-male").attr("src", "images/male.png");
-				male = true;
-			}
-			$(".left-class-img-male").removeClass("hide-left-class-img");
-			$(".left-class-img-male").addClass("new-pos-left-class-img");
-			setTimeout(function(){
-				$(".left-class-img-male").addClass("show-left-class-img");
-			}, 200);
-		}, 300);
+		$(".left-class-img-male").effect("drop");
 	});
 
 	$(".left-right-skip").click(function(){
@@ -182,7 +140,7 @@ $(document).ready(function(){
 				rc.removeClass("right-class-anonim");
 				rc.addClass("right-class-script-female");
 				$(".right-left-skip").removeClass("left-skip-female");
-				$(".right-right-skip").removeClass("right-skip-female");	
+				$(".right-right-skip").removeClass("right-skip-female");
 				$(".right-left-skip").addClass("left-skip-male");
 				$(".right-right-skip").addClass("right-skip-male");
 				$(".right-class-img-male").attr("src", "images/male.png");
@@ -267,7 +225,7 @@ $(document).ready(function(){
 		var ryt = $(".right-year-text");
 		switch(rightvosrast)
 		{
-			
+
 			case 0: $(ryt).html("Любой");  break;
 			case 1: $(ryt).html("До 18");  break;
 			case 2: $(ryt).html("18-21"); break;
@@ -338,7 +296,7 @@ $(document).ready(function(){
 			opppol = "2";
 		}
 		var oppresult = opppol+rightvosrast;
-		
+
 		if($(".input-name").val() == "")
 		{
 			name = "Аноним";
@@ -357,7 +315,7 @@ $(document).ready(function(){
 		if(anonim == false)
 		$(this).toggleClass("scale-skip");
 	});
-	
+
 	var fon1= new Image();
 	fon1.src = "images/fon1.jpg";
 	var fon2 = new Image();
@@ -365,8 +323,8 @@ $(document).ready(function(){
 	var girl_fon = new Image();
 	girl_fon.src = "images/girl-fon.jpg";
 
-	$(".exit-opponent").click(function(){	
-		inChat = false;	
+	$(".exit-opponent").click(function(){
+		inChat = false;
 		isFind = false;
 		isChange = false;
 		isWrite = false;
@@ -421,12 +379,12 @@ $(document).ready(function(){
 				new_br();
 			return false;
 		}
-		
+
 		//var p = new RegExp("&nbsp;*\s*$");
 		if(e.keyCode == 13 && $(this).html() != ""/* && !p.test($(this).html())*/)
 		{
 			if(send_msg == true)
-			{ 
+			{
 
 					firebase.database().ref('messages/' + tokenMsg).push().set({
     				msg : "sdfgfhg$#%$df",
@@ -452,14 +410,14 @@ $(document).ready(function(){
 			send_msg = true;
 		}
 
-	});	
+	});
 	function new_br()
 	{
 		var div = document.createElement('div');
-		var txt = window.getSelection().getRangeAt(0);	
+		var txt = window.getSelection().getRangeAt(0);
 		div.innerHTML = "<br>";
 		txt.insertNode(div);
-		SetCursorAfterElement(div);	
+		SetCursorAfterElement(div);
 	}
 	function after_send()
 	{
@@ -473,7 +431,7 @@ $(document).ready(function(){
 	var write_time = new Date(0);
 	var isWrite = false;
 	function imWrite(){
-		
+
 		write_interval = setInterval(function(){
 			var currentDate = new Date();
 			if(currentDate - 3000 < write_time && isWrite == false){
@@ -491,7 +449,7 @@ $(document).ready(function(){
   					});
 		}
 		}, 1000);
-		
+
 	}
 
 	var audio = new Audio();
@@ -533,7 +491,7 @@ $(document).ready(function(){
 
 			else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df"){
 
-				
+
 
 				msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
 				var block_mess_write = $(".block-mess-write");
@@ -543,7 +501,7 @@ $(document).ready(function(){
 				else {
 					$(".chat").append(msg);
 				}
-				
+
 						var block = document.getElementById("chat");
 						block.scrollTop = block.scrollHeight;
 			}
@@ -597,7 +555,7 @@ $(document).ready(function(){
 			data: "",
 			dataType: "html",
 			cache: false,
-			success: function(data) { 
+			success: function(data) {
 				//alert(data);
 			}
 		});
@@ -613,7 +571,7 @@ $(document).ready(function(){
 			data: "",
 			dataType: "html",
 			cache: false,
-			success: function(data) { 
+			success: function(data) {
 				if($(".input-name").val() == "1026")
 				$(".count_online, .count_online_menu").html("Сейчас онлайн: " + data);
 				else
@@ -631,8 +589,8 @@ $(document).ready(function(){
 			data: "",
 			dataType: "html",
 			cache: false,
-			success: function(data) { 
-				
+			success: function(data) {
+
 			}
 		});
 	}
@@ -645,14 +603,14 @@ $(document).ready(function(){
  	    for (var i = 0; i < 35; i++)
    			 text += possible.charAt(Math.floor(Math.random() * possible.length));
 		token = text;
-		
+
 		/*$.ajax({
 			type: "POST",
 			url: "include/new-token.php",
 			data: "",
 			dataType: "html",
 			cache: false,
-			success: function(data) { 
+			success: function(data) {
 				token = data;
 			}
 		});*/
@@ -671,7 +629,7 @@ var c = 0;
 var removed = false;
 
 	function Search(aboutme, aboutopponent, myname){
-		
+
 		commentsRef = firebase.database().ref('search/');
 		createSearch = firebase.database().ref('search/');
 		var search2;
@@ -727,7 +685,7 @@ var removed = false;
 				}
 		}
 	});
-		
+
 
 
 		setTimeout(function(){
@@ -759,7 +717,7 @@ var removed = false;
 					createSearch.off();
 					openChat();
 				});
-				
+
 			}
 			});
 }
@@ -779,7 +737,7 @@ var removed = false;
 						opponentToken : token,
 						opponentName : name
 					});
-					
+
 					search2.set({
 						opponentName : myname,
 						opponentToken : token,
@@ -795,7 +753,7 @@ var removed = false;
 			}
 		}, 5000);
 	}
-	
+
 	var inChat = false;
 	function openChat(){
 		inChat = true;
@@ -836,7 +794,7 @@ var removed = false;
 	window.onbeforeunload = function(){
 		if(inChat){
 			return "Покинуть чат?";
-		
+
 	}
 
 	};
@@ -854,12 +812,12 @@ var removed = false;
 		var img = new Image();
 		img.src = $(this).attr("src");
 		img.className = "chat-smile";
-		$(".write-message").focus();  
+		$(".write-message").focus();
 		var txt = window.getSelection().getRangeAt(0);
 		//txt.insertNode(document.createTextNode(img));
 		txt.insertNode(img);
 		SetCursorAfterElement(img);
-	}); 
+	});
 
 	function SetCursorAfterElement(element)
 	{
@@ -918,7 +876,7 @@ var removed = false;
     	var img = new Image();
     	img.src=data;
     	$('.load_image').prop('value', null);
-    	$(".write-message").focus();  
+    	$(".write-message").focus();
     	$('.load-image').value = null;
     	var start = window.getSelection().getRangeAt(0).startOffset;
     	var txt = window.getSelection().getRangeAt(0);
@@ -960,7 +918,7 @@ var removed = false;
 		if(files.length == 1 && files[0].type.match(/image.*/)) {
 			formData.append('0', files[0]);
 			xhr.onload = function() {
-				
+
 				setTimeout(function(){
 					progressBar.hide();
 				}, 2000);
@@ -968,7 +926,7 @@ var removed = false;
 				var img = new Image();
 				img.src=data;
 				$('.load_image').prop('value', null);
-				$(".write-message").focus();  
+				$(".write-message").focus();
 				$('.load-image').value = null;
 				var start = window.getSelection().getRangeAt(0).startOffset;
 				var txt = window.getSelection().getRangeAt(0);
@@ -989,4 +947,4 @@ var removed = false;
 }
 }
 
-}); 
+});
