@@ -11,13 +11,13 @@ $(document).ready(function(){
 			src_sex = "images/male.png";
 			$(".left-class").removeClass("sex-female");
 			$(".left-class").addClass("sex-male");
-			$(".input-name").css("border", "3px solid rgba(159, 100, 160, 0.47)");
+			$(".input-name").css("border", "3px solid rgba(0, 78, 255, 0.19)");
 		}
 		else {
 			src_sex = "images/female.png";
 			$(".left-class").removeClass("sex-male");
 			$(".left-class").addClass("sex-female");
-			$(".input-name").css("border", "3px solid rgba(0, 78, 255, 0.19)");
+			$(".input-name").css("border", "3px solid rgba(159, 100, 160, 0.47)");
 		}
 
 		$(".left-class-img-male").effect("drop", time_change, function(){
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			if($(".right-class").hasClass("right-class-anonim"))
 				return;
 			rightmale = !rightmale;
-			$(".button-search").removeClass("button-search-script-male").removeClass("button-search-script-female").addClass("button-search-anonim");
+			$(".button-search").removeClass("button-search-script-male").removeClass("button-search-script-female").addClass("button-search-anonim").html("Найти собеседника");
 			$(this).toggleClass("scale-skip");
 			src_sex = "images/anonim.png";
 			$(".right-class").removeClass("sex-female").removeClass("sex-male").addClass("right-class-anonim");
@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 		if(rightmale){
 			src_sex = "images/male.png";
-			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-female").addClass("button-search-script-male");
+			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-female").addClass("button-search-script-male".html("Найти собеседника");
 			$(".right-class").removeClass("sex-female").removeClass("right-class-anonim");
 			$(".right-class").addClass("sex-male");
 		}
@@ -61,7 +61,7 @@ $(document).ready(function(){
 			src_sex = "images/female.png";
 			$(".right-class").removeClass("sex-male").removeClass("right-class-anonim");
 			$(".right-class").addClass("sex-female");
-			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-male").addClass("button-search-script-female");
+			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-male").addClass("button-search-script-female").html("Найти собеседницу");
 		}
 
 		$(".right-class-img-male").effect("drop", time_change, function(){
