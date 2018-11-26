@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('http://localhost:3000');
+	var socket = io('http://socketchat-cbmxbooofl.now.sh');
 	var male = true;
 
 	$(".left-left-skip").click(function(){
