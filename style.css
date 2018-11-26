@@ -775,7 +775,6 @@ body{
 .img-show{
 	max-width: 90%;
 	max-height: 90%;
-	min-width: 30%;
 	border: 20px solid gainsboro;
 	background: white;
 }
