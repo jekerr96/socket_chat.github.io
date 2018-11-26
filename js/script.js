@@ -249,6 +249,7 @@ $(document).ready(function(){
 		$(".chat-content").effect("drop", {direction: "down"}, 1000, function(){
 			$(".block-classificate").effect("drop", {direction: "up", mode: "show"}, 1000, function(){
 				document.body.style.overflow = "";
+				$("body").css("background-image", "url(" + fon1.src + ")");
 			});
 		});
 
@@ -486,6 +487,18 @@ var roomName = "";
 		$(".block-classificate").effect("drop", {direction: "up"}, 1000, function(){
 			$(".chat-content").effect("drop", {direction: "down", mode: "show"}, 1000, function(){
 				document.body.style.overflow = "";
+				if(male){
+					$("body").css("background-image", "url(" + fon2.src + ")");
+					$(".block-chat").removeClass("block-chat-female");
+					$(".write-message").removeClass("write-message-female");
+					$(".chat").removeClass("chat-female");
+				}
+				else {
+					$("body").css("background-image", "url(" + girl_fon.src + ")");
+					$(".block-chat").addClass("block-chat-female");
+					$(".write-message").addClass("write-message-female");
+					$(".chat").addClass("chat-female");
+				}
 			});
 		});
 		Update_Chat();
