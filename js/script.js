@@ -411,7 +411,8 @@ $(document).ready(function(){
 				else if(msg == "%$&wgb$5sfgeq#67$235" && author != myAuthor){
 					$(".block-mess-write").detach();
 						$(".chat").append("<br>Собеседник покинул чат");
-						//refMsg.off();
+						var block = document.getElementById("chat");
+						block.scrollTop = block.scrollHeight;
 				}
 
 				if(author != myAuthor){
