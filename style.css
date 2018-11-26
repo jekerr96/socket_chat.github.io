@@ -52,7 +52,7 @@ body{
 .button-search{
 	display: inline-block;
 	margin-top: 20px;
-	background: rgba(245, 140, 188, 0.431373); 
+	background: rgba(245, 140, 188, 0.431373);
 	padding: 10px;
 	color: white;
 	cursor: pointer;
@@ -63,12 +63,12 @@ body{
 	background: rgba(245, 140, 188, 0.431);
 	border-bottom: 3px solid rgba(70, 33, 93, 0.882353);
 	width: 160px;
-	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset, 
-	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset, 
-	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px; 
-	border-width: 1px 1px 3px; 
-	border-style: solid; 
-	border-color: rgba(70, 33, 93, 0.882353); 
+	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
+	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
+	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+	border-width: 1px 1px 3px;
+	border-style: solid;
+	border-color: rgba(70, 33, 93, 0.882353);
 	border-image: initial;
 }
 
@@ -85,8 +85,8 @@ body{
 .block-classificate{
 	background: rgba(42, 92, 127, 0.48);
 	border: 2px solid rgba(44, 56, 84, 0.94);;
-	box-shadow: inset rgba(3, 13, 35, 0.5) -3px -3px 8px, 
-	inset rgba(169, 187, 224, 0.9) 3px 3px 8px, 
+	box-shadow: inset rgba(3, 13, 35, 0.5) -3px -3px 8px,
+	inset rgba(169, 187, 224, 0.9) 3px 3px 8px,
 	rgba(0,0,0,.8) 3px 3px 8px -3px;
 	border-radius: 10px;
 	max-width: 900px;
@@ -99,7 +99,7 @@ body{
 	padding: 20px;
 	padding-top: 20px;
 	text-align: center;
-	transition: all 2s ease-in-out;
+	transition: none;
 }
 
 .hide-block-classificate{
@@ -125,7 +125,7 @@ body{
 
 .block-gender{
 
-	
+
 
 }
 
@@ -135,36 +135,49 @@ body{
 
 .left-class{
 	width: 50%;
-	height: 100%;
+	height: 350px;
 	//border-right: 1px solid black;
-	background: rgba(119, 153, 234, 0.34902); 
+	background: rgba(119, 153, 234, 0.34902);
 	border-bottom: 3px solid rgba(33, 51, 93, 0.882353);
 	display: inline-block;
 	//vertical-align: top;
 	position: relative;
 	overflow: hidden;
 	border-radius: 5px;
-	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset, 
-	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset, 
-	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px; 
-
+	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
+	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
+	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+	transition: all 1s ease-in-out;
 }
 
 .right-class{
 	width: 49%;
-	height: 100%;
-	background: rgba(245, 140, 188, 0.431373); 
+	height: 350px;
+	background: rgba(245, 140, 188, 0.431373);
 	border-bottom: 3px solid rgba(70, 33, 93, 0.882353);
 	display: inline-block;
 	position: relative;
 	overflow: hidden;
 	border-radius: 5px;
-	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset, 
-	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset, 
-	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px; 
-
+	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
+	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
+	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+	transition: all 1s ease-in-out;
 }
-
+.sex-male{
+	background: rgba(119, 153, 234, 0.34902);
+	border-bottom: 3px solid rgba(33, 51, 93, 0.882353);
+	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
+	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
+	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+}
+.sex-female{
+	background: rgba(245, 140, 188, 0.431373);
+	border-bottom: 3px solid rgba(70, 33, 93, 0.882353);
+	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
+	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
+	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+}
 .right-class-img-male, .right-class-img-female, .left-class-img-male, .left-class-img-female{
 	height: 350px;
 }
@@ -201,15 +214,15 @@ body{
 
 .left-left-skip, .right-left-skip{
 	position: absolute;
-	transition: all 1.7s ease-in-out;
+	transition: all 1.2s ease-in-out;
 	top: 10px;
 	right: 10px;
 	width: 50px;
-	display: inline-block;	
-	border-radius: 3px; 
-	padding: 1px; 
+	display: inline-block;
+	border-radius: 3px;
+	padding: 1px;
 	cursor: pointer;
-	color: rgb(255, 255, 255); 
+	color: rgb(255, 255, 255);
 	z-index: 10;
 	//box-shadow: 0 0 10px 0.1px black inset;
 	-webkit-user-select: none;
@@ -224,17 +237,17 @@ body{
 }
 .left-skip-male, .right-skip-male{
 	//box-shadow: 0 0 10px 0.1px black inset;
-	//background: rgb(172, 195, 251); 
-	//border: solid 1px rgb(143, 175, 255); 
+	//background: rgb(172, 195, 251);
+	//border: solid 1px rgb(143, 175, 255);
 	cursor: pointer;
 }
 
 .left-skip-female, .right-skip-female{
 	//box-shadow: 0 0 10px 0.1px black inset;
-	//background: rgba(253, 3, 255, 0.1); 
-	//border: solid 1px rgba(253, 3, 255, 0.15); 
+	//background: rgba(253, 3, 255, 0.1);
+	//border: solid 1px rgba(253, 3, 255, 0.15);
 	cursor: pointer;
-	color: rgb(255, 255, 255); 
+	color: rgb(255, 255, 255);
 }
 
 .left-right-skip, .right-right-skip{
@@ -245,10 +258,10 @@ body{
 	bottom: 30px;
 	margin-left: -22px;
 	//right: 0;
-	border-radius: 3px; 
-	padding: 1px; 
+	border-radius: 3px;
+	padding: 1px;
 	cursor: pointer;
-	color: rgb(255, 255, 255); 
+	color: rgb(255, 255, 255);
 	z-index: 10;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -714,8 +727,7 @@ body{
 }
 
 .chat-content{
-	transition: all 2s ease-in-out;
-	transform: translate(0, 3000px);
+	transition: none;
 	display: none;
 	text-align: center;
 }
@@ -728,22 +740,22 @@ body{
 }
 
 .block-chat{
-	margin-top: 5%; 
-	text-align: center; 
-	max-width: 900px; 
-	width: 60%; 
-	display: inline-block; 
-	padding: 10px; 
-	padding-top:0px; 
-	position: relative; 
-	background: rgba(25, 50, 66, 0.85); 
-	border-top: 3px solid rgb(131, 175, 75); 
-	border-bottom: 4px solid rgba(10, 10, 10, 0.5); 
-	border-radius: 10px; 
+	margin-top: 2%;
+	text-align: center;
+	max-width: 900px;
+	width: 60%;
+	display: inline-block;
+	padding: 10px;
+	padding-top:0px;
+	position: relative;
+	background: rgba(25, 50, 66, 0.85);
+	border-top: 3px solid rgb(131, 175, 75);
+	border-bottom: 4px solid rgba(10, 10, 10, 0.5);
+	border-radius: 10px;
 }
 
 .block-chat-female{
-	border-top: 3px solid rgb(177, 66, 112); 
+	border-top: 3px solid rgb(177, 66, 112);
 	border-bottom: 4px solid rgba(10, 10, 10, 0.5);
 
 }
@@ -778,8 +790,8 @@ body{
 	display: inline-block;
 	text-align: left;
 	font-size: 14px;
-	border-bottom: 1px solid rgba(255, 255, 255, 0); 
-	background: rgba(255, 255, 255, 0.2); 
+	border-bottom: 1px solid rgba(255, 255, 255, 0);
+	background: rgba(255, 255, 255, 0.2);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.85) inset, 0 0px 5px rgba(0, 0, 0, 0.49);
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -794,12 +806,12 @@ body{
 .chat-female{
 	color: #212121;
 	background: rgba(255, 255, 255, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.12); 
+	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 .chat img:not(.chat-smile){
 	border-radius: 3px;
 	max-width: 90%;
-box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 23px 0 20px -23px rgba(0, 0, 0, .8), 0 0 40px rgba(0, 0, 0, .1) inset; 
+box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 23px 0 20px -23px rgba(0, 0, 0, .8), 0 0 40px rgba(0, 0, 0, .1) inset;
 	max-height: 350px;
 	margin-bottom: 5x;
 	margin-left: 10px;
@@ -812,7 +824,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	position: absolute;
 	overflow-y: auto;
 	height: 150px;
-
+	user-select: none;
 }
 .block-new-message{
 	width: 80%;
@@ -835,7 +847,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	clear: both;
 	font-size: 14px;
 	overflow: auto;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.25); 
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 	background: rgb(25, 52, 64);
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.85) inset, 0 0px 5px rgba(0, 0, 0, 0.49);
 	-moz-border-radius: 10px;
@@ -861,13 +873,13 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 
 .new-image{
 	display: inline-block;
-	width: 60px; 
+	width: 60px;
 	cursor: pointer;
 }
 .block-load{
 	display: inline-block;
 }
-.block-smile{ 
+.block-smile{
 	width: 60px;
 	display: inline-block;
 	position: relative;
@@ -884,12 +896,12 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	text-align: left;
 	padding: 3px;
 	border: solid 2px rgba(52, 82, 121, 0.84);
-	border-radius: 5px; 
-	background: rgba(25, 50, 66, 0.85); 
-	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.85) inset, 0 0px 5px rgba(0, 0, 0, 0.49); 
+	border-radius: 5px;
+	background: rgba(25, 50, 66, 0.85);
+	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.85) inset, 0 0px 5px rgba(0, 0, 0, 0.49);
 	width: 200px;
 	margin-top: -170%;
-	
+
 }
 
 .block-smile:hover .list-smile{
@@ -1045,39 +1057,39 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 }
 
 .exit-opponent{
-background-color: #808e8e; 
-position: absolute; 
-right: 15px; 
-top: 8px; 
-width: 26px; 
-cursor: pointer; 
-height: 26px; 
-background: url(images/close.png) no-repeat; 
-background-size: 16px; 
-background-position: center; 
-background-color: #808e8e; 
-border: solid 2px #5b7070; 
-border-radius: 4px; 
+background-color: #808e8e;
+position: absolute;
+right: 15px;
+top: 8px;
+width: 26px;
+cursor: pointer;
+height: 26px;
+background: url(images/close.png) no-repeat;
+background-size: 16px;
+background-position: center;
+background-color: #808e8e;
+border: solid 2px #5b7070;
+border-radius: 4px;
 box-shadow: 0 2px 11px rgba(0, 0, 0, 0.7) inset, 0 0px 4px rgba(0, 0, 0, 0.8);
 }
 
 
 .count_online{
-color: #18313c; 
-text-align: center; 
-display: inline-block; 
-position: relative; 
-top: 10px; 
-width: 134px; 
+color: #18313c;
+text-align: center;
+display: inline-block;
+position: relative;
+top: 10px;
+width: 134px;
 height: 20px;
-padding-top: 0px; 
-padding-bottom: 3px; 
-padding-left: 4px; 
+padding-top: 0px;
+padding-bottom: 3px;
+padding-left: 4px;
 padding-right: 4px;
-//border: solid 2px #5b7070; 
-//border-radius: 4px; 
-//background: #808e8e; 
-//box-shadow: 0 2px 11px rgba(0, 0, 0, 0.7) inset, 0 0px 4px rgba(0, 0, 0, 0.8); 
+//border: solid 2px #5b7070;
+//border-radius: 4px;
+//background: #808e8e;
+//box-shadow: 0 2px 11px rgba(0, 0, 0, 0.7) inset, 0 0px 4px rgba(0, 0, 0, 0.8);
 float: left;
 margin-left: 15px;
 }
@@ -1264,6 +1276,3 @@ progress::-moz-progress-bar {
 		width: 95%;
 	}
 }
-
-
-

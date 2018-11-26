@@ -1,162 +1,68 @@
 $(document).ready(function(){
+	var socket = io('http://localhost:3000');
 	var male = true;
 
 	$(".left-left-skip").click(function(){
-		$(".left-class-img-male").effect("drop");
-	});
+		var time_change = 600;
+		var src_sex = "";
+		male = !male;
 
-	$(".left-right-skip").click(function(){
-		var lcim = $(".left-class-img-male");
-		lcim.removeClass("show-left-class-img");
-		lcim.removeClass("new-pos-right-class-img");
-		lcim.removeClass("show-left-class-img");
-		lcim.removeClass("new-pos-left-class-img");
-		lcim.addClass("hide-right-class-img");
+		if(male){
+			src_sex = "images/male.png";
+			$(".left-class").removeClass("sex-female");
+			$(".left-class").addClass("sex-male");
+		}
+		else {
+			src_sex = "images/female.png";
+			$(".left-class").removeClass("sex-male");
+			$(".left-class").addClass("sex-female");
+		}
 
-		setTimeout(function(){
-			if(male == true)
-			{
-				var lc = $(".left-class");
-				lc.removeClass("left-class-script-male");
-				lc.addClass("left-class-script-female");
-				$(".left-left-skip").removeClass("left-skip-male");
-				$(".left-right-skip").removeClass("right-skip-male");
-				$(".input-name").css("border", "3px solid rgba(159, 100, 160, 0.47)");
-				$(".left-left-skip").addClass("left-skip-female");
-				$(".left-right-skip").addClass("right-skip-female");
-				$(".left-class-img-male").attr("src", "images/female.png");
-				male = false;
-			}
-			else{
-				var lc = $(".left-class");
-				lc.removeClass("left-class-script-female");
-				lc.addClass("left-class-script-male");
-				$(".left-class-img-male").attr("src", "images/male.png");
-				$(".left-left-skip").removeClass("left-skip-female");
-				$(".left-right-skip").removeClass("right-skip-female");
-				$(".input-name").css("border", "3px solid rgba(0, 78, 255, 0.19)");
-				$(".left-left-skip").addClass("left-skip-male");
-				$(".left-right-skip").addClass("right-skip-male");
-				male = true;
-			}
-			$(".left-class-img-male").removeClass("hide-right-class-img");
-			$(".left-class-img-male").addClass("new-pos-right-class-img");
-
-			setTimeout(function(){
-				$(".left-class-img-male").addClass("show-left-class-img");
-			}, 150);
-		}, 300);
+		$(".left-class-img-male").effect("drop", time_change, function(){
+			$(".left-class-img-male").attr("src", src_sex);
+			$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
+		});
 	});
 
 	var rightmale = false;
 	var anonim = false;
 
 	$(".right-left-skip").click(function(){
-		if(anonim == false)
-		{
-			var rcim = $(".right-class-img-male");
-			rcim.removeClass("show-left-class-img");
-			rcim.removeClass("new-pos-left-class-img");
-			rcim.removeClass("show-left-class-img");
-			rcim.removeClass("new-pos-right-class-img");
-			rcim.addClass("hide-left-class-img");
 
-			setTimeout(function(){
-				if(rightmale == true)
-				{
-					var rc = $(".right-class");
-					var button = $(".button-search");
-					rc.removeClass("right-class-script-male");
-					rc.removeClass("right-class-anonim");
-					rc.addClass("right-class-script-female");
-					$(".right-left-skip").removeClass("left-skip-male");
-					$(".right-right-skip").removeClass("right-skip-male");
-					button.removeClass("button-search-script-male");
-					button.removeClass("button-search-anonim");
-					button.addClass("button-search-script-female");
-					$(".right-left-skip").addClass("left-skip-female");
-					$(".right-right-skip").addClass("right-skip-female");
-					$(".right-class-img-male").attr("src", "images/female.png");
-					button.html("Найти собеседницу");
-					rightmale = false;
-				}
-				else{
-					var rc = $(".right-class");
-					var button = $(".button-search");
-					rc.removeClass("right-class-script-female");
-					rc.removeClass("right-class-anonim");
-					rc.addClass("right-class-script-male");
-					$(".right-left-skip").removeClass("left-skip-female");
-					$(".right-right-skip").removeClass("right-skip-female");
-					$(".right-left-skip").addClass("left-skip-male");
-					$(".right-right-skip").addClass("right-skip-male");
-					$(".right-class-img-male").attr("src", "images/male.png");
-					button.removeClass("button-search-script-female");
-					button.removeClass("button-search-anonim");
-					button.addClass("button-search-script-male");
-					button.html("Найти собеседника");
-					rightmale = true;
-				}
-				$(".right-class-img-male").removeClass("hide-left-class-img");
-				$(".right-class-img-male").addClass("new-pos-left-class-img");
-				setTimeout(function(){
-					$(".right-class-img-male").addClass("show-left-class-img");
-				}, 150);
-			}, 300);
+		var time_change = 600;
+		var src_sex = "";
+
+		if(anonim){
+			if($(".right-class").hasClass("right-class-anonim"))
+				return;
+			rightmale = !rightmale;
+			$(this).toggleClass("scale-skip");
+			src_sex = "images/anonim.png";
+			$(".right-class").removeClass("sex-female").removeClass("sex-male").addClass("right-class-anonim");
+			$(".right-class-img-male").effect("drop", time_change, function(){
+				$(".right-class-img-male").attr("src", src_sex);
+				$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
+			});
+			return;
 		}
-	});
 
-	$(".right-right-skip").click(function(){
-		var rcim = $(".right-class-img-male");
-		rcim.removeClass("show-left-class-img");
-		rcim.removeClass("new-pos-right-class-img");
-		rcim.removeClass("show-left-class-img");
-		rcim.removeClass("new-pos-left-class-img");
-		rcim.addClass("hide-right-class-img");
+		rightmale = !rightmale;
 
-		setTimeout(function(){
-			if(rightmale == true)
-			{
-				var rc = $(".right-class");
-				var button = $(".button-search");
-				rc.removeClass("right-class-script-male");
-				rc.removeClass("right-class-anonim");
-				rc.addClass("right-class-script-female");
-				$(".right-left-skip").removeClass("left-skip-male");
-				$(".right-right-skip").removeClass("right-skip-male");
-				button.removeClass("button-search-script-male");
-				button.removeClass("button-search-anonim");
-				button.addClass("button-search-script-female");
-				$(".right-left-skip").addClass("left-skip-female");
-				$(".right-right-skip").addClass("right-skip-female");
-				$(".right-class-img-male").attr("src", "images/female.png");
-				button.html("Найти собеседницу");
-				rightmale = false;
-			}
-			else{
-				var rc = $(".right-class");
-				var button = $(".button-search");
-				rc.removeClass("right-class-script-male");
-				rc.removeClass("right-class-anonim");
-				rc.addClass("right-class-script-female");
-				$(".right-left-skip").removeClass("left-skip-female");
-				$(".right-right-skip").removeClass("right-skip-female");
-				$(".right-left-skip").addClass("left-skip-male");
-				$(".right-right-skip").addClass("right-skip-male");
-				$(".right-class-img-male").attr("src", "images/male.png");
-				button.html("Найти собеседника");
-				button.removeClass("button-search-script-female");
-				button.removeClass("button-search-anonim");
-				button.addClass("button-search-script-male");
-				rightmale = true;
-			}
+		if(rightmale){
+			src_sex = "images/male.png";
+			$(".right-class").removeClass("sex-female").removeClass("right-class-anonim");
+			$(".right-class").addClass("sex-male");
+		}
+		else {
+			src_sex = "images/female.png";
+			$(".right-class").removeClass("sex-male").removeClass("right-class-anonim");
+			$(".right-class").addClass("sex-female");
+		}
 
-			$(".right-class-img-male").removeClass("hide-right-class-img");
-			$(".right-class-img-male").addClass("new-pos-right-class-img");
-			setTimeout(function(){
-				$(".right-class-img-male").addClass("show-left-class-img");
-			}, 150);
-		}, 300);
+		$(".right-class-img-male").effect("drop", time_change, function(){
+			$(".right-class-img-male").attr("src", src_sex);
+			$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
+		});
 	});
 
 	var vosrast = 1;
@@ -240,23 +146,14 @@ $(document).ready(function(){
 	$(".block-right-name > select").change(function(){
 		if($(this).val() == 0)
 		{
+			anonim = true;
 			$(".right-left-skip").click();
 			$(".right-arrow-up").hide();
 			$(".right-arrow-down").hide();
 			$(".right-year-text").hide();
-			setTimeout(function(){
-				$(".right-class-img-male").attr("src", "images/anonim.png");
-				$(".right-class").removeClass(".right-class-script-female");
-				$(".right-class").removeClass(".right-class-script-male");
-				$(".right-class").addClass("right-class-anonim");
-				$(".button-search").removeClass("button-search-script-female");
-				$(".button-search").removeClass("button-search-script-male");
-				$(".button-search").addClass("button-search-anonim");
-				$(".button-search").html("Найти собеседника");
 				rightvosrast = 0;
 				$(".right-year-text").html("Любой");
-				anonim = true;
-			}, 300);
+
 		}
 		if($(this).val() == 1)
 		{
@@ -267,10 +164,11 @@ $(document).ready(function(){
 			$(".right-left-skip").click();
 		}
 	});
+
 	$(".button-search").click(function(){
 		$(".search-opponent").show();
 		var pol = "";
-		if(male == true)
+		if(male)
 		{
 			pol = "1";
 		}
@@ -287,7 +185,7 @@ $(document).ready(function(){
 			opppol = "0";
 			rightvosrast = "0";
 		}
-		else if(rightmale == true)
+		else if(rightmale)
 		{
 			opppol = "1";
 		}
@@ -329,39 +227,32 @@ $(document).ready(function(){
 		isChange = false;
 		isWrite = false;
 		write_time = new Date(0);
-		refMsg.off();
+
 		last_element = null;
 		clearInterval(write_interval);
 
-		document.body.style.overflow = "hidden";
 		window.scrollTo(0,0);
-		firebase.database().ref('messages/' + tokenMsg).push().set({
+		socket.emit("chat_msg", {
     				msg : "%$&wgb$5sfgeq#67$235",
-    				author : myAuthor
-  					});
-		refMsg.off();
+    				author : myAuthor,
+						roomName: roomName
+					});
+		socket.removeListener("chat_msg");
 		$(".search-opponent").hide("fast");
-		$(".chat-content").removeClass("show-chat-content");
-		$(".chat-content").fadeOut(3000);
-		setTimeout(function(){
-			$(".block-classificate").fadeIn(1);
-			$(".block-classificate").toggleClass("hide-block-classificate");
-			new_token();
-		}, 1000);
-		setTimeout(function(){
-			$("body").css("background-image", "url(" + fon1.src + ")");
-			setTimeout(function(){
+		document.body.style.overflow = "hidden";
+
+		$(".chat-content").effect("drop", {direction: "down"}, 1000, function(){
+			$(".block-classificate").effect("drop", {direction: "up", mode: "show"}, 1000, function(){
 				document.body.style.overflow = "";
-			}, 2000);
-		}, 2000);
+			});
+		});
+
 		$(".chat").html("");
 	});
 
 	$(".exit-search").click(function(){
 		$(".search-opponent").hide();
-		firebase.database().ref('search/' + token).remove();
-		commentsRef.off();
-		createSearch.off();
+		socket.emit("cancel", {});
 		isFind = true;
 	});
 
@@ -386,16 +277,17 @@ $(document).ready(function(){
 			if(send_msg == true)
 			{
 
-					firebase.database().ref('messages/' + tokenMsg).push().set({
+					socket.emit("chat_msg", {
     				msg : "sdfgfhg$#%$df",
-    				author : myAuthor
-  					});
+    				author : myAuthor,
+						roomName: roomName
+  					})
 
-					firebase.database().ref('messages/' + tokenMsg).push().set({
+					socket.emit("chat_msg", {
     				msg : $(this).html(),
-    				author : myAuthor
-  					});
-
+    				author : myAuthor,
+						roomName: roomName
+					});
   					isWrite = false;
   					write_time = new Date(0);
 
@@ -436,17 +328,21 @@ $(document).ready(function(){
 			var currentDate = new Date();
 			if(currentDate - 3000 < write_time && isWrite == false){
 			isWrite = true;
-			firebase.database().ref('messages/' + tokenMsg).push().set({
+			socket.emit("chat_msg", {
     				msg : "ijk^%$%234qe",
-    				author : myAuthor
-  					});
+    				author : myAuthor,
+						roomName: roomName
+					});
+
 		}
 		else if(currentDate - 3000 > write_time && isWrite == true){
 			isWrite = false;
-			firebase.database().ref('messages/' + tokenMsg).push().set({
+			socket.emit("chat_msg", {
     				msg : "sdfgfhg$#%$df",
-    				author : myAuthor
-  					});
+    				author : myAuthor,
+						roomName: roomName
+					});
+
 		}
 		}, 1000);
 
@@ -462,12 +358,9 @@ $(document).ready(function(){
 	var refMsg;
 	function Update_Chat()
 	{
-		var msgName;
-		refMsg = firebase.database().ref('messages/' + tokenMsg);
-		refMsg.on('child_added', function(data){
-			var msg = data.val().msg;
-			var author = data.val().author;
-			var classmsg;
+		socket.on("chat_msg", function(data){
+			var msg = data.msg;
+			var author = data.author;
 			if(author == myAuthor){
 					classmsg = "my-message";
 					msgName = name;
@@ -476,53 +369,55 @@ $(document).ready(function(){
 					classmsg = "opponent-message";
 					msgName = opponentName;
 				}
-
-			if(msg == "ijk^%$%234qe" && author != myAuthor){
-				msg = "<div class='block-mess-write'>" + msgName + " печатает</div>";
-				$(".chat").append(msg);
-				var block = document.getElementById("chat");
-				block.scrollTop = block.scrollHeight;
-				return;
-			}
-			else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
-				$(".block-mess-write").detach();
-				return;
-			}
-
-			else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df"){
-
-
-
-				msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
-				var block_mess_write = $(".block-mess-write");
-				if(block_mess_write.html() != null){
-					$(msg).insertBefore(block_mess_write);
-				}
-				else {
+				if(data.type == "img"){
+					var img = "";
+					for(var i = 0; i < msg.length; i++){
+						img += "<img src='" + msg[i] + "'>";
+					}
+					msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + img + "</span></div>";
 					$(".chat").append(msg);
+					var block = document.getElementById("chat");
+					block.scrollTop = block.scrollHeight;
+				}
+				else if(msg == "ijk^%$%234qe" && author != myAuthor){
+					msg = "<div class='block-mess-write'>" + msgName + " печатает</div>";
+					$(".chat").append(msg);
+					var block = document.getElementById("chat");
+					block.scrollTop = block.scrollHeight;
+					return;
+				}
+				else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
+					$(".block-mess-write").detach();
+					return;
+				}
+				else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df"){
+					msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
+					var block_mess_write = $(".block-mess-write");
+					if(block_mess_write.html() != null){
+						$(msg).insertBefore(block_mess_write);
+					}
+					else {
+						$(".chat").append(msg);
+					}
+							var block = document.getElementById("chat");
+							block.scrollTop = block.scrollHeight;
+				}
+				else if(msg == "%$&wgb$5sfgeq#67$235" && author != myAuthor){
+					$(".block-mess-write").detach();
+						$(".chat").append("<br>Собеседник покинул чат");
+						//refMsg.off();
 				}
 
-						var block = document.getElementById("chat");
-						block.scrollTop = block.scrollHeight;
-			}
-			else if(msg == "%$&wgb$5sfgeq#67$235" && author != myAuthor){
-				$(".block-mess-write").detach();
-					$(".chat").append("<br>Собеседник покинул чат");
-					refMsg.off();
-			}
-
-			if(author != myAuthor){
-						if(!$('.chat').is(":focus") && !$(".write-message").is(":focus") && !$(".chat-content").is(":focus")){
-							if(flag_unreed == false){
-							unread_interval = setInterval(unread_message, 1000);
-							flag_unreed = true;
-						}
-						}
-						if(flag_unreed)
-				audio.play();
-			}
-
-
+				if(author != myAuthor){
+							if(!$('.chat').is(":focus") && !$(".write-message").is(":focus") && !$(".chat-content").is(":focus")){
+								if(flag_unreed == false){
+								unread_interval = setInterval(unread_message, 1000);
+								flag_unreed = true;
+							}
+							}
+							if(flag_unreed)
+					audio.play();
+				}
 		});
 	}
 	$(window).focus(function(){
@@ -546,76 +441,6 @@ $(document).ready(function(){
 		else
 			$(title).html("Анонимный чат");
 	}
-	/*setInterval(check_update, 60000);
-	function check_update()
-	{
-		$.ajax({
-			type: "POST",
-			url: "include/check_update.php",
-			data: "",
-			dataType: "html",
-			cache: false,
-			success: function(data) {
-				//alert(data);
-			}
-		});
-
-	}*/
-	setInterval(update_count, 30000);
-	update_count();
-	function update_count()
-	{
-			$.ajax({
-			type: "POST",
-			url: "include/update_count.php",
-			data: "",
-			dataType: "html",
-			cache: false,
-			success: function(data) {
-				if($(".input-name").val() == "1026")
-				$(".count_online, .count_online_menu").html("Сейчас онлайн: " + data);
-				else
-				$(".count_online, .count_online_menu").html("");
-			}
-		});
-	}
-
-	visit();
-	function visit()
-	{
-		$.ajax({
-			type: "POST",
-			url: "include/visit.php",
-			data: "",
-			dataType: "html",
-			cache: false,
-			success: function(data) {
-
-			}
-		});
-	}
-
-	function new_token()
-	{
-		var text = "";
-  		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
- 	    for (var i = 0; i < 35; i++)
-   			 text += possible.charAt(Math.floor(Math.random() * possible.length));
-		token = text;
-
-		/*$.ajax({
-			type: "POST",
-			url: "include/new-token.php",
-			data: "",
-			dataType: "html",
-			cache: false,
-			success: function(data) {
-				token = data;
-			}
-		});*/
-
-	}
 
 var token;
 var opponentToken = "";
@@ -627,167 +452,37 @@ var commentsRef;
 var createSearch;
 var c = 0;
 var removed = false;
+var roomName = "";
 
 	function Search(aboutme, aboutopponent, myname){
 
-		commentsRef = firebase.database().ref('search/');
-		createSearch = firebase.database().ref('search/');
-		var search2;
-		isFind = false;
-		removed = false;
-		isChange = false;
-		c = 0;
-		if(isChange == true){
-			return;
-		}
+		socket.on("on_find", function(data){
+			name = myname;
+			opponentName = data.name;
+			myAuthor = data.author;
+			roomName = data.room;
+			socket.removeListener("search");
+			socket.removeListener("on_find");
+			openChat();
+		});
 
-		commentsRef.on('child_added', function(data){
-
-			if(data.val().opponentToken == ""){
-				var ao = data.val().aboutopponent;
-				var am = data.val().aboutme;
-				var opponentToken = data.val().opponentToken;
-				//var date = new Date();
-				//var search_date = data.val().time;
-					if((aboutopponent == "00" && ao == "00")//хоть кто хоть кого
-						|| (aboutopponent[1] != "0" && aboutopponent[0] == am[0] && aboutme[0] == ao[0] && aboutopponent[1] == am[1] && aboutme[1] == ao[1] && ao[1] != "0")
-						|| (aboutopponent[1] == "0" && aboutopponent[0] == am[0] && aboutme[0] == ao[0] && aboutme[1] == ao[1] && ao[1] != "0")
-						|| (aboutopponent[1] != "0" && aboutopponent[0] == am[0] && aboutme[0] == ao[0] && aboutopponent[1] == am[1] && ao[1] == "0")
-						|| (aboutopponent[1] == "0" && aboutopponent[0] == am[0] && aboutme[0] == ao[0] && ao[1] == "0")
-						|| (aboutopponent == "00" && ao[0] != "0" && ao[1] != "0" && aboutme[1] == ao[1] && aboutme[0] == ao[0])
-						|| (aboutopponent == "00" && ao[0] != "0" && ao[1] == "0" && aboutme[0] == ao[0])
-						|| (aboutopponent != "00" && ao == "00" && aboutopponent[0] == am[0] && aboutopponent[1] != "0" && aboutopponent[1] == am[1])
-						|| (aboutopponent != "00" && ao == "00" && aboutopponent[0] == am[0] && aboutopponent[1] == "0"))
-					{
-					commentsRef.off();
-					myAuthor = 1;
-					search2 = firebase.database().ref('search/' + data.val().token + "/" + token);
-					find(data, search2, myname, aboutme, aboutopponent);
-
-					search2.on('child_changed', function(data_change){
-						if(!isChange){
-						isChange = true;
-						search2.off();
-						firebase.database().ref('search/' + tokenMsg).remove();
-						openChat();
-					}
-					});
-					search2.on('child_removed', function(data_del){
-						setTimeout(function(){
-							if(!inChat){
-								removed = true;
-								search2.off();
-								Search(aboutme, aboutopponent, myname);
-								return;
-							}
-						}, 1000);
-					});
-				}
-		}
-	});
-
-
-
-		setTimeout(function(){
-			if(isFind != true && !inChat){
-				//var date = new Date();
-				commentsRef.off();
-			firebase.database().ref('search/' + token).set({
-				aboutme : aboutme,
-				aboutopponent : aboutopponent,
-				myname : myname,
-				token : token,
-				//time : date.getTime(),
-				opponentToken : "",
-				opponentName : ""
-			});
-
-			createSearch.on('child_changed', function(data){
-				if(data.val().token == token){
-				createSearch.off();
-				tokenMsg = token;
-				myAuthor = 0;
-				opponentToken = data.val().opponentToken;
-				opponentName = data.val().opponentName;
-				firebase.database().ref('search/' + token + "/" + opponentToken).update({
-					opponentToken : token,
-					opponentName : myname
-				});
-				createSearch.on('child_removed', function(){
-					createSearch.off();
-					openChat();
-				});
-
-			}
-			});
-}
-		}, 5000);
-
-	}
-
-
-
-
-	function find(data, search2, myname, aboutme, aboutopponent){
-		if(isFind == false){
-					isFind = true;
-					opponentName = data.val().myname;
-					tokenMsg = data.val().token;
-					firebase.database().ref('search/' + data.val().token).update({
-						opponentToken : token,
-						opponentName : name
-					});
-
-					search2.set({
-						opponentName : myname,
-						opponentToken : token,
-						token : data.val().token
-					});
-				}
-
-		setTimeout(function(){
-			if(!inChat && !isChange){
-				isFind = false;
-				search2.off();
-				Search(aboutme, aboutopponent, myname);
-			}
-		}, 5000);
+		socket.emit("search", {im: aboutme, opponent: aboutopponent, my_name: myname});
 	}
 
 	var inChat = false;
+
 	function openChat(){
+		document.body.style.overflow = "hidden";
 		inChat = true;
 		find_audio.play();
 		imWrite();
 		$(".chat").html("");
-					document.body.style.overflow = "hidden";
-					window.scrollTo(0,0);
-					$(".chat").html("");
-					$(".block-classificate").toggleClass("hide-block-classificate");
-					$(".block-classificate").fadeOut(1000);
-					setTimeout(function(){
-						if(male == true)
-						{
-							$("body").css("background-image", "url(" + fon2.src + ")");
-							$(".block-chat").removeClass("block-chat-female");
-							$(".write-message").removeClass("write-message-female");
-							$(".chat").removeClass("chat-female");
-						}
-						else
-						{
-							$("body").css("background-image", "url(" + girl_fon.src + ")");
-							$(".block-chat").addClass("block-chat-female");
-							$(".write-message").addClass("write-message-female");
-							$(".chat").addClass("chat-female");
-						}
-						setTimeout(function(){
-							document.body.style.overflow = "";
-						}, 2000);
-						var block = document.getElementById("chat");
-						block.scrollTop = block.scrollHeight;
-					}, 2000);
-					$(".chat-content").fadeIn(1000);
-					$(".chat-content").addClass("show-chat-content");
+		window.scrollTo(0,0);
+		$(".block-classificate").effect("drop", {direction: "up"}, 1000, function(){
+			$(".chat-content").effect("drop", {direction: "down", mode: "show"}, 1000, function(){
+				document.body.style.overflow = "";
+			});
+		});
 		Update_Chat();
 	}
 
@@ -802,10 +497,12 @@ var removed = false;
 	window.addEventListener('unload', function(event) {
 		firebase.database().ref('search/' + token).remove();
 		if(inChat)
-         firebase.database().ref('messages/' + tokenMsg).push().set({
-    				msg : "%$&wgb$5sfgeq#67$235",
-    				author : myAuthor
-  					});
+		socket.emit("chat_msg", {
+			 msg : "%$&wgb$5sfgeq#67$235",
+			 author : myAuthor,
+			 roomName: roomName
+		 });
+
       });
 
 	$(".list-chat-smile").click(function(){
@@ -836,57 +533,28 @@ var removed = false;
 	$('.load_image').change(function(){
 		var files;
 		files = this.files;
-		load_image(files);
+		encodeImageFileAsURL(files, function(images){
+			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor});
+		});
 	});
-	function load_image(files){
-		var progressBar = $("#progress");
-		progressBar.show();
-		if(files != null)
-		{
-			var data = new FormData();
-			$.each( files, function( key, value ){
-				data.append( key, value );
-			});
 
-			$.ajax({
-				url: './include/load-image.php',
-				type: 'POST',
-				data: data,
-				cache: false,
-				dataType: 'html',
-        processData: false, // Не обрабатываем файлы (Don't process the files)
-        contentType: false, // Так jQuery скажет серверу что это строковой запрос
-        xhr: function(){
-        var xhr = $.ajaxSettings.xhr(); // получаем объект XMLHttpRequest
-        xhr.upload.addEventListener('progress', function(evt){ // добавляем обработчик события progress (onprogress)
-          if(evt.lengthComputable) { // если известно количество байт
-            // высчитываем процент загруженного
-            var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
-            // устанавливаем значение в атрибут value тега <progress>
-            // и это же значение альтернативным текстом для браузеров, не поддерживающих <progress>
-            progressBar.val(percentComplete).text('Загружено ' + percentComplete + '%');
-        }
-    }, false);
-        return xhr;
-    },
-    success: function( data ){
-    	setTimeout(function(){
-    		progressBar.hide();
-    	}, 2000);
-    	var img = new Image();
-    	img.src=data;
-    	$('.load_image').prop('value', null);
-    	$(".write-message").focus();
-    	$('.load-image').value = null;
-    	var start = window.getSelection().getRangeAt(0).startOffset;
-    	var txt = window.getSelection().getRangeAt(0);
+	function encodeImageFileAsURL(files, cb) {
+	var images = [];
+	var count = 0;
+	for(var i = 0; i < files.length; i++){
+  var file = files[i];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+		images.push(e.target.result);
+		count++;
+		if(count == files.length)
+			cb(images);
+  }
+  reader.readAsDataURL(file);
+}
 
-    	txt.insertNode(img);
-    	SetCursorAfterElement(img);
-    }
-});
-		}
-	}
+}
+
 	$(".chat").click(function(e){
 		if(e.target == "[object HTMLImageElement]")
 		{
@@ -907,44 +575,6 @@ var removed = false;
 		$(this).hide();
 	});
 
-	var drop_zone = $(".write-message");
-	drop_zone[0].ondrop = function(e){
-		var progressBar = $("#progress");
-		progressBar.show();
-		e.preventDefault();
-		var files = e.dataTransfer.files;
-		var formData = new FormData(),
-		xhr = new XMLHttpRequest(),	x;
-		if(files.length == 1 && files[0].type.match(/image.*/)) {
-			formData.append('0', files[0]);
-			xhr.onload = function() {
 
-				setTimeout(function(){
-					progressBar.hide();
-				}, 2000);
-				var data = this.responseText;
-				var img = new Image();
-				img.src=data;
-				$('.load_image').prop('value', null);
-				$(".write-message").focus();
-				$('.load-image').value = null;
-				var start = window.getSelection().getRangeAt(0).startOffset;
-				var txt = window.getSelection().getRangeAt(0);
-				txt.insertNode(img);
-				SetCursorAfterElement(img);
-			};
-			xhr.upload.onprogress = function(evt) {
-  				if(evt.lengthComputable) { // если известно количество байт
-            // высчитываем процент загруженного
-            var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
-            // устанавливаем значение в атрибут value тега <progress>
-            // и это же значение альтернативным текстом для браузеров, не поддерживающих <progress>
-            progressBar.val(percentComplete).text('Загружено ' + percentComplete + '%');
-        }
-    };
-    xhr.open('post', 'include/load-image.php');
-    xhr.send(formData);
-}
-}
 
 });
