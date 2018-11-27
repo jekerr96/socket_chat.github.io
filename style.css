@@ -1205,16 +1205,28 @@ progress::-moz-progress-bar {
 	body{
 		background-size: auto;
 	}
+	.block-classificate{
+		margin-top: 0px;
+	}
+	.chat-content{
+		width: 100%;
+	}
+	.block-chat{
+		width: 100%;
+	}
+	.chat{
+		height: 50vh;
+	}
 	.content{
 		//overflow: auto;
 	}
 
 	.left-class{
-		width: 90%;
+		width: 40%;
 	}
 
 	.right-class{
-		width: 90%;
+		width: 40%;
 	}
 
 	.input-name{
