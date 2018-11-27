@@ -1228,7 +1228,7 @@ progress::-moz-progress-bar {
 	.right-class{
 		width: 40%;
 	}
-	.left-year-text{
+	.left-year-text, .right-year-text{
 		font-size: 19px;
 		width: 65px;
 		height: 25px;
@@ -1294,4 +1294,38 @@ progress::-moz-progress-bar {
 	.block-chat{
 		width: 95%;
 	}
+}
+
+
+
+
+
+.block-about{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 5px;
+}
+.block-me, .block-opponent{
+	flex: 1;
+}
+.left-class{
+	width: 100%;
+	margin-right: 10px;
+	position: relative;
+}
+
+.right-class{
+	width: 100%;
+	position: relative;
+}
+
+.block-years{
+	position: absolute;
+}
+.left-year-text, .right-year-text{
+	color: white;
+}
+.block-my-name{
+	margin-bottom: 12px;
 }
