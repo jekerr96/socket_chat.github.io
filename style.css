@@ -1248,7 +1248,10 @@ progress::-moz-progress-bar {
     width: calc(100% - 5px);
     margin-left: 5px;
 	}
-
+	.left-class-img-male, .right-class-img-male, .right-class, .left-class{
+		height: 300px;
+	}
+	
 	.block-right-name select{
 		width: 100%;
 	}
