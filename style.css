@@ -1228,15 +1228,25 @@ progress::-moz-progress-bar {
 	.right-class{
 		width: 40%;
 	}
-
-	.input-name{
-		//display: block;
+	.left-year-text{
+		font-size: 19px;
+		width: 65px;
+		height: 25px;
 	}
-
+	.input-name{
+		display: block;
+		width: calc(100% - 23px);
+		margin-left: 3px;
+	}
+	.block-left-name{
+		display: block;
+    width: calc(100% - 5px);
+    margin-left: 5px;
+	}
 	.block-right-name{
-		//display: block;
-		width: 212.05px;
-		//margin-left: 5%;
+		display: block;
+    width: calc(100% - 5px);
+    margin-left: 5px;
 	}
 
 	.block-right-name select{
