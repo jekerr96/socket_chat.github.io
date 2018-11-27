@@ -1251,15 +1251,9 @@ progress::-moz-progress-bar {
 	.left-class-img-male, .right-class-img-male, .right-class, .left-class{
 		height: 300px;
 	}
-	
+
 	.block-right-name select{
 		width: 100%;
-	}
-
-	.block-left-name{
-		//display: block;
-		width: 212.5px;
-		//margin-left: 5%;
 	}
 
 	.search-opponent{
