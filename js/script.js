@@ -566,7 +566,7 @@ var roomName = "";
 	for(var i = 0; i < files.length; i++){
   var file = files[i];
   var reader = new FileReader();
-	reader.prototype.index = i;
+	reader.index = i;
 	reader.onprogress = function(data){
 		console.log(this);
 			current_percent[this.index] = parseInt( ((data.loaded / data.total) * 100), 10 );
