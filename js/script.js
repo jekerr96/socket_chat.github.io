@@ -573,7 +573,7 @@ var roomName = "";
 				summ_percent += current_percent[key];
 			}
 			$("#progress").val( parseInt( ((summ_percent / max_percent) * 100), 10 ));
-			console.log(current_percent);
+			console.log(data);
 	};
 
   reader.onload = function(e) {
