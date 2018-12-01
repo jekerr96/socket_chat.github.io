@@ -562,13 +562,14 @@ var roomName = "";
 	var images = [];
 	var count = 0;
 	var max_percent = files.length * 100;
-	var current_percent = {};
+	var current_percent = 0;
 	for(var i = 0; i < files.length; i++){
-		var index = i;
   var file = files[i];
   var reader = new FileReader();
+	reader.prototype.index = i;
 	reader.onprogress = function(data){
-			current_percent[index] = parseInt( ((data.loaded / data.total) * 100), 10 );
+		console.log(this);
+			current_percent[this.index] = parseInt( ((data.loaded / data.total) * 100), 10 );
 			var summ_percent = 0;
 			for(key in current_percent){
 				summ_percent += current_percent[key];
