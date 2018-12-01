@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('https://anon-chat1.herokuapp.com/');
+	var socket = io('//socketchat-cbmxbooofl.now.sh');
 	var male = true;
 
 	$(".left-left-skip").click(function(){
