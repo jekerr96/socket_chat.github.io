@@ -563,27 +563,34 @@ var roomName = "";
 	var count = 0;
 	var max_percent = files.length * 100;
 	var current_percent = {};
+	var size = 0;
+	for(var i = 0; i < files.length; i++){
+		size += files[i].size;
+	}
 	for(var i = 0; i < files.length; i++){
   var file = files[i];
   var reader = new FileReader();
 	reader.index = i;
 	reader.onprogress = function(data){
-			current_percent[this.index] = parseInt( ((data.loaded / data.total) * 100), 10 );
+			current_percent[this.index] = data.loaded;
 			var summ_percent = 0;
 			for(key in current_percent){
 				summ_percent += current_percent[key];
 			}
-			console.log(summ_percent + " / " + max_percent);
+			console.log(summ_percent + " / " + size);
 			console.log(current_percent);
-			$("#progress").val( parseInt( ((summ_percent / max_percent) * 100), 10 ));
+			$("#progress").val( parseInt( ((summ_percent / size) * 100), 10 ));
 	};
 
   reader.onload = function(e) {
 
 		images.push(e.target.result);
 		count++;
-		if(count == files.length)
+		if(count == files.length){
 			cb(images);
+			$("#progress").hide();
+		}
+
   }
   reader.readAsDataURL(file);
 }
