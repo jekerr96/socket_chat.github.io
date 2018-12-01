@@ -558,6 +558,11 @@ var roomName = "";
 	});
 
 	function encodeImageFileAsURL(files, cb) {
+		if(files.length > 5){
+			$(".load_image").val("");
+			return;
+		}
+
 		$("#progress").show();
 	var images = [];
 	var count = 0;
@@ -589,6 +594,7 @@ var roomName = "";
 		if(count == files.length){
 			cb(images);
 			$("#progress").hide();
+			$(".load_image").val("");
 		}
 
   }
