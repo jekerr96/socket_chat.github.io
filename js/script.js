@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('//socketchat-cbmxbooofl.now.sh');
+	var socket = io('https://anon-chat1.herokuapp.com/');
 	var male = true;
 
 	$(".left-left-skip").click(function(){
@@ -449,16 +449,7 @@ $(document).ready(function(){
 			$(title).html("Анонимный чат");
 	}
 
-var token;
-var opponentToken = "";
 var opponentName;
-var tokenMsg;
-var isFind = false;
-var isChange = false;
-var commentsRef;
-var createSearch;
-var c = 0;
-var removed = false;
 var roomName = "";
 
 	function Search(aboutme, aboutopponent, myname){
