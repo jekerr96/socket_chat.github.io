@@ -513,7 +513,7 @@ var roomName = "";
 
 	};
 
-	window.addEventListener('unload', function(event) 
+	window.addEventListener('unload', function(event) {
 		if(inChat)
 		socket.emit("chat_msg", {
 			 msg : "%$&wgb$5sfgeq#67$235",
