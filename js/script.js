@@ -568,12 +568,13 @@ var roomName = "";
   var reader = new FileReader();
 	reader.index = i;
 	reader.onprogress = function(data){
-		console.log(this);
 			current_percent[this.index] = parseInt( ((data.loaded / data.total) * 100), 10 );
 			var summ_percent = 0;
 			for(key in current_percent){
 				summ_percent += current_percent[key];
 			}
+			console.log(summ_percent + " / " + max_percent);
+			console.log(current_percent);
 			$("#progress").val( parseInt( ((summ_percent / max_percent) * 100), 10 ));
 	};
 
