@@ -258,6 +258,8 @@ $(document).ready(function(){
 
 	$(".exit-search").click(function(){
 		$(".search-opponent").hide();
+		socket.removeListener("on_find");
+		socket.removeListener("chat_msg");
 		socket.emit("cancel", {});
 		isFind = true;
 	});
