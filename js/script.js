@@ -2,6 +2,10 @@ $(document).ready(function(){
 	var socket = io('//socketchat-cbmxbooofl.now.sh');
 	var male = true;
 
+	socket.on("connect", function(){
+		alert("connect");
+	});
+
 	$(".left-left-skip").click(function(){
 		var time_change = 600;
 		var src_sex = "";
