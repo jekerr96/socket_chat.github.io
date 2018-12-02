@@ -2,8 +2,13 @@ $(document).ready(function(){
 	var socket = io('//socketchat-pemnpwjxua.now.sh');
 	var male = true;
 
+
+	socket.on("disconnect", function(){
+		$(".write-message").prop("disabled", true);
+	});
 	socket.on("reconnect", function(){
 		socket.emit("reconnect_socket", {roomName: roomName} );
+		$(".write-message").prop("disabled", false);
 	});
 
 	$(".left-left-skip").click(function(){
