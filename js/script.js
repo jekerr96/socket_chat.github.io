@@ -2,8 +2,8 @@ $(document).ready(function(){
 	var socket = io('//socketchat-cbmxbooofl.now.sh');
 	var male = true;
 
-	socket.on("connect", function(){
-		alert("connect");
+	socket.on("reconnect", function(){
+		alert("reconnect");
 	});
 
 	$(".left-left-skip").click(function(){
