@@ -559,11 +559,11 @@ var roomName = "";
 	});
 
 	function encodeImageFileAsURL(files, cb) {
-		if(files.length > 5){
-			$(".load_image").val("");
-			return;
-		}
 
+		for(var i = 0; i < files.length; i++){
+			if(!files[i].type.match('image.*'))
+				return;
+		}
 		$("#progress").show();
 	var images = [];
 	var count = 0;
