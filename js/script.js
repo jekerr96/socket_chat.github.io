@@ -4,11 +4,11 @@ $(document).ready(function(){
 
 
 	socket.on("disconnect", function(){
-		$(".write-message").prop("disabled", true);
+		send_msg = false;
 	});
 	socket.on("reconnect", function(){
 		socket.emit("reconnect_socket", {roomName: roomName} );
-		$(".write-message").prop("disabled", false);
+		send_msg = true;
 	});
 
 	$(".left-left-skip").click(function(){
