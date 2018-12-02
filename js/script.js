@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	var socket = io('//socketchat-cbmxbooofl.now.sh');
+	var socket = io('//socketchat-pemnpwjxua.now.sh');
 	var male = true;
 
 	socket.on("reconnect", function(){
-		alert("reconnect");
+		socket.emit("reconnect_socket", {roomName: roomName} );
 	});
 
 	$(".left-left-skip").click(function(){
