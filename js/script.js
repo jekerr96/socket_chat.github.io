@@ -594,11 +594,14 @@ var roomName = "";
 		count++;
 		if(count == files.length){
 			cb(images);
-			$("#progress").hide();
-			$(".load_image").val("");
+
 		}
 
-  }
+  };
+	reader.onloadend = function(){
+		$("#progress").hide();
+		$(".load_image").val("");
+	};
   reader.readAsDataURL(file);
 }
 
