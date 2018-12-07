@@ -639,4 +639,19 @@ var roomName = "";
 			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor});
 		});
 	}
+
+	var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+
+	recognition.onresult = function(event){
+		var result = event.results[event.resultIndex];
+		if(result.isFinal){
+			$(".write_message").html(result[0].transscript);
+		}
+		else{
+			$(".write_message").html(result[0].transscript);
+		}
+	};
+	$(".btn_talk").click(function(){
+		recognition.start();
+	});
 });
