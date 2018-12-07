@@ -655,10 +655,10 @@ var inSearch = false;
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
 		if(result.isFinal){
-			$(".write_message").html(result[0].transscript);
+			$(".write-message").html(result[0].transscript);
 		}
 		else{
-			$(".write_message").html(result[0].transscript);
+			$(".write-message").html(result[0].transscript);
 		}
 	};
 	$(".btn_talk").click(function(){
