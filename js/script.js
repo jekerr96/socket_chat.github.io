@@ -648,21 +648,35 @@ var inSearch = false;
 		});
 	}
 
+	function makeName() {
+	  var text = "";
+	  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	  for (var i = 0; i < 15; i++)
+	    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	  return text;
+	}
+
+	var nameBlockRec = "";
 	var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 	recognition.interimResults = true;
 	recognition.lang = "ru-Ru";
 
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
-		console.log(result);
 		if(result.isFinal){
-			$(".write-message").html(result[0].transscript);
+			$("." + nameBlockRec).html(result[0].transcript);
 		}
 		else{
-			$(".write-message").html(result[0].transscript);
+			$("." + nameBlockRec).html(result[0].transcript);
 		}
 	};
 	$(".btn_talk").click(function(){
+		nameBlockRec = makeName();
+		var newDiv = document.createElement("div");
+		newDiv.class = nameBlockRec;
+		$(".write-message").append(newDiv);
 		recognition.start();
 	});
 });
