@@ -675,7 +675,7 @@ var inSearch = false;
 	$(".btn_talk").click(function(){
 		nameBlockRec = makeName();
 		var newDiv = document.createElement("div");
-		$(newDiv).addClass = nameBlockRec;
+		newDiv.className = nameBlockRec;
 		$(".write-message").append(newDiv);
 		recognition.start();
 	});
