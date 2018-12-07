@@ -670,11 +670,13 @@ var inSearch = false;
 	recognition.interimResults = true;
 	recognition.lang = "ru-Ru";
 
+	recognition.onend = function(event){
+		inRecognition = false;
+	};
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
 		if(result.isFinal){
 			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
-			inRecognition = false;
 		}
 		else{
 			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
