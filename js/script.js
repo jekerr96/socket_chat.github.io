@@ -245,6 +245,7 @@ $(document).ready(function(){
 		isFind = false;
 		isChange = false;
 		isWrite = false;
+		reedMsg = false;
 		write_time = new Date(0);
 
 		last_element = null;
@@ -408,6 +409,8 @@ $(document).ready(function(){
 					block.scrollTop = block.scrollHeight;
 				}
 				else if(msg == "ijk^%$%234qe" && author != myAuthor){
+					reedMsg = true;
+					$(".unreed").removeClass("unreed");
 					msg = "<div class='block-mess-write'>" + msgName + " печатает</div>";
 					$(".chat").append(msg);
 					var block = document.getElementById("chat");
