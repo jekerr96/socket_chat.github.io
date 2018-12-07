@@ -417,9 +417,13 @@ $(document).ready(function(){
 				else if(msg == "xc12ad!#!adz" && author != myAuthor){
 					reedMsg = true;
 					$(".unreed").removeClass("unreed");
+					console.log("reed " + reedMsg);
+					return;
 				}
 				else if(msg == "xc12ad!#!addsf" && author != myAuthor){
 					reedMsg = false;
+					console.log("unreed " + reedMsg);
+					return;
 				}
 				else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
 					$(".block-mess-write").detach();
@@ -444,7 +448,7 @@ $(document).ready(function(){
 						block.scrollTop = block.scrollHeight;
 				}
 
-				if(author != myAuthor && msg != "xc12ad!#!addsf" && msg != "xc12ad!#!adz"){
+				if(author != myAuthor){
 							if(!$('.chat').is(":focus") && !$(".write-message").is(":focus") && !$(".chat-content").is(":focus")){
 								if(flag_unreed == false){
 								unread_interval = setInterval(unread_message, 1000);
