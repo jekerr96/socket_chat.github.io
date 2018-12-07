@@ -7,8 +7,13 @@ $(document).ready(function(){
 		send_msg = false;
 	});
 	socket.on("reconnect", function(){
-		socket.emit("reconnect_socket", {roomName: roomName} );
-		send_msg = true;
+		if(inSearch){
+		  $(".button-search").click();
+		}
+		if(inChat){
+			socket.emit("reconnect_socket", {roomName: roomName} );
+			send_msg = true;
+		}
 	});
 
 	$(".left-left-skip").click(function(){
@@ -271,6 +276,7 @@ $(document).ready(function(){
 		socket.removeListener("chat_msg");
 		socket.emit("cancel", {});
 		isFind = true;
+		inSearch = false;
 	});
 
 	var send_msg = true;
@@ -462,9 +468,9 @@ $(document).ready(function(){
 
 var opponentName;
 var roomName = "";
-
+var inSearch = false;
 	function Search(aboutme, aboutopponent, myname){
-
+		
 		socket.on("on_find", function(data){
 			name = myname;
 			opponentName = data.name;
@@ -476,11 +482,13 @@ var roomName = "";
 		});
 
 		socket.emit("search", {im: aboutme, opponent: aboutopponent, my_name: myname});
+		inSearch = true;
 	}
 
 	var inChat = false;
 
 	function openChat(){
+		inSearch = false;
 		document.body.style.overflow = "hidden";
 		inChat = true;
 		find_audio.play();
