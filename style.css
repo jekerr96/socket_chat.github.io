@@ -871,13 +871,16 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	max-height: 50px;
 }
 .btn_talk{
-	display: inline-block;
+	display: inline-flex;
+  height: 60px;
+	vertical-align: top;
 }
 .btn_talk img{
 	width: 46px;
-	cursor: pointer;
-	user-select: none;
-	vertical-align: super;
+  height: 46px;
+  cursor: pointer;
+  user-select: none;
+  align-self: center;
 }
 .new-image{
 	display: inline-block;
