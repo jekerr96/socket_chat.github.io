@@ -470,7 +470,7 @@ var opponentName;
 var roomName = "";
 var inSearch = false;
 	function Search(aboutme, aboutopponent, myname){
-		
+
 		socket.on("on_find", function(data){
 			name = myname;
 			opponentName = data.name;
@@ -649,6 +649,8 @@ var inSearch = false;
 	}
 
 	var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+	recognition.interimResults = true;
+	recognition.lang = "ru-Ru";
 
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
