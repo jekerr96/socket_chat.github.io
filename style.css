@@ -870,10 +870,14 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	max-width: 50px;
 	max-height: 50px;
 }
+.btn_talk{
+	display: inline-block;
+}
 .btn_talk img{
-	width: 60px;
+	width: 46px;
 	cursor: pointer;
 	user-select: none;
+	vertical-align: super;
 }
 .new-image{
 	display: inline-block;

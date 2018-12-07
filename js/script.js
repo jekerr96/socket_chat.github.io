@@ -666,10 +666,10 @@ var inSearch = false;
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
 		if(result.isFinal){
-			$("." + nameBlockRec).html(result[0].transcript);
+			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
 		}
 		else{
-			$("." + nameBlockRec).html(result[0].transcript);
+			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
 		}
 	};
 	$(".btn_talk").click(function(){
@@ -679,4 +679,9 @@ var inSearch = false;
 		$(".write-message").append(newDiv);
 		recognition.start();
 	});
+
+  
+	function replaceSpeachText(str){
+		return str.replace(/\sвопросительный знак/gi, '?').replace(/\sвосклицательный знак/gi, '!').replace(/\sзапятая/gi, ',').replace(/\sточка/gi, '.');
+	}
 });
