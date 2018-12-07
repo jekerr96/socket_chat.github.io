@@ -659,7 +659,14 @@ var inSearch = false;
 	}
 
 	var nameBlockRec = "";
-	var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+	var inRecognition = false;
+	var recognition;
+	try{
+		recognition = new SpeechRecognition();
+	}
+	catch{
+		recognition = new webkitSpeechRecognition();
+	}
 	recognition.interimResults = true;
 	recognition.lang = "ru-Ru";
 
@@ -667,12 +674,16 @@ var inSearch = false;
 		var result = event.results[event.resultIndex];
 		if(result.isFinal){
 			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
+			inRecognition = false;
 		}
 		else{
 			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
 		}
 	};
 	$(".btn_talk").click(function(){
+		if(inRecognition)
+			return;
+		inRecognition = true;
 		nameBlockRec = makeName();
 		var newDiv = document.createElement("span");
 		newDiv.className = nameBlockRec;
@@ -680,7 +691,7 @@ var inSearch = false;
 		recognition.start();
 	});
 
-  
+
 	function replaceSpeachText(str){
 		return str.replace(/\sвопросительный знак/gi, '?').replace(/\sвосклицательный знак/gi, '!').replace(/\sзапятая/gi, ',').replace(/\sточка/gi, '.');
 	}
