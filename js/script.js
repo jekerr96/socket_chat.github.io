@@ -417,19 +417,17 @@ $(document).ready(function(){
 				else if(msg == "xc12ad!#!adz" && author != myAuthor){
 					reedMsg = true;
 					$(".unreed").removeClass("unreed");
-					console.log("reed " + reedMsg);
 					return;
 				}
 				else if(msg == "xc12ad!#!addsf" && author != myAuthor){
 					reedMsg = false;
-					console.log("unreed " + reedMsg);
 					return;
 				}
 				else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
 					$(".block-mess-write").detach();
 					return;
 				}
-				else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df"){
+				else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df" && msg != "xc12ad!#!adz" && msg != "xc12ad!#!addsf"){
 					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
 					var block_mess_write = $(".block-mess-write");
 					if(block_mess_write.html() != null){
