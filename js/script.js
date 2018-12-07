@@ -299,7 +299,9 @@ $(document).ready(function(){
 		{
 			if(send_msg == true)
 			{
-
+					var newMsg = $(this).html().trim();
+					if(newMsg == "")
+						return;
 					socket.emit("chat_msg", {
     				msg : "sdfgfhg$#%$df",
     				author : myAuthor,
@@ -379,11 +381,14 @@ $(document).ready(function(){
 	var myAuthor;
 	var name = "";
 	var refMsg;
+	var reedMsg = false;
 	function Update_Chat()
 	{
 		socket.on("chat_msg", function(data){
 			var msg = data.msg;
 			var author = data.author;
+			var unreedClass = "";
+			if(!reedMsg) unreedClass = "unreed";
 			if(author == myAuthor){
 					classmsg = "my-message";
 					msgName = name;
@@ -397,7 +402,7 @@ $(document).ready(function(){
 					for(var i = 0; i < msg.length; i++){
 						img += "<img src='" + msg[i] + "'>";
 					}
-					msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + img + "</span></div>";
+					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + img + "</span></div>";
 					$(".chat").append(msg);
 					var block = document.getElementById("chat");
 					block.scrollTop = block.scrollHeight;
@@ -409,12 +414,19 @@ $(document).ready(function(){
 					block.scrollTop = block.scrollHeight;
 					return;
 				}
+				else if(msg == "xc12ad!#!adz" && author != myAuthor){
+					reedMsg = true;
+					$(".unreed").removeClass("unreed");
+				}
+				else if(msg == "xc12ad!#!addsf" && author != myAuthor){
+					reedMsg = false;
+				}
 				else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
 					$(".block-mess-write").detach();
 					return;
 				}
 				else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df"){
-					msg = "<div class='block-mess'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
+					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
 					var block_mess_write = $(".block-mess-write");
 					if(block_mess_write.html() != null){
 						$(msg).insertBefore(block_mess_write);
@@ -445,9 +457,13 @@ $(document).ready(function(){
 		});
 	}
 	$(window).focus(function(){
+		socket.emit("chat_msg", {msg: "xc12ad!#!adz"});
 		clearInterval(unread_interval);
 		$("title").html("Анонимный чат");
 		flag_unreed = false;
+	});
+	$(window).blur(function(){
+		socket.emit("chat_msg", {msg: "xc12ad!#!addsf"});
 	});
 	var unread_interval;
 	var flag_unreed = false;

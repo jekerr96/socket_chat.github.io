@@ -1338,3 +1338,6 @@ progress::-moz-progress-bar {
 .block-my-name{
 	margin-bottom: 12px;
 }
+.unreed{
+	background: #00000021;
+}
