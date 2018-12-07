@@ -444,7 +444,7 @@ $(document).ready(function(){
 						block.scrollTop = block.scrollHeight;
 				}
 
-				if(author != myAuthor){
+				if(author != myAuthor && msg != "xc12ad!#!addsf" && msg != "xc12ad!#!adz"){
 							if(!$('.chat').is(":focus") && !$(".write-message").is(":focus") && !$(".chat-content").is(":focus")){
 								if(flag_unreed == false){
 								unread_interval = setInterval(unread_message, 1000);
