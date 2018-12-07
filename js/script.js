@@ -674,7 +674,7 @@ var inSearch = false;
 	};
 	$(".btn_talk").click(function(){
 		nameBlockRec = makeName();
-		var newDiv = document.createElement("div");
+		var newDiv = document.createElement("span");
 		newDiv.className = nameBlockRec;
 		$(".write-message").append(newDiv);
 		recognition.start();
