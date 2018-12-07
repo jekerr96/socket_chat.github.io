@@ -461,13 +461,13 @@ $(document).ready(function(){
 		});
 	}
 	$(window).focus(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!adz", roomName: roomName});
+		socket.emit("chat_msg", {msg: "xc12ad!#!adz", roomName: roomName, author: myAuthor});
 		clearInterval(unread_interval);
 		$("title").html("Анонимный чат");
 		flag_unreed = false;
 	});
 	$(window).blur(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!addsf", roomName: roomName});
+		socket.emit("chat_msg", {msg: "xc12ad!#!addsf", roomName: roomName, author: myAuthor});
 	});
 	var unread_interval;
 	var flag_unreed = false;
