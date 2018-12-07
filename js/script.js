@@ -388,7 +388,7 @@ $(document).ready(function(){
 			var msg = data.msg;
 			var author = data.author;
 			var unreedClass = "";
-			if(!reedMsg) unreedClass = "unreed";
+			if(!reedMsg && author == myAuthor) unreedClass = "unreed";
 			if(author == myAuthor){
 					classmsg = "my-message";
 					msgName = name;
