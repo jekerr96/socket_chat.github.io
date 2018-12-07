@@ -457,13 +457,13 @@ $(document).ready(function(){
 		});
 	}
 	$(window).focus(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!adz"});
+		socket.emit("chat_msg", {msg: "xc12ad!#!adz", roomName: roomName});
 		clearInterval(unread_interval);
 		$("title").html("Анонимный чат");
 		flag_unreed = false;
 	});
 	$(window).blur(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!addsf"});
+		socket.emit("chat_msg", {msg: "xc12ad!#!addsf", roomName: roomName});
 	});
 	var unread_interval;
 	var flag_unreed = false;
