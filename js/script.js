@@ -654,6 +654,7 @@ var inSearch = false;
 
 	recognition.onresult = function(event){
 		var result = event.results[event.resultIndex];
+		console.log(result);
 		if(result.isFinal){
 			$(".write-message").html(result[0].transscript);
 		}
