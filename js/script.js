@@ -704,9 +704,11 @@ var inSearch = false;
 		recognition = new webkitSpeechRecognition();
 	}
 	recognition.interimResults = true;
+	recognition.continuous = true;
 	recognition.lang = "ru-Ru";
 
 	recognition.onend = function(event){
+		$(".btn_talk img").attr("src", "images/microphone.png");
 		inRecognition = false;
 	};
 	recognition.onresult = function(event){
@@ -719,14 +721,18 @@ var inSearch = false;
 		}
 	};
 	$(".btn_talk").click(function(){
-		if(inRecognition)
-			return;
+		if(!inRecognition){
 		inRecognition = true;
 		nameBlockRec = makeName();
 		var newDiv = document.createElement("span");
 		newDiv.className = nameBlockRec;
 		$(".write-message").append(newDiv);
+		$(".btn_talk img").attr("src", "images/microphone_stop.png");
 		recognition.start();
+	}
+	else{
+		recognition.stop();
+	}
 	});
 
 
