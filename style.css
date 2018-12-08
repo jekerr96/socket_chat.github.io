@@ -873,6 +873,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 .btn_talk, .btn_voice_msg{
 	display: inline-flex;
   height: 60px;
+	width: 60px;
 	vertical-align: top;
 }
 .btn_talk img, .btn_voice_msg img{
