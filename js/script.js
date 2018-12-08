@@ -410,12 +410,8 @@ $(document).ready(function(){
 				}
 				else if(data.type == "voice"){
 					var blob = new Blob([msg], { 'type' : 'audio/ogg; codecs=opus' });
-					var audio = document.createElement("audio");
-					audio.src = window.URL.createObjectURL(blob);
-					var className = makeName();
-					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class='" + classmsg + " " + className + " '></span></div>";
+					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + "><audio controls src='" + window.URL.createObjectURL(blob) + "'></span></div>";
 					$(".chat").append(msg);
-					$("." + className).append(audio);
 					var block = document.getElementById("chat");
 					block.scrollTop = block.scrollHeight;
 				}
