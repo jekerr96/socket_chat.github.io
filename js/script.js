@@ -407,6 +407,10 @@ $(document).ready(function(){
 					$(".chat").append(msg);
 					var block = document.getElementById("chat");
 					block.scrollTop = block.scrollHeight;
+					if(author != myAuthor){
+						reedMsg = true;
+						$(".unreed").removeClass("unreed");
+					}
 				}
 				else if(data.type == "voice"){
 					var blob = new Blob([msg], { 'type' : 'audio/ogg; codecs=opus' });
@@ -414,6 +418,10 @@ $(document).ready(function(){
 					$(".chat").append(msg);
 					var block = document.getElementById("chat");
 					block.scrollTop = block.scrollHeight;
+					if(author != myAuthor){
+						reedMsg = true;
+						$(".unreed").removeClass("unreed");
+					}
 				}
 				else if(msg == "ijk^%$%234qe" && author != myAuthor){
 					reedMsg = true;
