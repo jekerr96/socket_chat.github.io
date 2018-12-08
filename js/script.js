@@ -704,7 +704,6 @@ var inSearch = false;
 		recognition = new webkitSpeechRecognition();
 	}
 	recognition.interimResults = true;
-	recognition.continuous = true;
 	recognition.lang = "ru-Ru";
 
 	recognition.onend = function(event){
