@@ -730,24 +730,27 @@ var inSearch = false;
 	var constraints = { audio: true };
 	var chunks_voice = [];
 	var recording_voice = false;
-	navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
-	mediaRecorder = new MediaRecorder(mediaStream);
-	mediaRecorder.onstart = function(e) {
-			chunks_voice = [];
-	};
-	mediaRecorder.ondataavailable = function(e) {
-			chunks_voice.push(e.data);
-	};
-	mediaRecorder.onstop = function(e) {
-			var blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
-			chunks_voice = [];
-			socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
-	};
-});
+
 
 	$(".btn_voice_msg").click(function(){
-		if(!recording_voice)
+		if(!recording_voice){
+			navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
+			mediaRecorder = new MediaRecorder(mediaStream);
+			mediaRecorder.onstart = function(e) {
+					chunks_voice = [];
+			};
+			mediaRecorder.ondataavailable = function(e) {
+					chunks_voice.push(e.data);
+			};
+			mediaRecorder.onstop = function(e) {
+					var blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
+					chunks_voice = [];
+					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
+			};
+		});
+		
 			mediaRecorder.start();
+		}
 		else
 			mediaRecorder.stop();
 		recording_voice = !recording_voice;
