@@ -756,11 +756,14 @@ var inSearch = false;
 					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
 			};
 			mediaRecorder.start();
+			$(".btn_voice_msg img").attr("src", "images/voice_stop.png");
 		});
 
 		}
-		else
+		else{
 			mediaRecorder.stop();
+			$(".btn_voice_msg img").attr("src", "images/voice_start.png");
+		}
 		recording_voice = !recording_voice;
 	});
 });
