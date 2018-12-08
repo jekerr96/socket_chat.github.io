@@ -747,9 +747,9 @@ var inSearch = false;
 					chunks_voice = [];
 					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
 			};
-		});
-		
 			mediaRecorder.start();
+		});
+
 		}
 		else
 			mediaRecorder.stop();
