@@ -731,7 +731,7 @@ var inSearch = false;
 
 
 	function replaceSpeachText(str){
-		return str.replace(/\s?вопросительный знак/gi, '?').replace(/\s?восклицательный знак/gi, '!').replace(/\s?запятая/gi, ',').replace(/\s?точка/gi, '.').replace(/\s?троеточие/gi, '...').replace(/\s?новая строка/gi, '<br>');
+		return " " + str.replace(/\s?вопросительный знак/gi, '?').replace(/\s?восклицательный знак/gi, '!').replace(/\s?запятая/gi, ',').replace(/\s?точка/gi, '.').replace(/\s?троеточие/gi, '...').replace(/\s?новая строка/gi, '<br>');
 	}
 
 	var mediaRecorder
