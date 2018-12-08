@@ -720,8 +720,7 @@ var inSearch = false;
 		}
 	};
 	$(".btn_talk").click(function(){
-		if(!inRecognition){
-		yaCounter51303886.reachGoal('talk');
+		if(!inRecognition
 		inRecognition = true;
 		nameBlockRec = makeName();
 		var newDiv = document.createElement("span");
@@ -749,7 +748,6 @@ var inSearch = false;
 	$(".btn_voice_msg").click(function(){
 		if(!recording_voice){
 			navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
-			yaCounter51303886.reachGoal('voice');	
 			mediaRecorder = new MediaRecorder(mediaStream);
 			mediaRecorder.onstart = function(e) {
 					chunks_voice = [];
