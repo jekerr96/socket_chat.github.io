@@ -720,7 +720,7 @@ var inSearch = false;
 		}
 	};
 	$(".btn_talk").click(function(){
-		if(!inRecognition
+		if(!inRecognition)
 		inRecognition = true;
 		nameBlockRec = makeName();
 		var newDiv = document.createElement("span");
