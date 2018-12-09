@@ -766,7 +766,7 @@ var inSearch = false;
 
 		}
 		else{
-			mediaRecorder.getTracks()[0].stop();
+			mediaRecorder.stop();
 			$(".btn_voice_msg img").attr("src", "images/voice_start.png");
 		}
 		recording_voice = !recording_voice;
