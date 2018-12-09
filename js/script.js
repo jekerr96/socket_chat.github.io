@@ -530,6 +530,7 @@ var inSearch = false;
 		find_audio.play();
 		imWrite();
 		$(".chat").html("");
+		$(".write-message").html("");
 		window.scrollTo(0,0);
 		$(".block-classificate").effect("drop", {direction: "up"}, 1000, function(){
 			$(".chat-content").effect("drop", {direction: "down", mode: "show"}, 1000, function(){
