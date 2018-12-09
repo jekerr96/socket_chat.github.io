@@ -758,6 +758,7 @@ var inSearch = false;
 			mediaRecorder.onstop = function(e) {
 					var blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
 					chunks_voice = [];
+					mediaStream.stop();
 					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
 			};
 			mediaRecorder.start();
