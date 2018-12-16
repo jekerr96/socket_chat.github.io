@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('//socketchat-pemnpwjxua.now.sh');
+	var socket = io('18.221.169.54:3000');
 	var male = true;
 
 
