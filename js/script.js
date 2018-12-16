@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('18.221.169.54:3000', {secure: false});
+	var socket = io('http://18.221.169.54:3000', {secure: false});
 	var male = true;
 
 
