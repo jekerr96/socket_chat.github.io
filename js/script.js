@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('//socketchat-hrdebfzano.now.sh');
+	var socket = io('https://socketchat-hrdebfzano.now.sh');
 	var male = true;
 
 
