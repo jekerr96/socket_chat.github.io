@@ -12,7 +12,9 @@ $(document).ready(function(){
 		$(".select_rooms").append("<option value='" + data.room + "'>" + data.room + "</option>");
 	});
 
-	socket.on("get_messages", function(data){
+	socket.on("get_messages", update_Chat);
+
+	var update_Chat = function Update_Chat(data){
 		var msg = data.msg;
 		var author = data.author;
 		var unreedClass = "";
@@ -101,13 +103,17 @@ $(document).ready(function(){
 						if(flag_unreed)
 				audio.play();
 			}
-	});
+	}
 
 	socket.emit("get_rooms", {});
 
 	$(".select_rooms").change(function(){
-		$(".chat").html("");
 		roomName = $(this).val();
+		socket.removeListener("chat_msg");
+		socket.on("chat_msg", update_Chat);
+		socket.emit("reconnect_socket", {roomName: roomName});
+		$(".chat").html("");
+
 		socket.emit("get_messages", {roomName: $(this).val()});
 	});
 });
