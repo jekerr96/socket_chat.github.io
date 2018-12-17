@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('//socketchat-pemnpwjxua.now.sh');
+	var socket = io('//socketchat-xbimbdzizu.now.sh');
 	var my_auhor = 0;
 	var name = "Аноним1";
 	var opponentName = "Аноним2";
