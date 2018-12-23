@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var socket = io('https://socketchat-hrdebfzano.now.sh');
+	var socket = io('https://socketchat-gixafgmywj.now.sh');
 	var male = true;
 
 
@@ -320,7 +320,8 @@ $(document).ready(function(){
 					socket.emit("chat_msg", {
     				msg : msg,
     				author : myAuthor,
-						roomName: roomName
+						roomName: roomName,
+						time: new Date().getTime()
 					});
   					isWrite = false;
   					write_time = new Date(0);
@@ -607,7 +608,7 @@ var inSearch = false;
 		var files;
 		files = this.files;
 		encodeImageFileAsURL(files, function(images){
-			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor});
+			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor, time: new Date().getTime()});
 		});
 	});
 
@@ -689,7 +690,7 @@ var inSearch = false;
 	  e.preventDefault();
 	  var files = e.dataTransfer.files;
 	  encodeImageFileAsURL(files, function(images){
-			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor});
+			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor, time: new Date().getTime()});
 		});
 	}
 
@@ -768,7 +769,7 @@ var inSearch = false;
 					var blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
 					chunks_voice = [];
 					mediaStream.getAudioTracks()[0].stop();
-					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice"});
+					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice", time: new Date().getTime()});
 			};
 			mediaRecorder.start();
 			$(".btn_voice_msg img").attr("src", "images/voice_stop.png");
