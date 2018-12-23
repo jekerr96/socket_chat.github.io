@@ -39,7 +39,7 @@ $(document).ready(function(){
   socket.on("online", function(data){
     if(online != -1 && online < data.online)
     sendNotification('Кто-то зашел в чат', {
-      body: 'Сейчас онлайн:' + data.online,
+      body: 'Сейчас онлайн: ' + data.online,
       icon: 'images/favicon.png',
       dir: 'auto'
     });
