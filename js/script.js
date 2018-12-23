@@ -309,8 +309,16 @@ $(document).ready(function(){
 						roomName: roomName
   					})
 
+					var re = /((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
+					var msg = $(this).html();
+					msg = msg.replace(re, function(a, b){
+						console.log(a);
+						if(b === undefined)
+							return "";
+						return "<a href='" + b + "' target='_blank'>" + b + "</a> ";
+					});
 					socket.emit("chat_msg", {
-    				msg : $(this).html(),
+    				msg : msg,
     				author : myAuthor,
 						roomName: roomName
 					});
