@@ -158,4 +158,24 @@ $(document).ready(function(){
 				}
 
 	}
+
+  $(".chat").click(function(e){
+		if(e.target == "[object HTMLImageElement]")
+		{
+			var img = e.target;
+			if(!$(img).hasClass("chat-smile"))
+			{
+				$(".img-show").attr("src", img.src);
+				document.body.style.overflow = "hidden";
+				window.scrollTo(0,0);
+				$(".show-image").show();
+			}
+		}
+	});
+
+	$('.show-image').click(function(){
+		document.body.style.overflow = "";
+		window.scrollTo(0,0);
+		$(this).hide();
+	});
 });
