@@ -48,7 +48,8 @@ $(document).ready(function(){
   });
 
   $(".delMsg").click(function(){
-    socket.emit("deleteMsg", {});
+    if(confirm("Вы действительно хотите удалить сообщения?"))
+      socket.emit("deleteMsg", {});
   });
   function unread_message(){
 		var title = $("title");
