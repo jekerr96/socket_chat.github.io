@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var socket = io('https://socketchat-gixafgmywj.now.sh');
+  var socket = io('https://socketchat-fxwkthgtgl.now.sh');
   var myAuthor = 0;
   var audio = new Audio();
   var name = "Аноним1";
