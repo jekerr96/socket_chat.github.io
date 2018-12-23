@@ -43,6 +43,7 @@ $(document).ready(function(){
       icon: 'images/favicon.png',
       dir: 'auto'
     });
+    online = data.online;
     $(".count_online").html("Сейчас онлайн: " + data.online);
   });
 
