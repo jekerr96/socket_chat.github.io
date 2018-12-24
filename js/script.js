@@ -315,7 +315,7 @@ $(document).ready(function(){
 						console.log(a);
 						if(b === undefined)
 							return "";
-						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
+						return "&nbsp;<a href='" + b + "' target='_blank'>" + b + "</a>&nbsp;";
 					});
 					socket.emit("chat_msg", {
     				msg : msg,
