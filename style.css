@@ -837,7 +837,7 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 
 
 .write-message{
-	width: 85%;
+	width: 80%;
 	padding: 5px;
 	word-wrap: break-word;
 	display: inline-block;
@@ -1272,7 +1272,7 @@ progress::-moz-progress-bar {
 
 
 	.write-message{
-		width: 80%;
+		width: 90%;
 		margin-left: 3%;
 	}
 	.show-image{
