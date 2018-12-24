@@ -309,7 +309,7 @@ $(document).ready(function(){
 						roomName: roomName
   					})
 
-					var re = /"{0}((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
+					var re = /((https|http):\/\/.+?)[^"](&nbsp;|\s|$)/g;
 					var msg = $(this).html();
 					msg = msg.replace(re, function(a, b){
 						console.log(a);
