@@ -1272,7 +1272,7 @@ progress::-moz-progress-bar {
 
 
 	.write-message{
-		width: 90%;
+		width: 80%;
 		margin-left: 3%;
 	}
 	.show-image{
@@ -1287,7 +1287,16 @@ progress::-moz-progress-bar {
 }
 
 
-
+@media (max-width: 1135px){
+	.write-message{
+		width: 75%;
+	}
+}
+@media (max-width: 911px){
+	.write-message{
+		width: 70%;
+	}
+}
 @media (max-width: 381px)
 {
 	.show-left-class-img, .hide-left-class-img{
