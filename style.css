@@ -55,7 +55,7 @@ body{
 	color: white;
 	cursor: pointer;
 	user-select: none;
-	transition: all 0.1s ease-in-out;
+	transition: background 0.1s, box-shadow 0.1s, border-color 0.1s;
 	border-radius: 5px;
 	border: 1px solid rgba(70, 33, 93, 0.882353);
 	background: rgba(245, 140, 188, 0.431);
@@ -144,7 +144,7 @@ body{
 	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
 	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transition: all 1s ease-in-out;
+	transition: background 1s, box-shadow 1s;
 }
 
 .right-class{
@@ -159,7 +159,7 @@ body{
 	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
 	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transition: all 1s ease-in-out;
+	transition: background 1s, box-shadow 1s;
 }
 .sex-male{
 	background: rgba(119, 153, 234, 0.34902);
@@ -212,7 +212,7 @@ body{
 
 .left-left-skip, .right-left-skip{
 	position: absolute;
-	transition: all 1.2s ease-in-out;
+	transition: transform 1.2s ease-in-out;
 	top: 10px;
 	right: 10px;
 	width: 50px;
