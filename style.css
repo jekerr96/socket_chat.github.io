@@ -144,6 +144,7 @@ body{
 	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
 	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+	transition: all 1s ease-in-out;
 }
 
 .right-class{
@@ -158,6 +159,7 @@ body{
 	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
 	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
+	transition: all 1s ease-in-out;
 }
 .sex-male{
 	background: rgba(119, 153, 234, 0.34902);
