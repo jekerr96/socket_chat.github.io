@@ -55,7 +55,7 @@ body{
 	color: white;
 	cursor: pointer;
 	user-select: none;
-	transitions: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 	border-radius: 5px;
 	border: 1px solid rgba(70, 33, 93, 0.882353);
 	background: rgba(245, 140, 188, 0.431);
@@ -100,7 +100,7 @@ body{
 }
 
 .hide-block-classificate{
-	transitions: all 2s ease-in-out;
+	transition: all 2s ease-in-out;
 	transform: translate(0, -2000px);
 	opacity: 0;
 }
@@ -144,7 +144,7 @@ body{
 	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
 	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transitions: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 }
 
 .right-class{
@@ -159,7 +159,7 @@ body{
 	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
 	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transitions: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 }
 .sex-male{
 	background: rgba(119, 153, 234, 0.34902);
@@ -183,7 +183,7 @@ body{
 
 
 .hide-left-class-img{
-	transitions: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 	transform: translate(-1000px, 0);
 }
 
@@ -195,7 +195,7 @@ body{
 
 
 .hide-right-class-img{
-	transitions: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 	transform: translate(1000px, 0);
 }
 
@@ -206,13 +206,13 @@ body{
 }
 
 .show-left-class-img{
-	transitions: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 	transform: translate(0px, 0);
 }
 
 .left-left-skip, .right-left-skip{
 	position: absolute;
-	transitions: all 1.2s ease-in-out;
+	transition: all 1.2s ease-in-out;
 	top: 10px;
 	right: 10px;
 	width: 50px;
@@ -725,7 +725,7 @@ body{
 }
 
 .chat-content{
-	transitions: none;
+	transition: none;
 	display: none;
 	text-align: center;
 }
@@ -733,7 +733,7 @@ body{
 
 
 .show-chat-content{
-	transitions: all 2s ease-in-out;
+	transition: all 2s ease-in-out;
 	transform: translate(0, 0);
 }
 
@@ -1297,15 +1297,15 @@ progress::-moz-progress-bar {
 @media (max-width: 381px)
 {
 	.show-left-class-img, .hide-left-class-img{
-		transitions: none;
+		transition: none;
 		transform: none;
 	}
 	.left-left-skip, .right-left-skip{
-		transitions: none;
+		transition: none;
 	}
 	body{
-		transitions: none;
-		transitions: none;
+		transition: none;
+		transition: none;
 	}
 
 	.block-chat{
