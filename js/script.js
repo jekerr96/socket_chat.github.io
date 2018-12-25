@@ -316,8 +316,8 @@ $(document).ready(function(){
 						console.log(a);
 						if(b === undefined)
 							return "";
-						if(b[b.length - 1] == "\"")
-							return;
+						if(b[b.length - 1] == "\"" || b[b.length - 1] == "'")
+							return a;
 						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
 					});
 					socket.emit("chat_msg", {
