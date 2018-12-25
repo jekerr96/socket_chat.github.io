@@ -1210,7 +1210,9 @@ progress::-moz-progress-bar {
 }
 
 
-
+*{
+	transition: none;
+}
 @media (max-width: 501px)
 {
 	body{
