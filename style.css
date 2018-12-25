@@ -1210,7 +1210,16 @@ progress::-moz-progress-bar {
 }
 
 
-
+@media (max-width: 1135px){
+	.write-message{
+		width: 75%;
+	}
+}
+@media (max-width: 911px){
+	.write-message{
+		width: 70%;
+	}
+}
 @media (max-width: 501px)
 {
 	body{
@@ -1278,18 +1287,6 @@ progress::-moz-progress-bar {
 	.img-show{
 		max-height: 100%;
 		width: auto;
-	}
-}
-
-
-@media (max-width: 1135px){
-	.write-message{
-		width: 75%;
-	}
-}
-@media (max-width: 911px){
-	.write-message{
-		width: 70%;
 	}
 }
 @media (max-width: 381px)
