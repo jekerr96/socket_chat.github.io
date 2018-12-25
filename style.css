@@ -9,14 +9,12 @@ body{
 	right: 0;
 	//overflow: hidden;
 	background-attachment: fixed;
-	transition: background 3s ease;
 	background-size: cover;
 	background-image: url(images/fon1.jpg);
 	//background-image: url(https://pp.userapi.com/c836533/v836533885/2a3af/SXVr_oczTMY.jpg);
 }
 
 .block-body{
-	transition: all 3s ease;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -99,7 +97,6 @@ body{
 	padding: 20px;
 	padding-top: 20px;
 	text-align: center;
-	transition: none;
 }
 
 .hide-block-classificate{
@@ -147,7 +144,6 @@ body{
 	box-shadow: rgba(3, 18, 35, 0.498039) -3px -3px 8px inset,
 	rgba(201, 221, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transition: all 1s ease-in-out;
 }
 
 .right-class{
@@ -162,7 +158,6 @@ body{
 	box-shadow: rgba(29, 3, 35, 0.498039) -3px -3px 8px inset,
 	rgba(248, 201, 255, 0.901961) 3px 3px 8px inset,
 	rgba(0, 0, 0, 0.8) 3px 3px 8px -3px;
-	transition: all 1s ease-in-out;
 }
 .sex-male{
 	background: rgba(119, 153, 234, 0.34902);
