@@ -258,6 +258,7 @@ $(document).ready(function(){
 						roomName: roomName
 					});
 		socket.removeListener("chat_msg");
+		socket.emit("leave_room", {roomName: roomName});
 		$(".search-opponent").hide("fast");
 		document.body.style.overflow = "hidden";
 
@@ -309,10 +310,9 @@ $(document).ready(function(){
 						roomName: roomName
   					})
 
-					var re = /((^|\s|&nbsp;)(https|http):\/\/.+?)(&nbsp;|\s|$)/g;
+					var re = /(?!")((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
 					var msg = $(this).html();
-					msg = msg.replace(re, function(a, b){
-						console.log(a);
+					msg = msg.replace(re, function(a, c, b){
 						if(b === undefined)
 							return "";
 						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
