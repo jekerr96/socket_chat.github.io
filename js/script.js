@@ -311,7 +311,7 @@ $(document).ready(function(){
 
 					var re = /(^|\s|&nbsp;)((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
 					var msg = $(this).html();
-					msg = msg.replace(re, function(a, b){
+					msg = msg.replace(re, function(a, c, b){
 						console.log(a);
 						if(b === undefined)
 							return "";
