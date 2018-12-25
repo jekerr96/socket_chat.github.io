@@ -313,6 +313,7 @@ $(document).ready(function(){
 					var re = /(?!")((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
 					var msg = $(this).html();
 					msg = msg.replace(re, function(a, b){
+						console.log(a);
 						if(b === undefined)
 							return "";
 						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
