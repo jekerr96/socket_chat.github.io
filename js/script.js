@@ -309,13 +309,13 @@ $(document).ready(function(){
 						roomName: roomName
   					})
 
-					var re = /(^|\s|&nbsp;)((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
+					var re = /((^|\s|&nbsp;)(https|http):\/\/.+?)(&nbsp;|\s|$)/g;
 					var msg = $(this).html();
-					msg = msg.replace(re, function(a, c, b){
+					msg = msg.replace(re, function(a, b){
 						console.log(a);
 						if(b === undefined)
 							return "";
-						return "<a href='" + b + "' target='_blank'>" + b + "</a> ";
+						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
 					});
 					socket.emit("chat_msg", {
     				msg : msg,
