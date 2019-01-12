@@ -104,6 +104,13 @@ $(document).ready(function(){
 					}
 				}
 				else if(data.type == "voice"){
+					if(msg.constructor == "function Object() { [native code] }"){
+						var arr = [];
+						for(var key in msg){
+							arr.push(msg[key]);
+						}
+						msg = new Uint8Array(arr).buffer;
+					}
 					var blob = new Blob([msg], { 'type' : 'audio/ogg; codecs=opus' });
 					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + "><audio controls src='" + window.URL.createObjectURL(blob) + "'></span></div>";
 					$(".chat").append(msg);
