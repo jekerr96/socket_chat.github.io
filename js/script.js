@@ -565,7 +565,7 @@ var inSearch = false;
 		});
 		Update_Chat();
 	}
-
+$("#lx_631471").show();//реклама
 	window.onbeforeunload = function(){
 		if(inChat){
 			return "Покинуть чат?";
