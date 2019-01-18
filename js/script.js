@@ -260,7 +260,6 @@ $(document).ready(function(){
 		socket.removeListener("chat_msg");
 		socket.emit("leave_room", {roomName: roomName});
 		$(".search-opponent").hide("fast");
-		$("#lx_631471").addClass("chat_ad");//Реклама
 		document.body.style.overflow = "hidden";
 
 		$(".chat-content").effect("drop", {direction: "down"}, 1000, function(){
@@ -560,7 +559,6 @@ var inSearch = false;
 					$(".write-message").addClass("write-message-female");
 					$(".chat").addClass("chat-female");
 				}
-				$("#lx_631471").removeClass("chat_ad");//реклама
 			});
 		});
 		Update_Chat();
