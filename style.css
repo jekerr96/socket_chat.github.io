@@ -50,6 +50,7 @@ body{
 .button-search{
 	display: inline-block;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	background: rgba(245, 140, 188, 0.431373);
 	padding: 10px;
 	color: white;
