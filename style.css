@@ -1187,8 +1187,16 @@ progress::-moz-progress-bar {
 	}
 }
 
+.yandex-block-top{
+	width: 60%;
+	display: inline-block;
+	background: #403d3d36; border-radius: 5px;
+}
 @media (max-width: 791px)
 {
+	.yandex-block-top{
+		width: 95%;
+	}
 	.block-classificate{
 		width: 95%;
 		padding: 10px 0 10px 0;
