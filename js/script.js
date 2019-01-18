@@ -714,7 +714,7 @@ var inSearch = false;
 	try{
 		recognition = new SpeechRecognition();
 	}
-	catch{
+	catch(err){
 		recognition = new webkitSpeechRecognition();
 	}
 	recognition.interimResults = true;
