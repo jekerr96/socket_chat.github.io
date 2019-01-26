@@ -1021,12 +1021,14 @@ box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 2
 	margin-left: 5px;
 }
 
-.opponent-message{
-	color: #580a0a;
+.opponent-message, .opponent-message *{
+	color: #580a0a !important;
+	background: none !important;
 }
 
-.my-message{
-	color: rgba(21, 21, 78, 0.95);
+.my-message, .my-message *{
+	color: rgba(21, 21, 78, 0.95) !important;
+	background: none !important;
 }
 
 
@@ -1356,5 +1358,5 @@ progress::-moz-progress-bar {
 	margin-bottom: 12px;
 }
 .unreed{
-	background: #00000021;
+	background: #00000021 !important;
 }
