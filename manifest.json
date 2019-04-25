@@ -1,1 +1,9 @@
-
+{
+  "name": "Анонимный чат",
+  "short_name": "Чат",
+  "theme_color": "#072c49",
+  "background_color": "#0d2d46",
+  "display": "minimal-ui",
+  "scope": "/",
+  "start_url": "/?smartphone"
+}
