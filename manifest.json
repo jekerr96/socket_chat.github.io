@@ -5,7 +5,7 @@
   "background_color": "#0d2d46",
   "display": "minimal-ui",
   "Scope": "/",
-  "start_url": "/?smartphone",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
