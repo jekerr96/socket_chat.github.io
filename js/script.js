@@ -275,7 +275,10 @@ $(document).ready(function() {
             msg = '<div class="opponent-exit">' + opponentName + ' покинул(а) чат</div>';
         }
 
-        $(".js-chat .os-content").append(msg);
+        if ($("div").is(".js-opponent-write"))
+            $(".js-opponent-write").before(msg);
+        else
+            $(".js-chat .os-content").append(msg);
         scrollChat();
     }
 
