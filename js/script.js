@@ -260,7 +260,7 @@ $(document).ready(function() {
 
         } else if (data.type == "write" && data.index !== myIndex) {
 
-            msg = `<div class="opponent-write js-opponent-write">Собеседник печатает</div>`;
+            msg = '<div class="opponent-write js-opponent-write">Собеседник печатает</div>';
 
         } else if(data.type == "endWrite" && data.type != "exit" && data.index !== myIndex) {
 
