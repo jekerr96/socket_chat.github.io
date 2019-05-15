@@ -498,6 +498,7 @@ input[type="radio"]:checked + span:hover {
 
 .opponent-write {
     animation: write 2s ease alternate-reverse infinite;
+    margin-bottom: 10px;
 }
 
 @keyframes write {
@@ -527,7 +528,7 @@ input[type="radio"]:checked + span:hover {
 }
 
 .msg-container.opponent .msg {
-    color: red;
+    color: rgb(16, 232, 164);
 }
 
 .msg {

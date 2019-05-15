@@ -1,791 +1,459 @@
-$(document).ready(function(){
-	var socket = io('https://socketchat-wwxlakppyo.now.sh');
-	var male = true;
-
-
-	socket.on("disconnect", function(){
-		send_msg = false;
-	});
-	socket.on("reconnect", function(){
-		if(inSearch){
-		  $(".button-search").click();
-		}
-		if(inChat){
-			socket.emit("reconnect_socket", {roomName: roomName} );
-			send_msg = true;
-		}
-	});
-
-	$(".left-left-skip").click(function(){
-		var time_change = 600;
-		var src_sex = "";
-		male = !male;
-
-		if(male){
-			src_sex = "images/male.png";
-			$(".left-class").removeClass("sex-female");
-			$(".left-class").addClass("sex-male");
-			$(".input-name").css("border", "3px solid rgba(0, 78, 255, 0.19)");
-		}
-		else {
-			src_sex = "images/female.png";
-			$(".left-class").removeClass("sex-male");
-			$(".left-class").addClass("sex-female");
-			$(".input-name").css("border", "3px solid rgba(159, 100, 160, 0.47)");
-		}
-
-		$(".left-class-img-male").effect("drop", time_change, function(){
-			$(".left-class-img-male").attr("src", src_sex);
-			$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
-		});
-	});
-
-	var rightmale = false;
-	var anonim = false;
-
-	$(".right-left-skip").click(function(){
-
-		var time_change = 600;
-		var src_sex = "";
-
-		if(anonim){
-			if($(".right-class").hasClass("right-class-anonim"))
-				return;
-			rightmale = !rightmale;
-			$(".button-search").removeClass("button-search-script-male").removeClass("button-search-script-female").addClass("button-search-anonim").html("Найти собеседника");
-			$(this).toggleClass("scale-skip");
-			src_sex = "images/anonim.png";
-			$(".right-class").removeClass("sex-female").removeClass("sex-male").addClass("right-class-anonim");
-			$(".right-class-img-male").effect("drop", time_change, function(){
-				$(".right-class-img-male").attr("src", src_sex);
-				$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
-			});
-			return;
-		}
-
-		rightmale = !rightmale;
-
-		if(rightmale){
-			src_sex = "images/male.png";
-			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-female").addClass("button-search-script-male").html("Найти собеседника");
-			$(".right-class").removeClass("sex-female").removeClass("right-class-anonim");
-			$(".right-class").addClass("sex-male");
-		}
-		else {
-			src_sex = "images/female.png";
-			$(".right-class").removeClass("sex-male").removeClass("right-class-anonim");
-			$(".right-class").addClass("sex-female");
-			$(".button-search").removeClass("button-search-anonim").removeClass("button-search-script-male").addClass("button-search-script-female").html("Найти собеседницу");
-		}
-
-		$(".right-class-img-male").effect("drop", time_change, function(){
-			$(".right-class-img-male").attr("src", src_sex);
-			$(this).effect("drop", {direction: "right", mode: "show"}, time_change);
-		});
-	});
-
-	var vosrast = 1;
-
-	$(".left-arrow-up").click(function(){
-		if(vosrast != 1)
-		{
-			vosrast -=1;
-		}
-		var lyt = $(".left-year-text");
-		switch(vosrast)
-		{
-			//case 0: $(".left-year-text").html("Любой");  break;
-			case 1: $(lyt).html("До 18");  break;
-			case 2: $(lyt).html("18-21"); break;
-			case 3: $(lyt).html("22-26"); break;
-			case 4: $(lyt).html("27-35"); break;
-			case 5: $(lyt).html("36+");  break;
-			default : $(lyt).html("До 18");  break;
-		}
-	});
-
-	$(".left-arrow-down").click(function(){
-		if(vosrast != 5)
-		{
-			vosrast +=1;
-		}
-		var lyt = $(".left-year-text");
-		switch(vosrast)
-		{
-			//case 0: $(".left-year-text").html("Любой");  break;
-			case 1: $(lyt).html("До 18");  break;
-			case 2: $(lyt).html("18-21"); break;
-			case 3: $(lyt).html("22-26"); break;
-			case 4: $(lyt).html("27-35"); break;
-			case 5: $(lyt).html("36+");  break;
-			default : $(lyt).html("До 18");  break;
-		}
-	});
-
-	var rightvosrast = 0;
-
-	$(".right-arrow-up").click(function(){
-		if(rightvosrast != 0)
-		{
-			rightvosrast -=1;
-		}
-		var ryt = $(".right-year-text");
-		switch(rightvosrast)
-		{
-			case 0: $(ryt).html("Любой");  break;
-			case 1: $(ryt).html("До 18");  break;
-			case 2: $(ryt).html("18-21"); break;
-			case 3: $(ryt).html("22-26"); break;
-			case 4: $(ryt).html("27-35"); break;
-			case 5: $(ryt).html("36+");  break;
-			default : $(ryt).html("До 18");  break;
-		}
-	});
-
-	$(".right-arrow-down").click(function(){
-		if(rightvosrast != 5)
-		{
-			rightvosrast +=1;
-		}
-		var ryt = $(".right-year-text");
-		switch(rightvosrast)
-		{
-
-			case 0: $(ryt).html("Любой");  break;
-			case 1: $(ryt).html("До 18");  break;
-			case 2: $(ryt).html("18-21"); break;
-			case 3: $(ryt).html("22-26"); break;
-			case 4: $(ryt).html("27-35"); break;
-			case 5: $(ryt).html("36+");  break;
-			default : $(ryt).html("До 18");  break;
-		}
-	});
-
-
-	$(".block-right-name > select").change(function(){
-		if($(this).val() == 0)
-		{
-			anonim = true;
-			$(".right-left-skip").click();
-			$(".right-arrow-up").hide();
-			$(".right-arrow-down").hide();
-			$(".right-year-text").hide();
-				rightvosrast = 0;
-				$(".right-year-text").html("Любой");
-
-		}
-		if($(this).val() == 1)
-		{
-			anonim = false;
-			$(".right-arrow-up").show();
-			$(".right-arrow-down").show();
-			$(".right-year-text").show();
-			$(".right-left-skip").click();
-		}
-	});
-
-	$(".button-search").click(function(){
-		$(".search-opponent").show();
-		var pol = "";
-		if(male)
-		{
-			pol = "1";
-		}
-		else
-		{
-			pol = "2";
-		}
-		var result = pol + vosrast;
-		var opppol = "";
-		//alert($(".block-right-name > select").val());
-
-		if($(".block-right-name > select").val() == 0)
-		{
-			opppol = "0";
-			rightvosrast = "0";
-		}
-		else if(rightmale)
-		{
-			opppol = "1";
-		}
-		else
-		{
-			opppol = "2";
-		}
-		var oppresult = opppol+rightvosrast;
-
-		if($(".input-name").val() == "")
-		{
-			name = "Аноним";
-		}
-		else
-		{
-			name = $(".input-name").val();
-			name = name.substr(0, 20);
-		}
-		Search(result, oppresult, name);
-	});
-	$(".left-left-skip").click(function(){
-		$(this).toggleClass("scale-skip");
-	});
-	$(".right-left-skip").click(function(){
-		if(anonim == false)
-		$(this).toggleClass("scale-skip");
-	});
-
-	var fon1= new Image();
-	fon1.src = "images/fon1.jpg";
-	var fon2 = new Image();
-	fon2.src = "images/fon2.jpg";
-	var girl_fon = new Image();
-	girl_fon.src = "images/girl-fon.jpg";
-
-	$(".exit-opponent").click(function(){
-		inChat = false;
-		isFind = false;
-		isChange = false;
-		isWrite = false;
-		reedMsg = false;
-		write_time = new Date(0);
-
-		last_element = null;
-		clearInterval(write_interval);
-
-		window.scrollTo(0,0);
-		socket.emit("chat_msg", {
-    				msg : "%$&wgb$5sfgeq#67$235",
-    				author : myAuthor,
-						roomName: roomName
-					});
-		socket.removeListener("chat_msg");
-		socket.emit("leave_room", {roomName: roomName});
-		$(".search-opponent").hide("fast");
-		document.body.style.overflow = "hidden";
-
-		$(".chat-content").effect("drop", {direction: "down"}, 1000, function(){
-			$(".block-classificate").effect("drop", {direction: "up", mode: "show"}, 1000, function(){
-				document.body.style.overflow = "";
-				$("body").css("background-image", "url(" + fon1.src + ")");
-			});
-		});
-
-		$(".chat").html("");
-	});
-
-	$(".exit-search").click(function(){
-		$(".search-opponent").hide();
-		socket.removeListener("on_find");
-		socket.removeListener("chat_msg");
-		socket.emit("cancel", {});
-		isFind = true;
-		inSearch = false;
-	});
-
-	var send_msg = true;
-	$(".write-message").keydown(function(e){
-
-		if(e.keyCode != 13){
-			write_time = new Date();
-		}
-
-		if(e.ctrlKey == true && e.keyCode == 13)
-		{
-			var reg = new RegExp("<br>((</div>)*)$");
-			if(!reg.test($(this).html()))
-				new_br();
-			return false;
-		}
-
-		//var p = new RegExp("&nbsp;*\s*$");
-		if(e.keyCode == 13 && $(this).html() != ""/* && !p.test($(this).html())*/)
-		{
-			if(send_msg == true)
-			{
-					var newMsg = $(this).html().trim();
-					if(newMsg == "")
-						return;
-					socket.emit("chat_msg", {
-    				msg : "sdfgfhg$#%$df",
-    				author : myAuthor,
-						roomName: roomName
-  					})
-
-					var re = /(?!")((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
-					var msg = $(this).html();
-					msg = msg.replace(re, function(a, b){
-						console.log(a);
-						if(b === undefined)
-							return "";
-						if(b[b.length - 1] == "\"" || b[b.length - 1] == "'")
-							return a;
-						return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
-					});
-					socket.emit("chat_msg", {
-    				msg : msg,
-    				author : myAuthor,
-						roomName: roomName,
-						time: new Date().getTime()
-					});
-  					isWrite = false;
-  					write_time = new Date(0);
-
-					after_send();
-			}
-			return false;
-		}
-
-		if(e.keyCode == 13)
-			return false;
-		else{
-			send_msg = true;
-		}
-
-	});
-	function new_br()
-	{
-		var div = document.createElement('div');
-		var txt = window.getSelection().getRangeAt(0);
-		div.innerHTML = "<br>";
-		txt.insertNode(div);
-		SetCursorAfterElement(div);
-	}
-	function after_send()
-	{
-		$(".write-message").html("");
-		var block = document.getElementById("chat");
-		block.scrollTop = block.scrollHeight;
-		send_msg = true;
-	}
-
-	var write_interval;
-	var write_time = new Date(0);
-	var isWrite = false;
-	function imWrite(){
-
-		write_interval = setInterval(function(){
-			var currentDate = new Date();
-			if(currentDate - 3000 < write_time && isWrite == false){
-			isWrite = true;
-			socket.emit("chat_msg", {
-    				msg : "ijk^%$%234qe",
-    				author : myAuthor,
-						roomName: roomName
-					});
-
-		}
-		else if(currentDate - 3000 > write_time && isWrite == true){
-			isWrite = false;
-			socket.emit("chat_msg", {
-    				msg : "sdfgfhg$#%$df",
-    				author : myAuthor,
-						roomName: roomName
-					});
-
-		}
-		}, 1000);
-
-	}
-
-	var audio = new Audio();
-	var find_audio = new Audio();
-	find_audio.src = "sound/find.wav";
-	audio.src = "sound/new_message.mp3";
-	audio.load();
-	var myAuthor;
-	var name = "";
-	var refMsg;
-	var reedMsg = false;
-	function Update_Chat()
-	{
-		socket.on("chat_msg", function(data){
-			var msg = data.msg;
-			var author = data.author;
-			var unreedClass = "";
-			if(!reedMsg && author == myAuthor) unreedClass = "unreed";
-			if(author == myAuthor){
-					classmsg = "my-message";
-					msgName = name;
-				}
-				else{
-					classmsg = "opponent-message";
-					msgName = opponentName;
-				}
-				if(data.type == "img"){
-					var img = "";
-					for(var i = 0; i < msg.length; i++){
-						img += "<img src='" + msg[i] + "'>";
-					}
-					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + img + "</span></div>";
-					$(".chat").append(msg);
-					var block = document.getElementById("chat");
-					block.scrollTop = block.scrollHeight;
-					if(author != myAuthor){
-						reedMsg = true;
-						$(".unreed").removeClass("unreed");
-					}
-				}
-				else if(data.type == "voice"){
-					var blob = new Blob([msg], { 'type' : 'audio/ogg; codecs=opus' });
-					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + "><audio controls src='" + window.URL.createObjectURL(blob) + "'></span></div>";
-					$(".chat").append(msg);
-					var block = document.getElementById("chat");
-					block.scrollTop = block.scrollHeight;
-					if(author != myAuthor){
-						reedMsg = true;
-						$(".unreed").removeClass("unreed");
-					}
-				}
-				else if(msg == "ijk^%$%234qe" && author != myAuthor){
-					reedMsg = true;
-					$(".unreed").removeClass("unreed");
-					msg = "<div class='block-mess-write'>" + msgName + " печатает</div>";
-					$(".chat").append(msg);
-					var block = document.getElementById("chat");
-					block.scrollTop = block.scrollHeight;
-					return;
-				}
-				else if(msg == "xc12ad!#!adz" && author != myAuthor){
-					reedMsg = true;
-					$(".unreed").removeClass("unreed");
-					return;
-				}
-				else if(msg == "xc12ad!#!addsf" && author != myAuthor){
-					reedMsg = false;
-					return;
-				}
-				else if(msg == "sdfgfhg$#%$df" && author != myAuthor){
-					$(".block-mess-write").detach();
-					return;
-				}
-				else if(msg != "" && msg != "%$&wgb$5sfgeq#67$235" && msg != "ijk^%$%234qe" && msg != "sdfgfhg$#%$df" && msg != "xc12ad!#!adz" && msg != "xc12ad!#!addsf"){
-					msg = "<div class='block-mess " + unreedClass + "'><span class='my-login'>" + msgName + ": </span><span class=" + classmsg + ">" + msg + "</span></div>";
-					var re = /(style=".*?")|(style='.*?')/gi;
-					msg = msg.replace(re, ' ');
-					var block_mess_write = $(".block-mess-write");
-					if(block_mess_write.html() != null){
-						$(msg).insertBefore(block_mess_write);
-					}
-					else {
-						$(".chat").append(msg);
-					}
-							var block = document.getElementById("chat");
-							block.scrollTop = block.scrollHeight;
-				}
-				else if(msg == "%$&wgb$5sfgeq#67$235" && author != myAuthor){
-					$(".block-mess-write").detach();
-						$(".chat").append("<br>Собеседник покинул чат");
-						var block = document.getElementById("chat");
-						block.scrollTop = block.scrollHeight;
-				}
-
-				if(author != myAuthor){
-							if(!$('.chat').is(":focus") && !$(".write-message").is(":focus") && !$(".chat-content").is(":focus")){
-								if(flag_unreed == false){
-								unread_interval = setInterval(unread_message, 1000);
-								flag_unreed = true;
-							}
-							}
-							if(flag_unreed)
-					audio.play();
-				}
-		});
-	}
-	$(window).focus(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!adz", roomName: roomName, author: myAuthor});
-		clearInterval(unread_interval);
-		$("title").html("Анонимный чат");
-		flag_unreed = false;
-	});
-	$(window).blur(function(){
-		socket.emit("chat_msg", {msg: "xc12ad!#!addsf", roomName: roomName, author: myAuthor});
-	});
-	var unread_interval;
-	var flag_unreed = false;
-	function unread_message(){
-		var title = $("title");
-
-		if(flag_unreed == false)
-		{
-			$(title).html("Анонимный чат")
-			return;
-		}
-
-		if($(title).html() == "Анонимный чат")
-			$(title).html("Новое сообщение!");
-		else
-			$(title).html("Анонимный чат");
-	}
-
-var opponentName;
-var roomName = "";
-var inSearch = false;
-	function Search(aboutme, aboutopponent, myname){
-
-		socket.on("on_find", function(data){
-			name = myname;
-			opponentName = data.name;
-			myAuthor = data.author;
-			roomName = data.room;
-			socket.removeListener("search");
-			socket.removeListener("on_find");
-			openChat();
-		});
-
-		socket.emit("search", {im: aboutme, opponent: aboutopponent, my_name: myname});
-		inSearch = true;
-	}
-
-	var inChat = false;
-
-	function openChat(){
-		inSearch = false;
-		document.body.style.overflow = "hidden";
-		inChat = true;
-		find_audio.play();
-		imWrite();
-		$(".chat").html("");
-		$(".write-message").html("");
-		window.scrollTo(0,0);
-		$(".block-classificate").effect("drop", {direction: "up"}, 1000, function(){
-			$(".chat-content").effect("drop", {direction: "down", mode: "show"}, 1000, function(){
-				document.body.style.overflow = "";
-				if(male){
-					$("body").css("background-image", "url(" + fon2.src + ")");
-					$(".block-chat").removeClass("block-chat-female");
-					$(".write-message").removeClass("write-message-female");
-					$(".chat").removeClass("chat-female");
-				}
-				else {
-					$("body").css("background-image", "url(" + girl_fon.src + ")");
-					$(".block-chat").addClass("block-chat-female");
-					$(".write-message").addClass("write-message-female");
-					$(".chat").addClass("chat-female");
-				}
-			});
-		});
-		Update_Chat();
-	}
-	window.onbeforeunload = function(){
-		if(inChat){
-			return "Покинуть чат?";
-
-	}
-
-	};
-
-	window.addEventListener('unload', function(event) {
-		if(inChat)
-		socket.emit("chat_msg", {
-			 msg : "%$&wgb$5sfgeq#67$235",
-			 author : myAuthor,
-			 roomName: roomName
-		 });
-
-      });
-
-	$(".list-chat-smile").click(function(){
-		var img = new Image();
-		img.src = $(this).attr("src");
-		img.className = "chat-smile";
-		$(".write-message").focus();
-		var txt = window.getSelection().getRangeAt(0);
-		//txt.insertNode(document.createTextNode(img));
-		txt.insertNode(img);
-		SetCursorAfterElement(img);
-	});
-
-	function SetCursorAfterElement(element)
-	{
-		var selection = window.getSelection();
-		var range = document.createRange();
-		range.setStartAfter(element);
-		selection.removeAllRanges();
-		selection.addRange(range);
-	}
-
-	$('.new-image').click(function(){
-		$('.load_image').click();
-	})
-
-
-	$('.load_image').change(function(){
-		var files;
-		files = this.files;
-		encodeImageFileAsURL(files, function(images){
-			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor, time: new Date().getTime()});
-		});
-	});
-
-	function encodeImageFileAsURL(files, cb) {
-
-		for(var i = 0; i < files.length; i++){
-			if(!files[i].type.match('image.*'))
-				return;
-		}
-		$("#progress").show();
-	var images = [];
-	var count = 0;
-	var max_percent = files.length * 100;
-	var current_percent = {};
-	var size = 0;
-	for(var i = 0; i < files.length; i++){
-		size += files[i].size;
-	}
-	for(var i = 0; i < files.length; i++){
-  var file = files[i];
-  var reader = new FileReader();
-	reader.index = i;
-	reader.onprogress = function(data){
-			current_percent[this.index] = data.loaded;
-			var summ_percent = 0;
-			for(key in current_percent){
-				summ_percent += current_percent[key];
-			}
-			console.log(summ_percent + " / " + size);
-			console.log(current_percent);
-			$("#progress").val( parseInt( ((summ_percent / size) * 100), 10 ));
-	};
-
-  reader.onload = function(e) {
-
-		images.push(e.target.result);
-		count++;
-		if(count == files.length){
-			cb(images);
-
-		}
-
-  };
-	reader.onloadend = function(){
-		$("#progress").hide();
-		$(".load_image").val("");
-	};
-  reader.readAsDataURL(file);
-}
-
-}
-
-	$(".chat").click(function(e){
-		if(e.target == "[object HTMLImageElement]")
-		{
-			var img = e.target;
-			if(!$(img).hasClass("chat-smile"))
-			{
-				$(".img-show").attr("src", img.src);
-				document.body.style.overflow = "hidden";
-				window.scrollTo(0,0);
-				$(".show-image").show();
-			}
-		}
-	});
-
-	$('.show-image').click(function(){
-		document.body.style.overflow = "";
-		window.scrollTo(0,0);
-		$(this).hide();
-	});
-
-	var drop_zone = $(".write-message");
-	drop_zone[0].ondragover = function(e){
-	  e.preventDefault();
-	}
-
-	drop_zone[0].ondrop = function(e){
-	  e.preventDefault();
-	  var files = e.dataTransfer.files;
-	  encodeImageFileAsURL(files, function(images){
-			socket.emit("chat_msg", {msg: images, type: "img", roomName: roomName, author: myAuthor, time: new Date().getTime()});
-		});
-	}
-
-	function makeName() {
-	  var text = "";
-	  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-	  for (var i = 0; i < 15; i++)
-	    text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-	  return text;
-	}
-
-	var nameBlockRec = "";
-	var inRecognition = false;
-	var recognition;
-	try{
-		recognition = new SpeechRecognition();
-	}
-	catch(err){
-		recognition = new webkitSpeechRecognition();
-	}
-	recognition.interimResults = true;
-	recognition.lang = "ru-Ru";
-
-	recognition.onend = function(event){
-		$(".btn_talk img").attr("src", "images/microphone.png");
-		inRecognition = false;
-	};
-	recognition.onresult = function(event){
-		var result = event.results[event.resultIndex];
-		if(result.isFinal){
-			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
-		}
-		else{
-			$("." + nameBlockRec).html(replaceSpeachText(result[0].transcript));
-		}
-	};
-	$(".btn_talk").click(function(){
-		if(!inRecognition){
-		inRecognition = true;
-		nameBlockRec = makeName();
-		var newDiv = document.createElement("span");
-		newDiv.className = nameBlockRec;
-		$(".write-message").append(newDiv);
-		$(".btn_talk img").attr("src", "images/microphone_stop.png");
-		recognition.start();
-	}
-	else{
-		recognition.stop();
-	}
-	});
-
-
-	function replaceSpeachText(str){
-		return " " + str.replace(/\s?вопросительный знак/gi, '?').replace(/\s?восклицательный знак/gi, '!').replace(/\s?запятая/gi, ',').replace(/\s?точка/gi, '.').replace(/\s?троеточие/gi, '...').replace(/\s?новая строка/gi, '<br>');
-	}
-
-	var mediaRecorder
-	var constraints = { audio: true };
-	var chunks_voice = [];
-	var recording_voice = false;
-
-
-	$(".btn_voice_msg").click(function(){
-		if(!recording_voice){
-			navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
-			mediaRecorder = new MediaRecorder(mediaStream);
-			mediaRecorder.onstart = function(e) {
-					chunks_voice = [];
-			};
-			mediaRecorder.ondataavailable = function(e) {
-					chunks_voice.push(e.data);
-			};
-			mediaRecorder.onstop = function(e) {
-					var blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
-					chunks_voice = [];
-					mediaStream.getAudioTracks()[0].stop();
-					socket.emit("chat_msg", {roomName: roomName, author: myAuthor, msg: blob, type: "voice", time: new Date().getTime()});
-			};
-			mediaRecorder.start();
-			$(".btn_voice_msg img").attr("src", "images/voice_stop.png");
-		});
-
-		}
-		else{
-			mediaRecorder.stop();
-			$(".btn_voice_msg img").attr("src", "images/voice_start.png");
-		}
-		recording_voice = !recording_voice;
-	});
-
-
+$(document).ready(function() {
+    let socket = io("https://socket-anon-chat.glitch.me");
+
+    const STATUS = {
+        FIND: 1,
+        CHAT: 2,
+        MENU: 3,
+    };
+
+    const sounds = {
+        find: new Audio("../sound/find.wav"),
+        message: new Audio("../sound/new_message.wav"),
+    };
+
+    let currentStatus = STATUS.MENU;
+
+    socket.on("reconnect", function(){
+        if(currentStatus === STATUS.FIND){
+            $(".js-btn-find").click();
+        }
+        if(currentStatus === STATUS.CHAT){
+            socket.emit("reconnectSocket", {roomName: roomName} );
+        }
+    });
+
+    $(".js-select").each(function(i, el) {
+       let $el = $(el);
+
+        $el.select2({
+            minimumResultsForSearch: -1,
+            width: "100%",
+            dropdownParent: $el.closest("div"),
+        });
+    });
+
+    $(".js-about-me-sex").click(function() {
+        $(".js-about-me-image").removeClass("male female").addClass($(this).data("class"));
+    });
+
+    $(".js-about-opponent-sex").click(function() {
+        $(".js-about-opponent-image").removeClass("male female anonim").addClass($(this).data("class"));
+    });
+
+    $(".js-btn-find").click(function() {
+       $(".js-find-container").removeClass("hide");
+       currentStatus = STATUS.FIND;
+
+        socket.on("onFind", onFind);
+
+        myName = $(".js-my-name").val();
+
+        if (myName == "") myName = "Аноним";
+
+        socket.emit("find", {
+            me: {
+                name: myName,
+                sex: $("input[name='my-sex']").groupVal(),
+                years: $(".js-select-me").val(),
+            },
+            find: {
+                sex: $("input[name='opponent-sex']").groupVal(),
+                years: $(".js-select-opponent").val(),
+            },
+        });
+
+        //setTimeout(onFind, 1000);
+    });
+
+    $(".js-cancel-find").click(function() {
+        $(".js-find-container").addClass("hide");
+        socket.emit("cancelSearch", {});
+        socket.removeListener("onFind");
+        currentStatus = STATUS.MENU;
+    });
+
+    $(".js-write-message").focus(function() {
+        $(".js-write-placeholder").addClass("hide");
+    });
+
+    $(".js-write-message").blur(function() {
+        if ($(this).html().length <= 0)
+            $(".js-write-placeholder").removeClass("hide");
+    });
+
+    let osInstance = $(".js-os-chat").overlayScrollbars({
+
+    }).overlayScrollbars();
+
+    $(".js-os").overlayScrollbars({
+
+    });
+
+    let imWriteTimeout;
+    let imWrite = false;
+
+    $(".write-message").keydown(function(e) {
+
+        if(e.ctrlKey == true && e.keyCode == 13)
+        {
+            var reg = new RegExp("<br>((</div>)*)$");
+            if(!reg.test($(this).html()))
+                new_br();
+            return false;
+        }
+
+        if(e.keyCode == 13 && $(this).html() != "") {
+            let re = /(?!")((https|http):\/\/.+?)(&nbsp;|\s|$)/g;
+            let msg = $(this).html();
+            msg = msg.replace(re, function(a, b){
+                console.log(a);
+                if(b === undefined)
+                    return "";
+                if(b[b.length - 1] == "\"" || b[b.length - 1] == "'")
+                    return a;
+                return " <a href='" + b + "' target='_blank'>" + b + "</a> ";
+            });
+
+            re = /(style=".*?")|(style='.*?')/gi;
+            msg = msg.replace(re, ' ');
+
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "endWrite",
+                roomName: roomName,
+            });
+
+            clearInterval(imWriteTimeout);
+            imWrite = false;
+
+            socket.emit("onMsg", {
+                msg: msg,
+                index: myIndex,
+                type: "text",
+                roomName: roomName,
+            });
+
+            $(this).html("");
+            return false;
+        }
+
+        if (!imWrite) {
+            imWrite = true;
+
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "write",
+                roomName: roomName,
+            });
+        }
+
+        clearInterval(imWriteTimeout);
+        imWriteTimeout = setTimeout(() => {
+            imWrite = false;
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "endWrite",
+                roomName: roomName,
+            });
+        }, 3000);
+    });
+
+    $(".js-exit").click(exit);
+
+    $(".chat").on("click", "img", function() {
+        if ($(this).hasClass("chat-smile")) return;
+        let $images = $(".chat img");
+        let index = $images.index($(this));
+        let images = [];
+
+        $images.each(function(i, el) {
+            let $el = $(el);
+
+            if (!$el.hasClass("chat-smile")) {
+                images.push({
+                    src: $el.attr("src"),
+                    type: 'image',
+                    opts: {}
+                });
+            }
+        });
+
+        $.fancybox.open(images, {
+            index: index,
+            loop: true,
+        });
+    });
+
+    $(".js-load-image").click(function() {
+       $(".js-files").click();
+    });
+
+    function lazyLoadSmiles() {
+        $(".js-smile").each(function(i, el) {
+           el.src = el.dataset.src;
+        });
+    }
+
+    let opponentName;
+    let roomName;
+    let myIndex;
+    let myName;
+
+    function onFind(data) {
+        $(".js-chat .os-content").html("");
+        $(".js-find-container").addClass("hide");
+        $(".js-find-content").addClass("hide");
+        $(".js-chat-content").removeClass("hide");
+        lazyLoadSmiles();
+
+        opponentName = data.name;
+        roomName = data.roomName;
+        myIndex = data.index;
+
+        socket.removeListener("onFind");
+        socket.on("onMsg", onMessage);
+        currentStatus = STATUS.CHAT;
+        sounds.find.play();
+    }
+
+    function exit() {
+        $(".js-find-container").addClass("hide");
+        $(".js-find-content").removeClass("hide");
+        $(".js-chat-content").addClass("hide");
+
+        socket.removeListener("onMsg");
+        socket.emit("onMsg", {
+            roomName: roomName,
+            type: "exit",
+        });
+
+        currentStatus = STATUS.MENU;
+    }
+
+    function onMessage(data) {
+        let msgClass = "my";
+        let msgName = myName;
+        if (data.index !== myIndex) {
+            msgClass = "opponent";
+            msgName = opponentName;
+
+            if (data.type != "write" && data.type != "endWrite")
+                sounds.message.play();
+        }
+        let msg;
+
+        if (data.type == "text") {
+
+            msg = `<div class="msg-container ${msgClass}">
+                    <div class="author-name">
+                        ${msgName}:
+                    </div>
+                    <div class="msg">
+                        ${data.msg}
+                    </div>
+                </div>`;
+
+        } else if (data.type == "img") {
+            let img = "";
+            for(let i = 0; i < data.msg.length; i++){
+                img += "<img src='" + data.msg[i] + "'>";
+            }
+
+            msg = `<div class="msg-container ${msgClass}">
+                    <div class="author-name">
+                        ${msgName}:
+                    </div>
+                    <div class="msg">
+                        ${img}
+                    </div>
+                </div>`;
+
+        } else if (data.type == "write" && data.index !== myIndex) {
+
+            msg = `<div class="opponent-write js-opponent-write">Собеседник печатает</div>`;
+
+        } else if(data.type == "endWrite" && data.type != "exit" && data.index !== myIndex) {
+
+            $(".js-opponent-write").remove();
+
+        } else if(data.type == "voice") {
+
+            let blob = new Blob([data.msg], { 'type' : 'audio/ogg; codecs=opus' });
+            msg = `<div class="msg-container ${msgClass}">
+                    <div class="author-name">
+                        ${msgName}:
+                    </div>
+                    <div class="msg">
+                        <audio controls src='${window.URL.createObjectURL(blob)}'>
+                    </div>
+                </div>`;
+        } else if (data.type == "exit") {
+            $(".js-opponent-write").remove();
+            msg = `<div class="opponent-exit">${opponentName} покинул(а) чат</div>`;
+        }
+
+        $(".js-chat .os-content").append(msg);
+        scrollChat();
+    }
+
+    $(".js-smile").click(function(){
+        var img = new Image();
+        img.src = $(this).attr("src");
+        img.className = "chat-smile";
+        $(".js-write-message").focus();
+        let txt = window.getSelection().getRangeAt(0);
+        //txt.insertNode(document.createTextNode(img));
+        txt.insertNode(img);
+        SetCursorAfterElement(img);
+    });
+
+    function new_br() {
+        let div = document.createElement('div');
+        let txt = window.getSelection().getRangeAt(0);
+        div.innerHTML = "<br>";
+        txt.insertNode(div);
+        SetCursorAfterElement(div);
+    }
+
+    function SetCursorAfterElement(element) {
+        let selection = window.getSelection();
+        let range = document.createRange();
+        range.setStartAfter(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    function scrollChat() {
+        if (osInstance.scroll().max.y - osInstance.scroll().position.y <= 150)
+            osInstance.scroll({y: "100%"}, 500);
+    }
+
+    $('.js-files').change(function(){
+        let files;
+        files = this.files;
+        encodeImageFileAsURL(files, function(images){
+            socket.emit("onMsg", {
+                msg: images,
+                type: "img",
+                roomName: roomName,
+                index: myIndex
+            });
+        });
+    });
+
+    var drop_zone = $(".js-write-message");
+    drop_zone[0].ondragover = function(e){
+        e.preventDefault();
+    };
+
+    drop_zone[0].ondrop = function(e){
+        e.preventDefault();
+        let files = e.dataTransfer.files;
+        encodeImageFileAsURL(files, function(images){
+            socket.emit("onMsg", {
+                msg: images,
+                type: "img",
+                roomName: roomName,
+                index: myIndex
+            });
+        });
+    };
+
+    function encodeImageFileAsURL(files, cb) {
+
+        for(let i = 0; i < files.length; i++){
+            if(!files[i].type.match('image.*'))
+                return;
+        }
+
+        let images = [];
+        let count = 0;
+
+        for(let i = 0; i < files.length; i++){
+            let file = files[i];
+            let reader = new FileReader();
+            reader.index = i;
+
+            reader.onload = function(e) {
+
+                images.push(e.target.result);
+                count++;
+                if(count == files.length){
+                    cb(images);
+                }
+
+            };
+            reader.onloadend = function(){
+                $(".load_image").val("");
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+    }
+
+    let mediaRecorder;
+    let constraints = { audio: true };
+    let chunks_voice = [];
+    let recording_voice = false;
+
+
+    $(".js-audio-msg").click(function(){
+        if(!recording_voice){
+            navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
+                mediaRecorder = new MediaRecorder(mediaStream);
+                mediaRecorder.onstart = function(e) {
+                    chunks_voice = [];
+                };
+                mediaRecorder.ondataavailable = function(e) {
+                    chunks_voice.push(e.data);
+                };
+                mediaRecorder.onstop = function(e) {
+                    let blob = new Blob(chunks_voice, { 'type' : 'audio/ogg; codecs=opus' });
+                    chunks_voice = [];
+                    mediaStream.getAudioTracks()[0].stop();
+                    socket.emit("onMsg", {
+                        roomName: roomName,
+                        index: myIndex,
+                        msg: blob,
+                        type: "voice",
+                    });
+                };
+                mediaRecorder.start();
+            });
+
+        }
+        else{
+            mediaRecorder.stop();
+        }
+        recording_voice = !recording_voice;
+    });
+
+    window.onbeforeunload = function(){
+        if(currentStatus === STATUS.CHAT){
+            return "Покинуть чат?";
+        }
+
+    };
+
+    window.addEventListener('unload', function(event) {
+        if(currentStatus === STATUS.CHAT) {
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                roomName: roomName,
+                type: "exit"
+            });
+        }
+    });
+
+    $.fn.extend({
+        groupVal: function() {
+            return $(this).filter(':checked').val();
+        }
+    });
 });

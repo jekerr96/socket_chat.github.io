@@ -1,465 +1,501 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<!-- _mncheckrights220309_ -->
-	<title>Анонимный чат</title>
-	<meta name="description" content="Найдите подхдящего по параметрам собеседника и общайтесь в анонимном онлайн чате с возможностью отправки фото">
-	<meta name="keywords" content="чат, анонимный, общение, знакомства, анонимное общение, анонимные знакомства, дружба, друзья, поиск собеседника, поиск, анонимный поиск, чат 18+, чат 18, 18, онлайн"/>
-	<link rel="shortcut icon" href="/images/favicon.png" type="image/png">
-	<link rel="icon" href="/images/favicon.png" type="image/png">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- , user-scalable=no" !-->
-	<meta name="yandex-verification" content="db7b6faafcb2bfcd" />
-	<meta name="google-site-verification" content="vClre-p0ulOxhQGmcuMZWs00AjdlB9MCL6z2MKIWCL0" />
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css?v28">
-	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
-	<link rel="stylesheet" type="text/css" href="jquery-ui.structure.min.css">
-	<link rel="stylesheet" type="text/css" href="jquery-ui.theme.min.css">
-	<meta name="theme-color" content="#072c49">
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter51303886 = new Ya.Metrika2({
-                    id:51303886,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true
-                });
-            } catch(e) { }
-        });
+    <meta charset="UTF-8">
+    <title>Анонминый чат</title>
+    <meta name="description" content="Найдите подхдящего по параметрам собеседника и общайтесь в анонимном онлайн чате с возможностью отправки фото">
+    <meta name="keywords" content="чат, анонимный, общение, знакомства, анонимное общение, анонимные знакомства, дружба, друзья, поиск собеседника, поиск, анонимный поиск, чат 18+, чат 18, 18, онлайн"/>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/tag.js";
+    <meta name="yandex-verification" content="db7b6faafcb2bfcd" />
+    <meta name="google-site-verification" content="vClre-p0ulOxhQGmcuMZWs00AjdlB9MCL6z2MKIWCL0" />
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks2");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/51303886" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114763987-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter51303886 = new Ya.Metrika2({
+                        id:51303886,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
 
-  gtag('config', 'UA-114763987-1');
-</script>
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/tag.js";
 
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/script.js?435"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-<script src="js/socket.io.js"></script>
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks2");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/51303886" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
-<link rel="manifest" href="manifest.json">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114763987-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114763987-1');
+    </script>
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="js/os/jquery.overlayScrollbars.min.js"></script>
+    <link rel="stylesheet" href="css/os/OverlayScrollbars.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="js/script.js?v=2"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-
-<div class="show-image">
-	<img class="img-show" src="" alt="">
+<input type="file" multiple class="load-file js-files" accept="image/*">
+<div class="header">
+    <div class="title">Добро пожаловать в анонимный чат. Приятного общения!</div>
 </div>
-<!--	<div class="block-header">
-		<div class="header">
-		</div>
+<div class="container">
+    <div class="content-container">
 
-	</div>!-->
-	<div class="block-body">
-		<div class="content">
-			<input class="load_image" type="file" multiple hidden accept="image/*" size="5">
+        <div class="yandex-block-top" style="">
+            <!-- Yandex.RTB R-A-343168-1 -->
+            <div id="yandex_rtb_R-A-343168-1"></div>
+            <script type="text/javascript">
+                (function (w, d, n, s, t) {
+                    w[n] = w[n] || [];
+                    w[n].push(function () {
+                        Ya.Context.AdvManager.render({
+                            blockId: "R-A-343168-1",
+                            renderTo: "yandex_rtb_R-A-343168-1",
+                            async: true
+                        });
+                    });
+                    t = d.getElementsByTagName("script")[0];
+                    s = d.createElement("script");
+                    s.type = "text/javascript";
+                    s.src = "//an.yandex.ru/system/context.js";
+                    s.async = true;
+                    t.parentNode.insertBefore(s, t);
+                })(this, this.document, "yandexContextAsyncCallbacks");
+            </script>
+        </div>
 
-<!--
-///////////////////////////
-!-->
-<div class="" style="text-align: center;">
-	<div class="yandex-block-top" style="">
-		<!-- Yandex.RTB R-A-343168-1 -->
-<div id="yandex_rtb_R-A-343168-1"></div>
-<script type="text/javascript">
-    (function(w, d, n, s, t) {
-        w[n] = w[n] || [];
-        w[n].push(function() {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-343168-1",
-                renderTo: "yandex_rtb_R-A-343168-1",
-                async: true
-            });
-        });
-        t = d.getElementsByTagName("script")[0];
-        s = d.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//an.yandex.ru/system/context.js";
-        s.async = true;
-        t.parentNode.insertBefore(s, t);
-    })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
-	</div>
+        <div class="content-wrapper js-find-content">
+            <div class="content">
+                <div class="find-container hide js-find-container">
+                    <div class="cssload-container">
+                        <div class="cssload-arc">
+                            <div class="cssload-arc-cube"></div>
+                        </div>
+                    </div>
+
+                    <div class="find-text">Идет поиск собеседника</div>
+                    <div class="btn-wrapper">
+                        <div class="btn-find-cancel js-cancel-find">Отмена</div>
+                    </div>
+                </div>
+                <div class="about-me">
+                    <div class="title">Пожалуйста, представтесь</div>
+                    <div class="name-title">Как Вас называть?</div>
+                    <input type="text" class="name js-my-name" placeholder="Меня зовут...">
+                    <div class="years-title">Ваш возраст</div>
+                    <select name="" id="" class="my-years js-select js-select-me">
+                        <option value="1">До 18</option>
+                        <option value="2">18-21</option>
+                        <option value="3">22-26</option>
+                        <option value="4">27-35</option>
+                        <option value="5">36+</option>
+                    </select>
+                    <div class="sex">
+                        <div class="sex-title">Ваш пол</div>
+                        <label>
+                            <input checked type="radio" value="1" name="my-sex">
+                            <span class="js-about-me-sex" data-class="male">Мужской</span>
+                        </label>
+                        <label>
+                            <input type="radio" value="2" name="my-sex">
+                            <span class="js-about-me-sex" data-class="female">Женский</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="about-opponent">
+                    <div class="title">Кого будем искать?</div>
+                    <div class="years-title">Возраст собеседника</div>
+                    <select name="" id="" class="opponent-years js-select js-select-opponent">
+                        <option value="0">Любой</option>
+                        <option value="1">До 18</option>
+                        <option value="2">18-21</option>
+                        <option value="3">22-26</option>
+                        <option value="4">27-35</option>
+                        <option value="5">36+</option>
+                    </select>
+
+                    <div class="sex">
+                        <div class="sex-title">Пол собеседника</div>
+                        <label>
+                            <input type="radio" name="opponent-sex" value="1">
+                            <span class="js-about-opponent-sex" data-class="male">Мужской</span>
+                        </label>
+                        <label>
+                            <input checked type="radio" name="opponent-sex" value="2">
+                            <span class="js-about-opponent-sex" data-class="female">Женский</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="opponent-sex" value="0">
+                            <span class="js-about-opponent-sex" data-class="anonim">Любой</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="images-container">
+                    <div class="image male me js-about-me-image">
+
+                    </div>
+                    <div class="image female opponent js-about-opponent-image">
+
+                    </div>
+                </div>
+                <div class="btn-wrapper">
+                    <div class="btn-find js-btn-find"><span>Найти собеседика</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container js-chat-content hide">
+            <div class="exit"><img class="js-exit" src="images/close.svg" alt=""></div>
+            <div class="chat js-os-chat js-chat">
+
+            </div>
+            <div class="write-message-container js-os">
+                <div class="write-placeholder js-write-placeholder">Введите ваше сообщение...</div>
+                <div class="write-message js-write-message" contenteditable="true">
+
+                </div>
+            </div>
+            <div class="tools-container">
+                <div class="smile-container">
+                    <div class="open-smile">
+                        <img src="images/smile.svg" alt="">
+                    </div>
+                    <div class="smile-wrapper js-os">
+                        <img src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-01.png"><img src=""
+                                                                                                            alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-02.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-03.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-04.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-05.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-06.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-07.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-08.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-09.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-10.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-11.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-12.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-13.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-14.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-15.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-16.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-17.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-18.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-19.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-20.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-21.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-22.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-23.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-24.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-25.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-26.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-27.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-28.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-29.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-30.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-31.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-32.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-33.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-34.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-35.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-36.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-37.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-38.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-39.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-40.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-41.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-42.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-43.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-44.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-45.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-46.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-47.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-48.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-49.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-50.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-51.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-52.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-53.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-54.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-55.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-56.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-57.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-58.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-59.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-60.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-61.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-62.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-63.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-64.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-65.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-66.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-67.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-68.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-69.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-70.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-71.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-72.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-73.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-74.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-75.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-76.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-77.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-78.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-79.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-80.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-81.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-82.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-83.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-84.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-85.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-86.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-87.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-88.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-89.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-90.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-91.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-92.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-93.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-94.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-95.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-96.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-97.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-98.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-99.png"><img src="" alt=""
+                                                                                                           class="smile js-smile"
+                                                                                                           data-src="smile/Emoji Smiley-100.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-101.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-102.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-103.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-104.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-105.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-106.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-107.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-108.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-109.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-110.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-111.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-112.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-113.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-114.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-115.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-116.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-117.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-118.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-119.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-120.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-121.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-122.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-123.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-124.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-125.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-126.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-127.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-128.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-129.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-130.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-131.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-132.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-133.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-134.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-135.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-136.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-137.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-138.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-139.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-140.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-141.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-142.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-143.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-144.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-145.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-146.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-147.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-148.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-149.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-150.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-151.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-152.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-153.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-154.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-155.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-156.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-157.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-158.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-159.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-160.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-161.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-162.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-163.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-164.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-165.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-166.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-167.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-168.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-169.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-170.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-171.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-172.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-173.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-174.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-175.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-176.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-177.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-178.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-179.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-180.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-181.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-182.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-183.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-184.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-185.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-186.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-187.png"><img src="" alt=""
+                                                                                                            class="smile js-smile"
+                                                                                                            data-src="smile/Emoji Smiley-188.png"><img
+                            src="" alt="" class="smile js-smile" data-src="smile/Emoji Smiley-189.png">
+                    </div>
+                </div>
+
+                <div class="load-image js-load-image">
+                    <img src="images/load-image.svg" alt="">
+                </div>
+
+                <div class="audio-msg js-audio-msg">
+                    <img src="images/mic.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-	<div class="block-classificate">
-		<div class="search-opponent">
-			<div class="cssload-container">
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-				<div class="cssload-thing"></div>
-			</div>
-			<div id="blink1">Идет поиск</div>
-			<div class="exit-search">Отменить</div>
-		</div>
-		<div class="block-about">
-
-		<div class="block-me">
-			<div class="block-my-name">
-				<input type="text" name="" placeholder="Меня зовут..." class="input-name" value="">
-			</div>
-			<div class="block-change-me">
-
-				<div class="block-img-me left-class">
-					<div class="block-years">
-						<div class="left-year-text">
-							До 18
-						</div>
-						<div class="change-year">
-							<img src="images/minus.png" class="left-arrow-up" alt="">
-							<img src="images/plus.png" class="left-arrow-down" alt="">
-						</div>
-					</div>
-
-					<img src="images/male.png" class="left-class-img-male" alt="">
-
-					<div class="block-btn-change">
-						<img src="images/man-vs-woman.png" class="left-left-skip" alt="">
-					</div>
-				</div>
-
-			</div>
-		</div><div class="block-opponent">
-			<div class="block-right-name">
-				<select class="" name="">
-					<option value="1">По выбору</option>
-					<option value="0">Случайный человек</option>
-				</select>
-			</div>
-			<div class="block-change-opponent">
-
-				<div class="block-img-opponent right-class">
-					<div class="block-years">
-						<div class="right-year-text">
-							Любой
-						</div>
-						<div class="change-year">
-							<img src="images/minus.png" class="right-arrow-up" alt="">
-							<img src="images/plus.png" class="right-arrow-down" alt="">
-						</div>
-					</div>
-
-					<img src="images/female.png" class="right-class-img-male" alt="">
-
-					<div class="block-btn-change">
-						<img src="images/man-vs-woman.png" class="right-left-skip scale-skip" alt="">
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-		<div class="block-button-search">
-			<div class="button-search button-search-script-female">
-				Найти собеседницу
-			</div>
-			<!-- Yandex.RTB R-A-343168-4 -->
-<div id="yandex_rtb_R-A-343168-4"></div>
-<script type="text/javascript">
-    (function(w, d, n, s, t) {
-        w[n] = w[n] || [];
-        w[n].push(function() {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-343168-4",
-                renderTo: "yandex_rtb_R-A-343168-4",
-                async: true
-            });
-        });
-        t = d.getElementsByTagName("script")[0];
-        s = d.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//an.yandex.ru/system/context.js";
-        s.async = true;
-        t.parentNode.insertBefore(s, t);
-    })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
-
-		</div>
-	</div>
-<div class="count_online_menu"></div>
-
-			<div class="chat-content">
-				<div class="block-chat">
-					<!--<img src="images/fileclose.png" title="Завершить беседу" class="exit-opponent"> !-->
-					<div class="count_online" hidden></div>
-					<div class="exit-opponent"></div>
-					<div class="chat" id="chat">
-					</div>
-					<div class="write-message" id= "write-message" contenteditable="true">
-					</div>
-					<div class="block-tools-message">
-						<div class="btn_talk">
-							<img src="images/microphone.png" title="Голосовой набор текста" alt="">
-						</div>
-					<div class="btn_voice_msg">
-						<img src="images/voice_start.png" title="Записать голосовое сообщение" alt="">
-					</div>
-					<div class="block-smile">
-					<div class="list-smile">
-						<img src="smile/Emoji Smiley-01.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-02.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-03.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-04.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-05.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-06.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-07.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-08.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-09.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-10.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-11.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-12.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-13.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-14.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-15.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-16.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-17.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-18.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-19.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-20.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-21.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-22.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-23.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-24.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-25.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-26.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-27.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-28.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-29.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-30.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-31.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-32.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-33.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-34.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-35.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-36.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-37.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-38.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-39.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-40.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-41.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-42.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-43.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-44.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-45.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-46.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-47.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-48.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-49.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-50.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-51.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-52.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-53.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-54.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-55.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-56.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-57.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-58.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-59.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-60.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-61.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-62.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-63.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-64.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-65.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-66.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-67.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-68.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-69.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-70.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-71.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-72.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-73.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-74.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-75.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-76.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-77.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-78.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-79.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-80.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-81.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-82.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-83.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-84.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-85.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-86.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-87.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-88.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-89.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-90.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-91.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-92.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-93.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-94.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-95.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-96.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-97.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-98.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-99.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-100.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-101.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-102.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-103.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-104.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-105.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-106.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-107.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-108.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-109.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-110.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-111.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-112.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-113.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-114.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-115.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-116.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-117.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-118.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-119.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-120.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-121.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-122.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-123.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-124.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-125.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-126.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-127.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-128.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-129.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-130.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-131.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-132.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-133.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-134.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-135.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-136.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-137.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-138.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-139.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-140.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-141.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-142.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-143.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-144.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-145.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-146.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-147.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-148.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-149.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-150.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-151.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-152.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-153.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-154.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-155.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-156.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-157.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-158.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-159.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-160.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-161.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-162.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-163.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-164.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-165.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-166.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-167.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-168.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-169.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-170.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-171.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-172.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-173.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-174.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-175.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-176.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-177.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-178.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-179.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-180.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-181.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-182.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-183.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-184.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-185.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-186.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-187.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-188.png" alt="" class="list-chat-smile">
-						<img src="smile/Emoji Smiley-189.png" alt="" class="list-chat-smile">
-					</div>
-						<img src="images/open_smile.png" class="smile">
-					</div>
-						<div class="block-load">
-							<img src="images/load_image.png" class="new-image">
-						</div>
-					</div>
-
-					<!-- Yandex.RTB R-A-343168-2 -->
-<div id="yandex_rtb_R-A-343168-2"></div>
-<script type="text/javascript">
-    (function(w, d, n, s, t) {
-        w[n] = w[n] || [];
-        w[n].push(function() {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-343168-2",
-                renderTo: "yandex_rtb_R-A-343168-2",
-                async: true
-            });
-        });
-        t = d.getElementsByTagName("script")[0];
-        s = d.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//an.yandex.ru/system/context.js";
-        s.async = true;
-        t.parentNode.insertBefore(s, t);
-    })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
-
-					<div class="progressBar" style="text-align: center; height: 19px;">
-			<progress id="progress" value="30" max="100">
-		</div>
-				</div>
-			</div>
-		</div>
-		<!--<div id="google_translate_element" style="text-align: center;"></div><script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'ru', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
-}
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-	</div>!-->
 </body>
 </html>
