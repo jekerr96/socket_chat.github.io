@@ -236,6 +236,7 @@ $(document).ready(function() {
     }
 
     function onMessage(data) {
+        if (data.roomName !== roomName) return;
         let msgClass = "my";
         let msgName = myName;
         if (data.index !== myIndex) {
