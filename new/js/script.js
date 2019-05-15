@@ -7,6 +7,11 @@ $(document).ready(function() {
         MENU: 3,
     };
 
+    const sounds = {
+        find: new Audio("../sound/find.wav"),
+        message: new Audio("../sound/new_message.wav"),
+    };
+
     let currentStatus = STATUS.MENU;
 
     socket.on("reconnect", function(){
@@ -85,6 +90,9 @@ $(document).ready(function() {
 
     });
 
+    let imWriteTimeout;
+    let imWrite = false;
+
     $(".write-message").keydown(function(e) {
 
         if(e.ctrlKey == true && e.keyCode == 13)
@@ -111,6 +119,16 @@ $(document).ready(function() {
             msg = msg.replace(re, ' ');
 
             socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "endWrite",
+                roomName: roomName,
+            });
+
+            clearInterval(imWriteTimeout);
+            imWrite = false;
+
+            socket.emit("onMsg", {
                 msg: msg,
                 index: myIndex,
                 type: "text",
@@ -120,6 +138,28 @@ $(document).ready(function() {
             $(this).html("");
             return false;
         }
+
+        if (!imWrite) {
+            imWrite = true;
+
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "write",
+                roomName: roomName,
+            });
+        }
+
+        clearInterval(imWriteTimeout);
+        imWriteTimeout = setTimeout(() => {
+            imWrite = false;
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                type: "endWrite",
+                roomName: roomName,
+            });
+        }, 3000);
     });
 
     $(".js-exit").click(exit);
@@ -177,6 +217,7 @@ $(document).ready(function() {
         socket.removeListener("onFind");
         socket.on("onMsg", onMessage);
         currentStatus = STATUS.CHAT;
+        sounds.find.play();
     }
 
     function exit() {
@@ -199,6 +240,9 @@ $(document).ready(function() {
         if (data.index !== myIndex) {
             msgClass = "opponent";
             msgName = opponentName;
+
+            if (data.type != "write" && data.type != "endWrite")
+                sounds.message.play();
         }
         let msg;
 
@@ -228,6 +272,14 @@ $(document).ready(function() {
                     </div>
                 </div>`;
 
+        } else if (data.type == "write" && data.index !== myIndex) {
+
+            msg = `<div class="opponent-write js-opponent-write">Собеседник печатает</div>`;
+
+        } else if(data.type == "endWrite" && data.type != "exit" && data.index !== myIndex) {
+
+            $(".js-opponent-write").remove();
+
         } else if(data.type == "voice") {
 
             let blob = new Blob([data.msg], { 'type' : 'audio/ogg; codecs=opus' });
@@ -240,6 +292,7 @@ $(document).ready(function() {
                     </div>
                 </div>`;
         } else if (data.type == "exit") {
+            $(".js-opponent-write").remove();
             msg = `<div class="opponent-exit">${opponentName} покинул(а) чат</div>`;
         }
 
@@ -378,6 +431,24 @@ $(document).ready(function() {
             mediaRecorder.stop();
         }
         recording_voice = !recording_voice;
+    });
+
+    window.onbeforeunload = function(){
+        if(currentStatus === STATUS.CHAT){
+            return "Покинуть чат?";
+        }
+
+    };
+
+    window.addEventListener('unload', function(event) {
+        if(currentStatus === STATUS.CHAT) {
+            socket.emit("onMsg", {
+                msg: "",
+                index: myIndex,
+                roomName: roomName,
+                type: "exit"
+            });
+        }
     });
 
     $.fn.extend({
