@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let socket = io("https://salty-dietician.glitch.me");
+    let socket = io("https://socket-anon-chat.glitch.me");
 
     const STATUS = {
         FIND: 1,
