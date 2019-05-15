@@ -248,14 +248,7 @@ $(document).ready(function() {
 
         if (data.type == "text") {
 
-            msg = `<div class="msg-container ${msgClass}">
-                    <div class="author-name">
-                        ${msgName}:
-                    </div>
-                    <div class="msg">
-                        ${data.msg}
-                    </div>
-                </div>`;
+            msg = '<div class="msg-container ' + msgClass + '"><div class="author-name">' + msgName + ':</div><div class="msg">' + data.msg + '</div></div>';
 
         } else if (data.type == "img") {
             let img = "";
@@ -263,14 +256,7 @@ $(document).ready(function() {
                 img += "<img src='" + data.msg[i] + "'>";
             }
 
-            msg = `<div class="msg-container ${msgClass}">
-                    <div class="author-name">
-                        ${msgName}:
-                    </div>
-                    <div class="msg">
-                        ${img}
-                    </div>
-                </div>`;
+            msg = '<div class="msg-container ' + msgClass + '"><div class="author-name">' + msgName + ':</div><div class="msg">' + img + '</div></div>';
 
         } else if (data.type == "write" && data.index !== myIndex) {
 
@@ -283,17 +269,10 @@ $(document).ready(function() {
         } else if(data.type == "voice") {
 
             let blob = new Blob([data.msg], { 'type' : 'audio/ogg; codecs=opus' });
-            msg = `<div class="msg-container ${msgClass}">
-                    <div class="author-name">
-                        ${msgName}:
-                    </div>
-                    <div class="msg">
-                        <audio controls src='${window.URL.createObjectURL(blob)}'>
-                    </div>
-                </div>`;
+            msg = '<div class="msg-container ' + msgClass + '"><div class="author-name">' + msgName +':</div><div class="msg"><audio controls src="' + window.URL.createObjectURL(blob) + '"></div></div>';
         } else if (data.type == "exit") {
             $(".js-opponent-write").remove();
-            msg = `<div class="opponent-exit">${opponentName} покинул(а) чат</div>`;
+            msg = '<div class="opponent-exit">' + opponentName + ' покинул(а) чат</div>';
         }
 
         $(".js-chat .os-content").append(msg);
