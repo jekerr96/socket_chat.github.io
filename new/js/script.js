@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let socket = io("//localhost:3000");
+    let socket = io("//server-chat-pnrsuvqg5.now.sh");
 
     const STATUS = {
         FIND: 1,
