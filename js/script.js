@@ -226,6 +226,7 @@ $(document).ready(function() {
         $(".js-chat-content").addClass("hide");
 
         socket.removeListener("onMsg");
+        $(".js-opponent-write").remove();
         socket.emit("onMsg", {
             roomName: roomName,
             type: "exit",
