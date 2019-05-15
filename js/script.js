@@ -151,7 +151,7 @@ $(document).ready(function() {
         }
 
         clearInterval(imWriteTimeout);
-        imWriteTimeout = setTimeout(() => {
+        imWriteTimeout = setTimeout(function() {
             imWrite = false;
             socket.emit("onMsg", {
                 msg: "",
