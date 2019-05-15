@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let socket = io("//server-chat-git-master.jekerr.now.sh");
+    let socket = io("//chat-server-git-master.jekerr.now.sh");
 
     const STATUS = {
         FIND: 1,
