@@ -163,7 +163,7 @@ input[type="radio"] + span:hover {
 }
 
 input[type="radio"]:checked + span{
-    background-color: #000;
+    background-color: #5f0c0c;
 }
 
 input[type="radio"]:checked + span:hover {
