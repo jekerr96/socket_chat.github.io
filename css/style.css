@@ -517,6 +517,17 @@ input[type="radio"]:checked + span:hover {
 
 .msg-container {
     margin-bottom: 10px;
+    animation: msgAnim .7s ease;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation-fill-mode: forwards;
+}
+
+@keyframes msgAnim {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .author-name {
