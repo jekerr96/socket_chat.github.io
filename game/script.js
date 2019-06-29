@@ -30,6 +30,8 @@ socket.emit("newPlayer", {
 
 socket.on("newPlayer", (data) => {
     players[data.id] = new Player(data.x, data.y, data.color, data.id);
+
+    drawPlayers();
 });
 
 socket.on("update", (data) => {
@@ -84,6 +86,14 @@ window.addEventListener("keypress", (e) => {
 
     if (e.key == "d") {
         myPlayer.x++;
+    }
+
+    if (e.key == "w") {
+        myPlayer.y--;
+    }
+
+    if (e.key == "s") {
+        myPlayer.y++;
     }
 
     socket.emit("update", {
