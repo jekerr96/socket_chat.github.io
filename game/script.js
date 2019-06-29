@@ -10,7 +10,6 @@ let players = {};
 let myPlayer = {};
 
 socket.on("getMyPlayer", (data) => {
-    console.log("getMyPlayer", data);
     myPlayer = players[data.id];
 });
 
@@ -50,7 +49,6 @@ socket.on("playerDisconnect", (data) => {
 function drawPlayers() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let id in players) {
-        console.log(players[id]);
         players[id].draw();
     }
 }
@@ -80,19 +78,20 @@ class Player {
 }
 
 window.addEventListener("keypress", (e) => {
-    if (e.key == "a") {
+    console.log(e);
+    if (e.code == "KeyA") {
         myPlayer.x--;
     }
 
-    if (e.key == "d") {
+    if (e.code == "KeyD") {
         myPlayer.x++;
     }
 
-    if (e.key == "w") {
+    if (e.code == "KeyW") {
         myPlayer.y--;
     }
 
-    if (e.key == "s") {
+    if (e.code == "KeyS") {
         myPlayer.y++;
     }
 
