@@ -5,17 +5,28 @@ socket.on("onConnect", (data) => {
 });
 
 let canvas = document.querySelector(".canvas");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let sizeX = 32;
+let sizeY = 18;
 let ctx = canvas.getContext("2d");
 let players = {};
+let shoots = {};
+let shootId = 0;
 let myPlayer = {};
+let enemies = {};
+let canShoot = true;
+let loadEnemies = false;
+let die = false;
 
 Colors = {};
 Colors.names = {
-    aqua: "#00ffff",
+    aqua: "#0ff",
     azure: "#f0ffff",
     beige: "#f5f5dc",
-    black: "#000000",
-    blue: "#0000ff",
+    black: "#000",
+    blue: "#00f",
     brown: "#a52a2a",
     cyan: "#00ffff",
     darkblue: "#00008b",
@@ -30,7 +41,7 @@ Colors.names = {
     darkred: "#8b0000",
     darksalmon: "#e9967a",
     darkviolet: "#9400d3",
-    fuchsia: "#ff00ff",
+    fuchsia: "#f0f",
     gold: "#ffd700",
     green: "#008000",
     indigo: "#4b0082",
@@ -41,7 +52,7 @@ Colors.names = {
     lightgrey: "#d3d3d3",
     lightpink: "#ffb6c1",
     lightyellow: "#ffffe0",
-    lime: "#00ff00",
+    lime: "#0f0",
     magenta: "#ff00ff",
     maroon: "#800000",
     navy: "#000080",
@@ -53,13 +64,13 @@ Colors.names = {
     red: "#ff0000",
     silver: "#c0c0c0",
     white: "#ffffff",
-    yellow: "#ffff00"
+    yellow: "#ff0"
 };
-Colors.random = function() {
+Colors.random = function () {
     let result;
     let count = 0;
     for (let prop in this.names)
-        if (Math.random() < 1/++count)
+        if (Math.random() < 1 / ++count)
             result = prop;
     return result;
 };
@@ -76,6 +87,15 @@ socket.on("getPlayers", (data) => {
     drawPlayers();
 });
 
+socket.on("getEnemies", (data) => {
+    for (let id in data) {
+        enemies[id] = new Enemy(data[id].x, data[id].y);
+    }
+
+    loadEnemies = true;
+    drawAll();
+});
+
 socket.emit("newPlayer", {
     x: 25,
     y: 30,
@@ -89,22 +109,74 @@ socket.on("newPlayer", (data) => {
 });
 
 socket.on("update", (data) => {
-   players[data.id].x = data.x;
-   players[data.id].y = data.y;
+    players[data.id].x = data.x;
+    players[data.id].y = data.y;
 
-   drawPlayers();
+    drawAll();
+});
+
+socket.on("shoot", (data) => {
+    shoots[shootId] = new Shoot(data.x, data.y, data.color, data.id, shootId);
+    shootId++;
 });
 
 socket.on("playerDisconnect", (data) => {
-   delete players[data.id];
-
-   drawPlayers();
+    delete players[data.id];
+    drawPlayers();
+    drawAll();
 });
 
-function drawPlayers() {
+socket.on("spawnEnemy", (data) => {
+    enemies[data.id] = new Enemy(data.x, data.y);
+    drawAll();
+});
+
+socket.on("updateEnemy", (data) => {
+    if (!loadEnemies) return;
+   for (let id in data) {
+       enemies[id].x = data[id].x;
+       enemies[id].y = data[id].y;
+   }
+
+   drawAll();
+});
+
+socket.on("deleteEnemy", (data) => {
+   delete enemies[data.id];
+   drawAll();
+});
+
+socket.on("killEnemy", (data) => {
+   delete enemies[data.id];
+   drawAll();
+});
+
+socket.on("diePlayer", (data) => {
+   players[data.id].color = "transparent";
+});
+
+function drawAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawPlayers();
+    drawShoots();
+    drawEnemies();
+}
+
+function drawPlayers() {
     for (let id in players) {
         players[id].draw();
+    }
+}
+
+function drawShoots() {
+    for (let id in shoots) {
+        shoots[id].draw();
+    }
+}
+
+function drawEnemies() {
+    for (let id in enemies) {
+        enemies[id].draw();
     }
 }
 
@@ -116,33 +188,111 @@ class Player {
         this.id = id;
 
         socket.on("getPosition", (data) => {
-           this.x = data.x;
-           this.y = data.y;
+            this.x = data.x;
+            this.y = data.y;
         });
     }
 
     draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x * 9, this.y * 9, canvas.width / 50, canvas.height / 30);
+        ctx.fillRect(this.x * sizeX, this.y * sizeY, canvas.width / sizeX, canvas.height / sizeY);
+    }
+}
+
+class Shoot {
+    constructor(x, y, color, id) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.id = id;
+        this.shootId = shootId;
+        this.move();
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x * sizeX + (canvas.width / sizeX / 4), this.y * sizeY, canvas.width / sizeX / 2, canvas.height / sizeY / 2);
+    }
+
+    move() {
+        this.moveInterval = setInterval(() => {
+           this.y--;
+
+           if (this.y < 0 || this.checkEnemy()) {
+               delete shoots[this.shootId];
+               clearInterval(this.moveInterval);
+           }
+
+           drawAll();
+
+        }, 300);
+    }
+
+
+    checkEnemy() {
+        for (let id in enemies) {
+            if (this.x === enemies[id].x && this.y === enemies[id].y) {
+                enemies[id].color = "transparent";
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+class Enemy {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.color = Colors.random();
+    }
+
+    draw() {
+        this.checkPlayer();
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x * sizeX + (canvas.width / sizeX / 4), this.y * sizeY, canvas.width / sizeX / 2, canvas.height / sizeY / 2);
+    }
+
+    checkPlayer() {
+            if (this.x === myPlayer.x && this.y === myPlayer.y) {
+                die = true;
+                myPlayer.color = "transparent";
+                socket.emit("diePlayer", {id: myPlayer.id});
+            }
     }
 }
 
 window.addEventListener("keypress", (e) => {
-    console.log(e);
-    if (e.code == "KeyA") {
+    if (die) return;
+
+    if (e.code === "KeyA") {
         myPlayer.x--;
     }
 
-    if (e.code == "KeyD") {
+    if (e.code === "KeyD") {
         myPlayer.x++;
     }
 
-    if (e.code == "KeyW") {
+    if (e.code === "KeyW") {
         myPlayer.y--;
     }
 
-    if (e.code == "KeyS") {
+    if (e.code === "KeyS") {
         myPlayer.y++;
+    }
+
+    if (e.code === "Space") {
+        if (canShoot) {
+            socket.emit("shoot", {});
+            shoots[shootId] = new Shoot(myPlayer.x, myPlayer.y - 1, myPlayer.color, myPlayer.id, shootId);
+            shootId++;
+            canShoot = false;
+
+            setTimeout(() => {
+                canShoot = true;
+            }, 1000);
+        }
     }
 
     socket.emit("update", {
@@ -150,5 +300,5 @@ window.addEventListener("keypress", (e) => {
         y: myPlayer.y
     });
 
-    drawPlayers();
+    drawAll();
 });
