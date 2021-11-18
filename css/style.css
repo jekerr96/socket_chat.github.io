@@ -8,6 +8,10 @@ body {
     font-family: 'Philosopher', sans-serif;
 }
 
+.grecaptcha-badge {
+    display: none !important;
+}
+
 .content-wrapper {
     transition: opacity .5s ease;
     position: relative;

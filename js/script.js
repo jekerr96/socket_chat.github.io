@@ -54,7 +54,6 @@ $(document).ready(function() {
         grecaptcha.ready(function() {
             grecaptcha.execute('6Ld9PUIdAAAAAOk4dUjk56BPaPGgEWZAKjW1RP61', {action: 'find'})
                 .then(function(token) {
-                    console.log(token);
                     socket.emit("find", {
                         me: {
                             name: myName,
