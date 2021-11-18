@@ -52,7 +52,7 @@ $(document).ready(function() {
         if (myName == "") myName = "Аноним";
 
         grecaptcha.ready(function() {
-            grecaptcha.execute('6Lc7abAUAAAAAJt28TbC0dciNKqcHq4S_uMYBJgG', {action: 'find'})
+            grecaptcha.execute('6Ld9PUIdAAAAAOk4dUjk56BPaPGgEWZAKjW1RP61', {action: 'find'})
                 .then(function(token) {
                     socket.emit("find", {
                         me: {
