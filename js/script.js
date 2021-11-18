@@ -64,6 +64,7 @@ $(document).ready(function() {
                             sex: $("input[name='opponent-sex']").groupVal(),
                             years: $(".js-select-opponent").val(),
                         },
+                        token
                     });
                 });
         });
