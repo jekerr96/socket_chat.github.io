@@ -51,17 +51,24 @@ $(document).ready(function() {
 
         if (myName == "") myName = "Аноним";
 
-        socket.emit("find", {
-            me: {
-                name: myName,
-                sex: $("input[name='my-sex']").groupVal(),
-                years: $(".js-select-me").val(),
-            },
-            find: {
-                sex: $("input[name='opponent-sex']").groupVal(),
-                years: $(".js-select-opponent").val(),
-            },
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lc7abAUAAAAAJt28TbC0dciNKqcHq4S_uMYBJgG', {action: 'find'})
+                .then(function(token) {
+                    socket.emit("find", {
+                        me: {
+                            name: myName,
+                            sex: $("input[name='my-sex']").groupVal(),
+                            years: $(".js-select-me").val(),
+                        },
+                        find: {
+                            sex: $("input[name='opponent-sex']").groupVal(),
+                            years: $(".js-select-opponent").val(),
+                        },
+                    });
+                });
         });
+
+
 
         //setTimeout(onFind, 1000);
     });
