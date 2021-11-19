@@ -1,5 +1,6 @@
 const { src, dest, series } = require('gulp');
 const less = require('gulp-less');
+const cleanCSS = require('gulp-clean-css');
 const path =  require('path');
 const gaze = require('gaze');
 const webpack = require("webpack");
@@ -8,6 +9,7 @@ const config = require("./webpack.config.js");
 function lessBuild() {
    src('./css/style.less')
         .pipe(less())
+        .pipe(cleanCSS())
         .pipe(dest('./build/css'));
 }
 
