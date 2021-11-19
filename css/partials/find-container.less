@@ -1,0 +1,58 @@
+@import "../_var";
+
+.find-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: var(--inverted-text-color);
+    z-index: 100;
+    border-radius: 25px;
+
+    &__find-text {
+        text-align: center;
+        font-size: 24px;
+        animation: find-text 1.5s alternate-reverse infinite;
+    }
+
+    &__cancel {
+        display: inline-block;
+        margin: 20px auto 0;
+        position: relative;
+        cursor: pointer;
+        font-size: 20px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            border-top: 1px dashed;
+            transition: width .2s ease;
+            pointer-events: none;
+        }
+
+        &:hover {
+            &:before {
+                width: 0;
+            }
+        }
+    }
+}
+
+@keyframes find-text {
+    from {
+        color: var(--text-color);
+    }
+
+    to {
+        color: var(--find-text-color);
+    }
+}
