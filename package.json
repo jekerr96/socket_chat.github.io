@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "gaze": "^1.1.3",
+    "gulp": "^4.0.2",
+    "gulp-less": "^5.0.0"
+  }
+}
