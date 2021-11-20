@@ -4,10 +4,12 @@
             <div class="header__title">Добро пожаловать в&nbsp;анонимный чат. Приятного общения!</div>
         </div>
         <div class="container">
+            <div class="content-container">
+                <ad-block class="yandex-block-top" />
+            </div>
             <transition mode="out-in" name="show-from-top">
                 <div v-if="currentState !== state.chat" class="selector">
                     <div class="content-container">
-                        <ad-block class="yandex-block-top" />
                         <div class="selector__wrapper">
                             <div class="selector__content">
                                 <div class="selector__about-wrap">
