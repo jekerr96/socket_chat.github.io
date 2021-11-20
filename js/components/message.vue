@@ -20,8 +20,10 @@ export default {
     props: ['message'],
     methods: {
         convertAudioToSrc(audio) {
-            console.log(audio);
-            return window.URL.createObjectURL(audio)
+            let binaryData = [];
+            binaryData.push(audio);
+
+            return window.URL.createObjectURL(new Blob(binaryData, { 'type' : 'audio/ogg; codecs=opus' }))
         }
     }
 }
