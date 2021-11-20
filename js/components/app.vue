@@ -76,6 +76,7 @@ import Loader from "./loader.vue";
 import Chat from "./chat.vue";
 import Multiselect from 'vue-multiselect'
 import { io } from "socket.io-client";
+import { load } from 'recaptcha-v3'
 
 export default {
     name: "app",
@@ -131,7 +132,7 @@ export default {
             this.socket.on('connect', this.onSocketReconnect);
         },
 
-        findHandler: function () {
+        findHandler: async function () {
             this.currentState = this.state.find;
 
             this.socket.on('onFind', this.onFind);
@@ -145,6 +146,7 @@ export default {
                     sex: this.opponentSex.value,
                     years: this.opponentYear.value,
                 },
+                token: await this.getRecaptchaToken(),
             });
         },
 
@@ -170,6 +172,10 @@ export default {
         onChatExit() {
 
             this.currentState = this.state.select;
+        },
+
+        async getRecaptchaToken() {
+            return await this.recaptcha.execute('find')
         }
     },
     computed: {
@@ -184,7 +190,7 @@ export default {
             };
         }
     },
-    created() {
+    async created() {
         this.mySex = this.meData.sex.find(item => item.initSelected);
         this.meYear = this.meData.years.find(item => item.initSelected);
 
@@ -194,6 +200,7 @@ export default {
         this.currentState = this.state.select;
 
         this.initSocket();
+        this.recaptcha = await load('6Ld9PUIdAAAAAOk4dUjk56BPaPGgEWZAKjW1RP61')
     },
 }
 </script>
