@@ -129,7 +129,7 @@ export default {
     },
     methods: {
         initSocket: function() {
-            this.socket = io('127.0.0.1:3000');
+            this.socket = io('https://elastic-unruly-shelf.glitch.me/');
 
             this.socket.on('connect', this.onSocketReconnect);
         },

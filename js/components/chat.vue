@@ -203,9 +203,7 @@ export default {
         this.socket.on('chatMsg', data => {
             const message = data;
             message.my = data.id === this.myId;
-
-            console.log(message);
-
+            
             if (!message.my || (message.my && message.type !== 'exit')) {
                 this.messages.push(message);
             }
