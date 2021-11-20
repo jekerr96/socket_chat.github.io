@@ -197,7 +197,7 @@ export default {
                 type,
                 timestamp: Date.now(),
             });
-        }
+        },
     },
 
     created() {
@@ -240,6 +240,16 @@ export default {
 
             this.opponentWrite = data.state;
         });
+
+        window.onbeforeunload = () => {
+            return "Покинуть чат?";
+        };
+    },
+
+    beforeDestroy() {
+        window.onbeforeunload = () => {};
+        this.socket.removeListener('chatMSg');
+        this.socket.removeListener('setWrite');
     }
 }
 </script>
