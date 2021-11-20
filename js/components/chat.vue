@@ -12,7 +12,7 @@
             </div>
             <div class="chat__write-wrap">
                 <div class="chat__placeholder" v-if="!message">Введите ваше сообщение...</div>
-                <div class="chat__write custom-scrollbar" contenteditable="true" @input="onInput($event)" ref="writeMessage" @keypress.enter.prevent="sendMessage($event)"></div>
+                <div class="chat__write custom-scrollbar" contenteditable="true" @input="onInput($event)" ref="writeMessage" @keydown.ctrl.enter.prevent="newLine($event)" @keydown.enter.prevent.exact="sendMessage($event)"></div>
             </div>
             <div class="chat__tools">
                 <button class="chat__tools-item" @mouseenter="showSmiles = true" @mouseleave="showSmiles = false">
@@ -115,6 +115,14 @@ export default {
             txt.insertNode(img);
             this.setCursorAfterElement(img);
             this.message = this.$refs.writeMessage.innerHTML;
+        },
+
+        newLine(ev) {
+            let div = document.createElement('div');
+            let txt = window.getSelection().getRangeAt(0);
+            div.innerHTML = "<br>";
+            txt.insertNode(div);
+            this.setCursorAfterElement(div);
         },
 
         setCursorAfterElement(element) {
