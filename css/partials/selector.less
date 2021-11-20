@@ -38,10 +38,12 @@
 
     &__input {
         outline: none;
-        padding: 5px 10px;
+        padding: 10px 10px;
         width: 100%;
+        border-radius: 5px;
         box-sizing: border-box;
         font-size: 16px;
+        font-family: 'Philosopher', sans-serif;
     }
 
     &__sex-label {
@@ -89,5 +91,19 @@
         display: flex;
         justify-content: center;
         margin-top: 15px;
+    }
+
+    @media (max-width: 650px) {
+        &__about-wrap {
+            grid-template-columns: 1fr;
+        }
+
+        &__images {
+            display: none;
+        }
+
+        &__btn-wrap {
+            margin-top: 30px;
+        }
     }
 }

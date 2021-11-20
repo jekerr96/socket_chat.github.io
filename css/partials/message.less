@@ -1,0 +1,23 @@
+@import "../_var";
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+
+    &__name {
+        padding-right: 10px;
+    }
+
+    &__content {
+        color: var(--message-color);
+    }
+
+    &--my {
+        .message {
+            &__content {
+                color: var(--text-color);
+            }
+        }
+    }
+}

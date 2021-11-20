@@ -1,0 +1,26 @@
+@import "../_var";
+
+.multiselect {
+    &__option {
+        transition: background .2s ease;
+
+        &--highlight {
+            background: var(--primary-color);
+        }
+
+        &--selected {
+            background: var(--inverted-text-color);
+            color: var(--text-color);
+        }
+
+        &--selected {
+            &.multiselect {
+                &__option {
+                    &--highlight {
+                        background: var(--primary-color);
+                    }
+                }
+            }
+        }
+    }
+}

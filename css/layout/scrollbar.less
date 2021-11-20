@@ -1,0 +1,73 @@
+@import "../_var";
+
+/**
+ * Кастомный скроллбар
+ */
+.custom-scrollbar() {
+    @sizeFf: thin;
+    -webkit-overflow-scrolling: touch; // добавляет скроллу инертность
+
+    // FF
+    //noinspection CssUnknownProperty
+    scrollbar-width: @sizeFf;
+    //noinspection CssUnknownProperty
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+
+    &--scroll-snap {
+        scroll-snap-type: x mandatory;
+
+        > * {
+            scroll-snap-align: start;
+        }
+    }
+
+    // Chrome
+    &::-webkit-scrollbar {
+        width: var(--scrollbar-size);
+        height: var(--scrollbar-size);
+        cursor: default;
+    }
+
+    &::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border: none;
+
+        &, &:hover, &:active {
+            background: var(--scrollbar-thumb-color);
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        border: none;
+
+        &, &:hover, &:active {
+            background: var(--scrollbar-track-color);
+        }
+    }
+
+    &::-webkit-scrollbar-track-piece {
+        background: var(--scrollbar-track-color);
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &--hidden {
+        --scrollbar-track-color: transparent;
+        --scrollbar-thumb-color: transparent;
+        --scrollbar-size: 0;
+
+        //noinspection CssUnknownProperty
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+    }
+}
+
+.custom-scrollbar {
+    .custom-scrollbar();
+}

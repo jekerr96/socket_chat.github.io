@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="header">
-            <div class="header__title">Добро пожаловать в&nbsp;анонимный чат. Добро пожаловать!</div>
+            <div class="header__title">Добро пожаловать в&nbsp;анонимный чат. Приятного общения!</div>
         </div>
         <div class="container">
             <transition mode="out-in" name="show-from-top">
@@ -16,9 +16,13 @@
                                         <div class="selector__field-label">Как Вас называть?</div>
                                         <input class="selector__input" type="text" placeholder="Меня зовут...">
                                         <div class="selector__field-label">Ваш возраст</div>
-                                        <select v-model="meYear">
-                                            <option v-for="item in meData.years" :key="item.label" :value="item">{{ item.label }}</option>
-                                        </select>
+                                        <multiselect v-model="meYear"
+                                                     :options="meData.years"
+                                                     label="label"
+                                                     track-by="value"
+                                                     placeholder="Выберите ваш возраст"
+                                                     :show-labels="false"
+                                        />
                                         <div class="selector__field-label">Ваш пол</div>
                                         <div class="selector__sex">
                                             <label v-for="item in meData.sex" :key="item.label">
@@ -30,9 +34,13 @@
                                     <div class="selector__about selector__about--opponent">
                                         <div class="selector__about-title">Кого будем искать?</div>
                                         <div class="selector__field-label">Пол собеседника</div>
-                                        <select v-model="opponentYear">
-                                            <option v-for="item in opponentData.years" :key="item.label" :value="item">{{ item.label }}</option>
-                                        </select>
+                                        <multiselect v-model="opponentYear"
+                                                     :options="opponentData.years"
+                                                     label="label"
+                                                     track-by="value"
+                                                     placeholder="Выберите возраст собеседника"
+                                                     :show-labels="false"
+                                        />
                                         <div class="selector__field-label">Пол собеседника</div>
                                         <div class="selector__sex">
                                             <label v-for="item in opponentData.sex" :key="item.label">
@@ -56,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <chat v-if="currentState === state.chat" />
+                <chat v-if="currentState === state.chat" @exit="currentState = state.select" />
             </transition>
         </div>
     </div>
@@ -66,10 +74,11 @@
 import AdBlock from "./ad-block.vue";
 import Loader from "./loader.vue";
 import Chat from "./chat.vue";
+import Multiselect from 'vue-multiselect'
 
 export default {
     name: "app",
-    components: {Chat, Loader, AdBlock},
+    components: {Chat, Loader, AdBlock, Multiselect},
     data: function () {
         return {
             currentState: '',
