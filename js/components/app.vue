@@ -167,7 +167,7 @@ export default {
 
         onSearchCancel() {
             this.currentState = this.state.select
-            this.socket.emit("cancelSearch", {});
+            this.socket.emit("cancel", {});
             this.socket.removeListener("onFind");
         },
 
