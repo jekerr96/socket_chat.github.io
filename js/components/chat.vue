@@ -26,7 +26,7 @@
                     <img src="/images/load-image.svg" alt="">
                     <input ref="fileLoad" type="file" multiple="multiple" hidden @change="loadFiles($event)">
                 </button>
-                <button class="chat__tools-item">
+                <button class="chat__tools-item" @click="toggleVoice">
                     <img src="/images/mic.svg" alt="">
                 </button>
             </div>
@@ -47,6 +47,9 @@ export default {
             messages: [],
             myId: 1,
             messageSound: new Audio('../sound/new_message.wav'),
+
+            voiceEnabled: false,
+            mediaRecorder: null,
         };
     },
     computed: {
@@ -58,6 +61,7 @@ export default {
         onInput: function(ev) {
             this.message = ev.target.innerHTML;
         },
+
         onExit: function () {
             this.$emit('exit');
             this.message = '';
@@ -68,18 +72,13 @@ export default {
                 type: "exit",
             });
         },
+
         sendMessage(ev) {
             if (!this.message) {
                 return;
             }
 
-            this.socket.emit('chatMsg', {
-                id: this.myId,
-                name: this.name,
-                message: this.message,
-                roomName: this.roomName,
-                timestamp: Date.now(),
-            });
+            this.sendSocketMessage(this.message);
 
             ev.target.innerHTML = '';
             this.message = '';
@@ -107,13 +106,7 @@ export default {
 
         loadFiles(ev) {
             this.encodeImagesAsURL(ev.target.files, images => {
-                this.socket.emit('chatMsg', {
-                    name: this.name,
-                    message: images,
-                    type: 'img',
-                    roomName: this.roomName,
-                    timestamp: Date.now(),
-                });
+                this.sendSocketMessage(images, 'img');
             });
         },
 
@@ -138,6 +131,48 @@ export default {
 
                 reader.readAsDataURL(file);
             }
+        },
+
+        toggleVoice() {
+            if (this.voiceEnabled) {
+                this.mediaRecorder.stop();
+                this.voiceEnabled = false;
+
+                return;
+            }
+
+            navigator.mediaDevices.getUserMedia({audio: true}).then(mediaStream => {
+                 this.mediaRecorder = new MediaRecorder(mediaStream);
+                 let chunksVoice = [];
+
+                this.mediaRecorder.onstart = function(e) {
+                    chunksVoice = [];
+                };
+                this.mediaRecorder.ondataavailable = function(e) {
+                    chunksVoice.push(e.data);
+                };
+                this.mediaRecorder.onstop = function(e) {
+                    let blob = new Blob(chunksVoice, { 'type' : 'audio/ogg; codecs=opus' });
+                    chunksVoice = [];
+                    mediaStream.getAudioTracks()[0].stop();
+                    this.sendSocketMessage(blob, 'voice');
+                };
+
+                this.mediaRecorder.start();
+            });
+
+            this.voiceEnabled = true;
+        },
+
+        sendSocketMessage(message, type = 'message') {
+            this.socket.emit("chatMsg", {
+                id: this.myId,
+                name: this.name,
+                roomName: this.roomName,
+                message,
+                type,
+                timestamp: Date.now(),
+            });
         }
     },
     created() {
