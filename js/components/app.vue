@@ -14,7 +14,7 @@
                                     <div class="selector__about selector__about--me">
                                         <div class="selector__about-title">Пожалуйста, представьтесь</div>
                                         <div class="selector__field-label">Как Вас называть?</div>
-                                        <input class="selector__input" type="text" placeholder="Меня зовут...">
+                                        <input v-model="myName" class="selector__input" type="text" placeholder="Меня зовут...">
                                         <div class="selector__field-label">Ваш возраст</div>
                                         <multiselect v-model="meYear"
                                                      :options="meData.years"
@@ -54,7 +54,7 @@
                                     <div v-if="mySex" :style="{'backgroundImage': `url('${mySex.image}')`}" alt="" class="selector__image selector__image--me"></div>
                                     <div v-if="opponentSex" :style="{'backgroundImage': `url('${opponentSex.image}')`}" alt="" class="selector__image selector__image--opponent"></div>
                                 </div>
-                                <div class="selector__btn-wrap" @click="currentState = state.chat">
+                                <div class="selector__btn-wrap" @click="findHandler">
                                     <button class="btn"><span>{{ btnText }}</span></button>
                                 </div>
                                 <transition name="opacity">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <chat v-if="currentState === state.chat" @exit="currentState = state.select" />
+                <chat v-if="currentState === state.chat" @exit="currentState = state.select" :socket="socket" :room-name="roomName" :my-name="myName" />
             </transition>
         </div>
     </div>
@@ -75,6 +75,7 @@ import AdBlock from "./ad-block.vue";
 import Loader from "./loader.vue";
 import Chat from "./chat.vue";
 import Multiselect from 'vue-multiselect'
+import { io } from "socket.io-client";
 
 export default {
     name: "app",
@@ -85,6 +86,7 @@ export default {
 
             meYear: null,
             mySex: null,
+            myName: '',
             meData: {
                 years: [
                     {value: 1, label: 'До 18', initSelected: true},
@@ -115,7 +117,49 @@ export default {
                     {value: 0, label: 'Любой', image: '/images/anonim.png'},
                 ],
             },
+
+            roomName: '',
+            socket: null,
+
+            findSound: new Audio('../sound/find.wav'),
         };
+    },
+    methods: {
+        initSocket: function() {
+            this.socket = io('127.0.0.1:3000');
+
+            this.socket.on('reconnect', this.onSocketReconnect);
+        },
+
+        findHandler: function () {
+            this.currentState = this.state.find;
+
+            this.socket.on('onFind', this.onFind);
+
+            this.socket.emit("search", {
+                me: {
+                    sex: this.mySex.value,
+                    years: this.meYear.value,
+                },
+                find: {
+                    sex: this.opponentSex.value,
+                    years: this.opponentYear.value,
+                },
+            });
+        },
+
+        onSocketReconnect: function() {
+            if (this.roomName) {
+                this.socket.emit('reconnectSocket', {roomName: this.roomName});
+            }
+        },
+
+        onFind: function(data) {
+            this.socket.removeListener("onFind");
+            this.currentState = this.state.chat;
+            this.roomName = data.roomName;
+            this.findSound.play();
+        }
     },
     computed: {
         btnText: function() {
@@ -137,6 +181,8 @@ export default {
         this.opponentYear = this.opponentData.years.find(item => item.initSelected);
 
         this.currentState = this.state.select;
-    }
+
+        this.initSocket();
+    },
 }
 </script>

@@ -39,96 +39,14 @@ import Message from "./message.vue";
 export default {
     name: "chat",
     components: {Message},
+    props: ['socket', 'roomName', 'myName'],
     data: function () {
         return {
             showSmiles: false,
             message: '',
-            messages: [
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 123,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 1234,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 1235,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 1236,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 1237,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 1238,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 1239,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 1230,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 12311,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 123112,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 123113,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 123114,
-                },
-                {
-                    my: true,
-                    name: 'Аноним',
-                    message: 'Тестовое сообщение',
-                    timestamp: 123116,
-                },
-                {
-                    my: false,
-                    name: 'Люба',
-                    message: 'Тестовое сообщение собеседника',
-                    timestamp: 123117,
-                },
-            ],
+            messages: [],
+            myId: 1,
+            messageSound: new Audio('../sound/new_message.wav'),
         };
     },
     methods: {
@@ -145,15 +63,30 @@ export default {
                 return;
             }
 
-            this.messages.push({
-                my: true,
-                name: 'Аноним',
+            this.socket.emit('chatMsg', {
+                id: this.myId,
+                name: this.myName ? this.myName : 'Анонним',
                 message: this.message,
+                roomName: this.roomName,
                 timestamp: Date.now(),
             });
 
             ev.target.innerHTML = '';
             this.message = '';
+        }
+    },
+    created() {
+        this.myId = Math.random();
+
+        this.socket.on('chatMsg', data => {
+            const message = data;
+            message.my = data.id === this.myId;
+
+            this.messages.push(message);
+
+            if (!message.my) {
+                this.messageSound.play();
+            }
 
             this.$nextTick(() => {
                 this.$refs.messagesContainer.scrollTo({
@@ -161,7 +94,7 @@ export default {
                     behavior: 'smooth',
                 });
             });
-        }
+        });
     }
 }
 </script>
