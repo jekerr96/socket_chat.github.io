@@ -194,6 +194,9 @@ export default {
         },
 
         sendSocketMessage(message, type = 'message') {
+            const re = /(style=".*?")|(style='.*?')/gi;
+            message = message.replace(re, ' ');
+
             this.socket.emit("chatMsg", {
                 id: this.myId,
                 name: this.name,
