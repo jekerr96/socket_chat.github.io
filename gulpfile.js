@@ -22,6 +22,13 @@ function js() {
     });
 }
 
+function jsProd() {
+    const config = require('./webpack.config.js');
+    webpack(config('production'), (err, status) => {
+        console.log(err || status.toString({ colors: true }));
+    });
+}
+
 function watch() {
     gaze(['css/**/*.less'], {cwd: './'}, function () {
         this.on('all', (ev, filePath) => {
@@ -46,6 +53,7 @@ function buildAll() {
 module.exports = {
     lessBuild,
     js,
+    jsProd,
     buildAll,
     watch,
 }

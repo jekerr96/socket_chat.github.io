@@ -1,9 +1,9 @@
 const { VueLoaderPlugin } = require('vue-loader')
 const Path = require("path");
 
-module.exports = () => {
+module.exports = (mode) => {
     return {
-        mode: process.env.env ? process.env.env : 'development',
+        mode: mode ? mode : 'development',
         entry: {
             app: Path.join(__dirname, '/js/app.js'),
         },
