@@ -58,13 +58,13 @@
                                     <button class="btn"><span>{{ btnText }}</span></button>
                                 </div>
                                 <transition name="opacity">
-                                    <loader v-if="currentState === state.find" @cancel="currentState = state.select" />
+                                    <loader v-if="currentState === state.find" @cancel="onSearchCancel" />
                                 </transition>
                             </div>
                         </div>
                     </div>
                 </div>
-                <chat v-if="currentState === state.chat" @exit="currentState = state.select" :socket="socket" :room-name="roomName" :my-name="myName" />
+                <chat v-if="currentState === state.chat" @exit="onChatExit" :socket="socket" :room-name="roomName" :my-name="myName" />
             </transition>
         </div>
     </div>
@@ -159,6 +159,17 @@ export default {
             this.currentState = this.state.chat;
             this.roomName = data.roomName;
             this.findSound.play();
+        },
+
+        onSearchCancel() {
+            this.currentState = this.state.select
+            this.socket.emit("cancelSearch", {});
+            this.socket.removeListener("onFind");
+        },
+
+        onChatExit() {
+
+            this.currentState = this.state.select;
         }
     },
     computed: {
