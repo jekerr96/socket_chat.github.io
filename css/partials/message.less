@@ -2,6 +2,7 @@
 
 .message {
     display: flex;
+    align-items: flex-end;
     margin-bottom: 10px;
     flex-shrink: 0;
 
@@ -11,6 +12,10 @@
 
     &__content {
         color: var(--message-color);
+
+        img {
+            max-width: 100%;
+        }
     }
 
     &--my {
