@@ -7,6 +7,7 @@
             <div class="chat__content custom-scrollbar" ref="messagesContainer">
                 <transition-group name="show-from-left" class="chat__content-wrap" appear>
                     <message v-for="message in messages" :message="message" :key="message.timestamp" />
+                    <div v-if="opponentWrite" class="chat__write-status" key="write-status">Собеседник печатает</div>
                 </transition-group>
             </div>
             <div class="chat__write-wrap">
@@ -50,6 +51,10 @@ export default {
 
             voiceEnabled: false,
             mediaRecorder: null,
+
+            writeTimeout: null,
+            inWrite: false,
+            opponentWrite: false,
         };
     },
     computed: {
@@ -57,9 +62,28 @@ export default {
             return this.myName ? this.myName : 'Аноним';
         }
     },
+    watch: {
+        inWrite: function(val) {
+            this.socket.emit('setWrite', {
+                id: this.myId,
+                roomName: this.roomName,
+                state: val,
+            });
+        }
+    },
     methods: {
         onInput: function(ev) {
             this.message = ev.target.innerHTML;
+
+            this.inWrite = true;
+
+            if (this.writeTimeout) {
+                clearTimeout(this.writeTimeout);
+            }
+
+            this.writeTimeout = setTimeout(() => {
+                this.inWrite = false;
+            }, 3000);
         },
 
         onExit: function () {
@@ -175,14 +199,13 @@ export default {
             });
         }
     },
+
     created() {
         this.myId = Math.random();
 
         this.socket.on('chatMsg', data => {
             const message = data;
             message.my = data.id === this.myId;
-
-            console.log(data);
 
             switch (message.type) {
                 case 'exit':
@@ -200,12 +223,22 @@ export default {
                 this.messageSound.play();
             }
 
+            this.opponentWrite = false;
+
             this.$nextTick(() => {
                 this.$refs.messagesContainer.scrollTo({
                     top: this.$refs.messagesContainer.scrollHeight,
                     behavior: 'smooth',
                 });
             });
+        });
+
+        this.socket.on('setWrite', data => {
+            if (data.id === this.myId) {
+                return;
+            }
+
+            this.opponentWrite = data.state;
         });
     }
 }

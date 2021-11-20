@@ -21,6 +21,11 @@
         overflow-y: auto;
     }
 
+    &__content-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__write-wrap {
         position: relative;
     }
@@ -79,5 +84,20 @@
         img {
             max-width: 100%;
         }
+    }
+
+    &__write-status {
+        animation: write 2s ease alternate-reverse infinite;
+        order: 2;
+    }
+}
+
+@keyframes write {
+    from {
+        color: var(--text-color);
+    }
+
+    to {
+        color: var(--find-text-color);
     }
 }
