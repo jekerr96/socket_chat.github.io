@@ -6,7 +6,7 @@
             <img v-for="imgSrc in message.message" :src="imgSrc" alt="">
         </div>
         <div class="message__content" v-else-if="message.type === 'voice'">
-            <audio controls :src="window.URL.createObjectURL(message.message)" />
+            <audio controls :src="convertAudioToSrc(message.message)" />
         </div>
         <div class="message__content" v-else-if="message.type === 'exit'">
             Собеседник покинул чат
@@ -17,6 +17,11 @@
 <script>
 export default {
     name: "message",
-    props: ['message']
+    props: ['message'],
+    methods: {
+        convertAudioToSrc(audio) {
+            return window.URL.createObjectURL(audio)
+        }
+    }
 }
 </script>
