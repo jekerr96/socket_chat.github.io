@@ -20,6 +20,7 @@ export default {
     props: ['message'],
     methods: {
         convertAudioToSrc(audio) {
+            console.log(audio);
             return window.URL.createObjectURL(audio)
         }
     }
