@@ -128,7 +128,7 @@ export default {
         initSocket: function() {
             this.socket = io('127.0.0.1:3000');
 
-            this.socket.on('reconnect', this.onSocketReconnect);
+            this.socket.on('connect', this.onSocketReconnect);
         },
 
         findHandler: function () {

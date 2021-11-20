@@ -91,10 +91,7 @@ export default {
             this.message = '';
             this.messages = [];
             this.socket.removeListener("chatMsg");
-            this.socket.emit("chatMsg", {
-                roomName: this.roomName,
-                type: "exit",
-            });
+            this.sendSocketMessage('', 'exit');
         },
 
         sendMessage(ev) {
@@ -207,23 +204,16 @@ export default {
             const message = data;
             message.my = data.id === this.myId;
 
-            switch (message.type) {
-                case 'exit':
-                    this.messages.push({
-                        my: false,
-                        message: 'Собеседник покинул(а) чат',
-                        timestamp: Date.now(),
-                    });
-                    break;
-                default:
-                    this.messages.push(message);
+            console.log(message);
+
+            if (!message.my || (message.my && message.type !== 'exit')) {
+                this.messages.push(message);
             }
 
             if (!message.my) {
                 this.messageSound.play();
+                this.opponentWrite = false;
             }
-
-            this.opponentWrite = false;
 
             this.$nextTick(() => {
                 this.$refs.messagesContainer.scrollTo({
