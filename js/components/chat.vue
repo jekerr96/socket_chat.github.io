@@ -172,7 +172,7 @@ export default {
                 this.mediaRecorder.ondataavailable = function(e) {
                     chunksVoice.push(e.data);
                 };
-                this.mediaRecorder.onstop = function(e) {
+                this.mediaRecorder.onstop = e => {
                     let blob = new Blob(chunksVoice, { 'type' : 'audio/ogg; codecs=opus' });
                     chunksVoice = [];
                     mediaStream.getAudioTracks()[0].stop();
