@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="selector__about selector__about--opponent">
                                         <div class="selector__about-title">Кого будем искать?</div>
-                                        <div class="selector__field-label">Пол собеседника</div>
+                                        <div class="selector__field-label">Возраст собеседника</div>
                                         <multiselect v-model="opponentYear"
                                                      :options="opponentData.years"
                                                      label="label"
